@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  TravelSchedule
-//
-//  Created by Константин Филиппов on 19.01.2025.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -22,3 +15,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
