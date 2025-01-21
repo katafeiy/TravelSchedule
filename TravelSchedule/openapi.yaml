@@ -59,6 +59,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Stations'
+  /v3.0/schedule/:
+    get:
+      tags:
+      - getNearFlights
+      summary: "Список ближайших рейсов"
+      operationId: getNearFlights
+      parameters:
+      - name: apikey
+        in: query
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: station
+        in: query
+        description: станции
+        required: true
+        schema:
+          type: number
+      - name: format
+        in: query
+        description: json или xml
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+        description: success
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/schemas/Flights'
 components:
   schemas:
     Stations:
@@ -114,24 +146,4 @@ components:
         desktop_url:
           type: string
         touch_url:
-          type: string
-servise:
-- url: https://api.rasp.yandex.net
-tags:
-- name: "Список ближайших рейсов"
-  description: "Список ближайших рейсов"
-path: 
-  /v3.0/schedule/:
-    get:
-      tags:
-      - getNearFlights
-      summary: "Список ближайших рейсов"
-      operationId: getNearFlights
-      parameters:
-      - name: apikey
-        in: query
-        description: API Key
-        required: true
-        schema:
-          type: string
-      -   
+          type: string 
