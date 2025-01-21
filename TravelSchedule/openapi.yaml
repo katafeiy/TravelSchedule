@@ -62,9 +62,9 @@ paths:
   /v3.0/schedule/:
     get:
       tags:
-      - getNearFlights
+      - getNearestRoute
       summary: "Список ближайших рейсов"
-      operationId: getNearFlights
+      operationId: getNearestRoute
       parameters:
       - name: apikey
         in: query
@@ -74,10 +74,10 @@ paths:
           type: string
       - name: station
         in: query
-        description: станции
+        description: код станции
         required: true
         schema:
-          type: number
+          type: string
       - name: format
         in: query
         description: json или xml
@@ -88,9 +88,15 @@ paths:
         "200":
         description: success
         content:
-          aplication/json:
+          application/json:
             schema:
-              $ref: '#/components/schemas/Flights'
+              $ref: '#/components/schemas/Route'
+        "400":
+        description: нет данных
+        "401":
+        description: нет данных
+        "404":
+        description: не найдено        
 components:
   schemas:
     Stations:
@@ -146,4 +152,127 @@ components:
         desktop_url:
           type: string
         touch_url:
-          type: string 
+          type: string
+    Route:
+      type: object
+      properties:
+        date: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        station:
+          $ref: '#/components/schemas/Station'
+        schedule:
+          type: arrey
+          item:
+            $ref: '#/components/schemas/ScheduleRoute'
+        schedule_direction:
+          $ref: '#/components/schemas/ScheduleDirection'
+        directions:
+          $ref: '#/components/schemas/Direction'
+    Station:
+      type: object
+      properties:
+        code:
+          type: string
+          discription: код станции 
+        station_type:
+          type: string
+          discription: тип станции   
+#           enum:
+#            - station - станция;
+#            - platform — платформа;
+#            - stop — остановочный пункт;
+#            - checkpoint — блок-пост;
+#            - post — пост;
+#            - crossing — разъезд;
+#            - overtaking_point — обгонный пункт;
+#            - train_station — вокзал;
+#            - airport — аэропорт;
+#            - bus_station — автовокзал;
+#            - bus_stop — автобусная остановка;
+#            - unknown — станция без типа;
+#            - port — порт;
+#            - port_point — портпункт;
+#            - wharf — пристань;
+#            - river_port — речной вокзал;
+#            - marine_station — морской вокзал.
+        station_type_name: 
+          type: string
+          discription: название типа станции
+        title: 
+          type: string
+          discription: название станции
+        popular_title: 
+          type: string
+          discription: общепринятое название станции  
+        short_title: 
+          type: string
+          discription: сокращенное название станции
+        codes:
+          $ref: '#/components/schemas/Codes'
+        transport_type:
+          type: string
+          discription: тип транспорта, обслуживаемый станцией
+        type:
+          type: string
+          discription: вид станции
+    Schedule:
+      type: object
+      properties:
+        except_days:
+          type: string
+          discription: дни в которые нитка не курсирует
+        arrival:
+          type: string
+          discription: время прибытия
+        thread:
+          $ref: '#/components/schemas/Thread'
+        is_fuzzy:
+          type: bool
+          discription: признак неточности времени отправления и времени прибытия
+        days:
+          type: string
+          discription: дни курсирования нитки
+        stops:
+          type: string
+          discription: станции следования рейса, на которых совершается остановка
+        departure:
+          type: string
+          discription: время отправления
+        terminal:
+          type: string
+          discription: терминал аэропрта
+        platform:
+          type: string
+          discription: платформа или путь с которого отправляется рейс
+    Codes:
+      type: object
+      properties:
+        yandex: 
+          type: string
+          discription: код станции в системе кодирования Яндекс Расписаний
+        esr:
+          type: string
+          discription: код станции в системе кодирования ESR
+    Schedule_directions:
+      type: object
+      properties:
+        code:
+          type: string
+          discription: код направления
+        title:
+          type: string
+          discription: название направления
+    Schedule_directions:
+      type: object
+      properties:
+        
+
+
+           
+
+
+
+      
+        
+          
