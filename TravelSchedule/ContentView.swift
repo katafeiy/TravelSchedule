@@ -11,7 +11,8 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-               try stations()
+//               try stations()
+                    try route()
             }
         }
         .padding()
@@ -33,9 +34,25 @@ struct ContentView: View {
             print(stations)
         }
     }
+    
+    func route() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = NearestRouteService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let stations = try await service.getNearestStations(station: "s9600213")
+            print(stations)
+        }
+    }
 }
 
 #Preview {
     ContentView()
 }
-

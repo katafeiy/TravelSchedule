@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		125E6A3D2D42471800D2D461 /* NearestRouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E6A3C2D42471800D2D461 /* NearestRouteService.swift */; };
 		12606F8D2D3E5F7600A62639 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 12606F8C2D3E5F7600A62639 /* OpenAPIRuntime */; };
 		12606F902D3E5F9700A62639 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 12606F8F2D3E5F9700A62639 /* OpenAPIURLSession */; };
 		12606FA22D3E623800A62639 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12606F9B2D3E623800A62639 /* Preview Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		1223BE362D3CDFAF00E1B171 /* TravelSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		125E6A3C2D42471800D2D461 /* NearestRouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestRouteService.swift; sourceTree = "<group>"; };
 		12606F9B2D3E623800A62639 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12606F9D2D3E623800A62639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12606F9E2D3E623800A62639 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				12606FB32D3E66F200A62639 /* NearestStationsService.swift */,
+				125E6A3C2D42471800D2D461 /* NearestRouteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			files = (
 				12606FA52D3E623800A62639 /* ContentView.swift in Sources */,
 				12606FB42D3E670000A62639 /* NearestStationsService.swift in Sources */,
+				125E6A3D2D42471800D2D461 /* NearestRouteService.swift in Sources */,
 				12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
