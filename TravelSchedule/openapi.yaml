@@ -167,9 +167,9 @@ components:
           item:
             $ref: '#/components/schemas/ScheduleRoute'
         schedule_direction:
-          $ref: '#/components/schemas/ScheduleDirection'
+          $ref: '#/components/schemas/Schedule_directions'
         directions:
-          $ref: '#/components/schemas/Direction'
+          $ref: '#/components/schemas/Directions'
     StationRoute:
       type: object
       properties:
@@ -328,12 +328,12 @@ components:
         title:
           type: string
           description: Название перевозчика
-      Directions:
-        type: object
-        properties:
-          code:
-            type: string
-            description: Код направления
-          title:
-            type: string
-            description: Название направления
+    Directions:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Код направления
+        title:
+          type: string
+          description: Название направления
