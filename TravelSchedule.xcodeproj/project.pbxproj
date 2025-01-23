@@ -59,6 +59,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		125E6A372D423EF400D2D461 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				12606FB32D3E66F200A62639 /* NearestStationsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		12606F932D3E606600A62639 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,7 +89,7 @@
 				12606F9D2D3E623800A62639 /* Assets.xcassets */,
 				12606F9E2D3E623800A62639 /* ContentView.swift */,
 				12606FA02D3E623800A62639 /* TravelScheduleApp.swift */,
-				12606FB32D3E66F200A62639 /* NearestStationsService.swift */,
+				125E6A372D423EF400D2D461 /* Services */,
 				12606FA72D3E630300A62639 /* openapi-generator-config.yaml */,
 				12606F9F2D3E623800A62639 /* openapi.yaml */,
 			);

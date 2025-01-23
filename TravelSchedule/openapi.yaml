@@ -24,19 +24,19 @@ paths:
           type: string
       - name: lat
         in: query
-        description: широта
+        description: Широта
         required: true
         schema:
           type: number
       - name: lng
         in: query
-        description: долгота
+        description: Долгота
         required: true
         schema:
           type: number
       - name: distance
         in: query
-        description: радиус охвата
+        description: Радиус охвата
         required: true
         schema:
           type: integer
@@ -54,7 +54,7 @@ paths:
           type: string
       responses:
         "200":
-          description: success
+          description: Успешное выполнение запроса
           content:
             application/json:
               schema:
@@ -74,7 +74,7 @@ paths:
           type: string
       - name: station
         in: query
-        description: код станции
+        description: Код станции
         required: true
         schema:
           type: string
@@ -86,17 +86,17 @@ paths:
           type: string
       responses:
         "200":
-          description: success
+          description: Успешное выполнение запроса
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Route'
         "400":
-          description: нет данных
+          description: Нет данных
         "401":
-          description: нет данных
+          description: Нет данных
         "404":
-          description: не найдено        
+          description: Не найдено        
 components:
   schemas:
     Stations:
@@ -175,10 +175,10 @@ components:
       properties:
         code:
           type: string
-          description: код станции 
+          description: Код станции 
         station_type:
           type: string
-          description: тип станции   
+          description: Тип станции   
 #           enum:
 #            - station - станция;
 #            - platform — платформа;
@@ -202,78 +202,138 @@ components:
           description: название типа станции
         title: 
           type: string
-          description: название станции
+          description: Название станции
         popular_title: 
           type: string
-          description: общепринятое название станции  
+          description: Общепринятое название станции  
         short_title: 
           type: string
-          description: сокращенное название станции
-        codes:
-          $ref: '#/components/schemas/Codes'
+          description: Сокращенное название станции
+        codes_stations:
+          $ref: '#/components/schemas/CodesStations'
         transport_type:
           type: string
-          description: тип транспорта, обслуживаемый станцией
+          description: Тип транспорта, обслуживаемый станцией
         type:
           type: string
-          description: вид станции
+          description: Вид станции
     ScheduleRoute:
       type: object
       properties:
         except_days:
           type: string
-          description: дни в которые нитка не курсирует
+          description: Дни в которые нитка не курсирует
         arrival:
           type: string
-          description: время прибытия
+          description: Время прибытия
         thread:
           $ref: '#/components/schemas/Thread'
         is_fuzzy:
           type: boolean
-          description: признак неточности времени отправления и времени прибытия
+          description: Признак неточности времени отправления и времени прибытия
         days:
           type: string
-          description: дни курсирования нитки
+          description: Дни курсирования нитки
         stops:
           type: string
-          description: станции следования рейса, на которых совершается остановка
+          description: Станции следования рейса, на которых совершается остановка
         departure:
           type: string
-          description: время отправления
+          description: Время отправления
         terminal:
           type: string
-          description: терминал аэропрта
+          description: Терминал аэропрта
         platform:
           type: string
-          description: платформа или путь с которого отправляется рейс
-    Codes:
+          description: Платформа или путь с которого отправляется рейс
+    CodesStations:
       type: object
       properties:
         yandex: 
           type: string
-          description: код станции в системе кодирования Яндекс Расписаний
+          description: Код станции в системе кодирования Яндекс Расписаний
         esr:
           type: string
-          description: код станции в системе кодирования ESR
+          description: Код станции в системе кодирования ESR
     Schedule_directions:
       type: object
       properties:
         code:
           type: string
-          description: код направления
+          description: Код направления
         title:
           type: string
-          description: название направления
-    Schedule_directions:
+          description: Название направления
+    Thread:
       type: object
       properties:
-        
-
-
-           
-
-
-
-      
-        
-          
+        uid:
+          type: string
+          description: Идентификатор нитки в системе кодирования Яндекс Расписаний
+        title:
+          type: string
+          description: Название нитки
+        number:
+          type: string
+          description: Номер рейса
+        short_title:
+          type: string
+          description: Сокращенное название нитки
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        transport_type:
+          type: string
+          description: Тип транспортного средства
+        vehicle:
+          type: string
+          description: Название транспортного средства
+        transport_subtype:
+          type: string
+          description: Подтип транспорта
+        express_type:
+          type: string
+          description: Признак транспрорта, экспресс или аэроэкспресс
+    Codes:
+      type: object
+      properties:
+        icao:
+          type: string
+          description: Код станции в системе кодирования ICAO
+        sirena:
+          type: string
+          description: Код станции в системе кодирования Sirena
+        iata:
+          type: string
+          description: Код станции в системе кодирования IATA
+    Transport_subtype:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Цвет транспортного средства в шеснадцатизначном формате
+        code:
+          type: string
+          description: Код транспортного средства
+        title:
+          type: string
+          description: Описание подтипа транспортного средства
+    Carrier:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Код перевозчика в системе кодирования Яндекс Расписаний
+        codes:
+          $ref: '#/components/schemas/Codes'
+        title:
+          type: string
+          description: Название перевозчика
+      Directions:
+        type: object
+        properties:
+          code:
+            type: string
+            description: Код направления
+          title:
+            type: string
+            description: Название направления
