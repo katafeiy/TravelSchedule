@@ -120,7 +120,7 @@ paths:
         "200":
           description: Успешное выполнение запроса
           content:
-            application/json:
+            text/html; charset=utf-8:
               schema:
                 $ref: '#/components/schemas/AllStationsList'
         "400":
@@ -441,12 +441,12 @@ components:
         latitude:
           type: integer
           description: Широта станции
-    Stations/Codes:
-      type: object
-      properties:
-        esr_code:
-          type: string
-          description: Код станции в системе кодирования ESR
-        yandex_code:
-          type: string
-          description: Код станции в системе кодирования Яндекс Расписаний
+    # Stations/Codes:
+    #   type: object
+    #   properties:
+    #     esr_code:
+    #       type: string
+    #       description: Код станции в системе кодирования ESR
+    #     yandex_code:
+    #       type: string
+    #       description: Код станции в системе кодирования Яндекс Расписаний

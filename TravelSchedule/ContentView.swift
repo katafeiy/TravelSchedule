@@ -11,8 +11,9 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-//               try stations()
-                    try route()
+//                try stations()
+//                try route()
+                try allStations()
             }
         }
         .padding()
@@ -48,6 +49,23 @@ struct ContentView: View {
         
         Task {
             let stations = try await service.getScheduleRouteByStation(station: "s9600213")
+            print(stations)
+        }
+    }
+    
+    func allStations() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = AllStationsListService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let stations = try await service.getAllStationsList()
             print(stations)
         }
     }
