@@ -12,9 +12,9 @@ paths:
   /v3.0/schedule/:
     get:
       tags:
-      - getNearestRoute
+      - getScheduleRouteByStation
       summary: "Расписание рейсов по станции"
-      operationId: getNearestRoute
+      operationId: getScheduleRouteByStation
       parameters:
       - name: apikey
         in: query
@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Route'
+                $ref: '#/components/schemas/ScheduleRouteByStation'
         "400":
           description: Нет данных
         "401":
@@ -131,7 +131,7 @@ paths:
           description: Не найдено
 components:
   schemas:
-    Route:
+    ScheduleRouteByStation:
       type: object
       properties:
         date: 
@@ -369,7 +369,7 @@ components:
           type: string
         touch_url:
           type: string
-    AllStatios:
+    AllStationsList:
       type: object
       properties:
         countries:
@@ -415,9 +415,9 @@ components:
           $ref: '#/components/schemas/Codes'
           description: Коды населенных пунктов
         stations:
-          $ref: '#/components/schemas/AllStations'
+          $ref: '#/components/schemas/StationsInSettlements'
           description: Список станций
-    AllStations:
+    StationsInSettlements:
       type: object
       properties:
         direction:

@@ -1,15 +1,15 @@
 import OpenAPIRuntime
 import OpenAPIURLSession
 
-typealias NearestRoute = Components.Schemas.Route
+typealias ScheduleRouteByStation = Components.Schemas.ScheduleRouteByStation
 
-protocol NearestRouteServiceProtocol {
-    func getNearestStations(
+protocol ScheduleRouteByStationServiceProtocol {
+    func getScheduleRouteByStation(
         station: String
-    ) async throws -> NearestRoute
+    ) async throws -> ScheduleRouteByStation
 }
 
-final class ScheduleRouteByStationService: NearestRouteServiceProtocol {
+final class ScheduleRouteByStationService: ScheduleRouteByStationServiceProtocol {
     
     private let client: Client
     private let apikey: String
@@ -19,9 +19,9 @@ final class ScheduleRouteByStationService: NearestRouteServiceProtocol {
         self.apikey = apiKey
     }
     
-    func getNearestStations(station: String) async throws -> NearestRoute {
+    func getScheduleRouteByStation(station: String) async throws -> ScheduleRouteByStation {
         
-        let response = try await client.getNearestRoute(query: .init(
+        let response = try await client.getScheduleRouteByStation(query: .init(
             
             apikey: apikey,
             station: station

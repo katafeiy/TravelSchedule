@@ -41,13 +41,13 @@ struct ContentView: View {
             transport: URLSessionTransport()
         )
         
-        let service = NearestRouteService(
+        let service = ScheduleRouteByStationService(
             client: client,
             apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
         )
         
         Task {
-            let stations = try await service.getNearestStations(station: "s9600213")
+            let stations = try await service.getScheduleRouteByStation(station: "s9600213")
             print(stations)
         }
     }
