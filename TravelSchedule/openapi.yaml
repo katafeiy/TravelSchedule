@@ -9,6 +9,44 @@ tags:
 - name: Список ближайших станций
   description: Список ближайших станций
 paths:
+  /v3.0/schedule/:
+    get:
+      tags:
+      - getNearestRoute
+      summary: "Расписание рейсов по станции"
+      operationId: getNearestRoute
+      parameters:
+      - name: apikey
+        in: query
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: station
+        in: query
+        description: Код станции
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: json или xml
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Успешное выполнение запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        "400":
+          description: Нет данных
+        "401":
+          description: Нет данных
+        "404":
+          description: Не найдено
   /v3.0/nearest_stations/:
     get:
       tags:
@@ -59,44 +97,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Stations'
-  /v3.0/schedule/:
-    get:
-      tags:
-      - getNearestRoute
-      summary: "Список ближайших рейсов"
-      operationId: getNearestRoute
-      parameters:
-      - name: apikey
-        in: query
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: station
-        in: query
-        description: Код станции
-        required: true
-        schema:
-          type: string
-      - name: format
-        in: query
-        description: json или xml
-        required: false
-        schema:
-          type: string
-      responses:
-        "200":
-          description: Успешное выполнение запроса
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Route'
-        "400":
-          description: Нет данных
-        "401":
-          description: Нет данных
-        "404":
-          description: Не найдено
   /v3.0/stations_list/:
     get:
       tags:
@@ -116,62 +116,21 @@ paths:
         required: false
         schema:
           type: string
+      responses:
+        "200":
+          description: Успешное выполнение запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllStationsList'
+        "400":
+          description: Нет данных
+        "401":
+          description: Нет данных
+        "404":
+          description: Не найдено
 components:
   schemas:
-    Stations:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        stations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Station'
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-    Station:
-      type: object
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        short_title:
-          type: string
-        popular_title:
-          type: string
-        code:
-          type: string
-        lat:
-          type: number
-        lng:
-          type: number
-        station_type:
-          type: string
-        station_type_name:
-          type: string
-        transport_type:
-          type: string
-        distance:
-          type: number
-        majority:
-          type: integer
-        type_choices:
-          $ref: '#/components/schemas/Schedule'
-    Schedule:
-      type: object
-      properties:
-        desktop_url:
-          type: string
-        touch_url:
-          type: string
     Route:
       type: object
       properties:
@@ -356,6 +315,60 @@ components:
         title:
           type: string
           description: Название направления
+    Stations:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        stations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Station'
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Station:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        short_title:
+          type: string
+        popular_title:
+          type: string
+        code:
+          type: string
+        lat:
+          type: number
+        lng:
+          type: number
+        station_type:
+          type: string
+        station_type_name:
+          type: string
+        transport_type:
+          type: string
+        distance:
+          type: number
+        majority:
+          type: integer
+        type_choices:
+          $ref: '#/components/schemas/Schedule'
+    Schedule:
+      type: object
+      properties:
+        desktop_url:
+          type: string
+        touch_url:
+          type: string
     AllStatios:
       type: object
       properties:
