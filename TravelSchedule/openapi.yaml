@@ -96,7 +96,26 @@ paths:
         "401":
           description: Нет данных
         "404":
-          description: Не найдено        
+          description: Не найдено
+  /v3.0/stations_list/:
+    get:
+      tags:
+      - getAllStationsList
+      summary: Список всех доступных станций
+      operationId: getAllStationsList
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: json или xml
+        required: false
+        schema:
+          type: string
 components:
   schemas:
     Stations:
@@ -337,3 +356,84 @@ components:
         title:
           type: string
           description: Название направления
+    AllStatios:
+      type: object
+      properties:
+        countries:
+          type: array
+          item:
+            $ref: '#/components/schemas/Countries'
+            description: Список стран
+    Countries:
+      type: object
+      properties:
+        regions:
+          type: array
+          item:
+            $ref: '#/components/schemas/Regions'
+            description: Список регионов
+        codes:
+          $ref: '#/components/schemas/Codes'
+          description: Коды стран
+        title:
+          type: string
+          description: Название страны
+    Regions:
+      type: object
+      properties:
+        settlements:
+          type: array
+          item:
+            $ref: '#/components/schemas/Settlements'
+            description: Список населенных пунктов
+        codes:
+          $ref: '#/components/schemas/Codes'
+          description: Коды регионов
+        title:
+          type: string
+          description: Название региона
+    Settlements:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Название населенного пункта
+        codes:
+          $ref: '#/components/schemas/Codes'
+          description: Коды населенных пунктов
+        stations:
+          $ref: '#/components/schemas/AllStations'
+          description: Список станций
+    AllStations:
+      type: object
+      properties:
+        direction:
+          type: string
+          description: Направление движания поездов
+        codes:
+          $ref: '#/components/schemas/CodesStations'
+          description: Список кодов станций
+        station_type:
+          type: string
+          description: Тип станции
+        title:
+          type: string
+          description: Название станции
+        longitude:
+          type: integer
+          description: Долгота станции
+        transport_type:
+          type: string
+          description: Тип транспорта
+        latitude:
+          type: integer
+          description: Широта станции
+    Stations/Codes:
+      type: object
+      properties:
+        esr_code:
+          type: string
+          description: Код станции в системе кодирования ESR
+        yandex_code:
+          type: string
+          description: Код станции в системе кодирования Яндекс Расписаний
