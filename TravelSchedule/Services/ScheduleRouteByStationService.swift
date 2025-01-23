@@ -9,7 +9,7 @@ protocol NearestRouteServiceProtocol {
     ) async throws -> NearestRoute
 }
 
-final class NearestRouteService: NearestRouteServiceProtocol {
+final class ScheduleRouteByStationService: NearestRouteServiceProtocol {
     
     private let client: Client
     private let apikey: String
