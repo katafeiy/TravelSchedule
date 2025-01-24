@@ -500,7 +500,7 @@ components:
           items:
             $ref: '#/components/schemas/ScheduleRoute'
         schedule_direction:
-          $ref: '#/components/schemas/ScheduleDirections'
+          $ref: '#/components/schemas/Directions'
         directions:
           $ref: '#/components/schemas/Directions'
     StationRoute:
@@ -582,21 +582,12 @@ components:
     CodesStations:
       type: object
       properties:
-        yandex: 
+        yandex_code:
           type: string
-          description: Код станции в системе кодирования Яндекс Расписаний
-        esr:
+          description: Код станции в системе Яндекс Расписаний
+        esr_code:
           type: string
-          description: Код станции в системе кодирования ESR
-    ScheduleDirections:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Код направления
-        title:
-          type: string
-          description: Название направления
+          description: Код железнодорожной станции в системе ЕСР (если применимо)
     Directions:
       type: object
       properties:
