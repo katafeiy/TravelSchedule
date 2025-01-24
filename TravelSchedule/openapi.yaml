@@ -42,11 +42,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ScheduleRouteByStation'
         "400":
-          description: Нет данных
+          description: неверный запрос (ошибка клиента)
         "401":
-          description: Нет данных
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
-          description: Не найдено
+          description: Ресурс не найден
   /v3.0/nearest_stations/:
     get:
       tags:
@@ -97,6 +97,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Stations'
+        "400":
+          description: неверный запрос (ошибка клиента)
+        "401":
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
+        "404":
+          description: Ресурс не найден
   /v3.0/stations_list/:
     get:
       tags:
@@ -124,11 +130,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/AllStationsList'
         "400":
-          description: Нет данных
+          description: неверный запрос (ошибка клиента)
         "401":
-          description: Нет данных
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
-          description: Не найдено
+          description: Ресурс не найден
 components:
   schemas:
     ScheduleRouteByStation:
@@ -146,10 +152,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ScheduleRoute'
+            description: Cписок рейсов
         schedule_direction:
           $ref: '#/components/schemas/Schedule_directions'
+          description: Код и название запрошенного направления рейсов
         directions:
           $ref: '#/components/schemas/Directions'
+          description: Коды и названия возможных направлений движения электричек по станции
     StationRoute:
       type: object
       properties:
@@ -321,13 +330,13 @@ components:
       type: object
       properties:
         pagination:
-          type: object
-          items:
-            $ref: '#/components/schemas/Pagination'
+          $ref: '#/components/schemas/Pagination'
+          description: Информация о количестве станций, удовлетворяющих условиям поиска
         stations:
           type: array
           items:
             $ref: '#/components/schemas/Station'
+            description: Список станций, удовлетворяющих условиям поиска
     Pagination:
       type: object
       properties:
