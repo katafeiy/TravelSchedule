@@ -138,11 +138,13 @@ components:
           type: string
         pagination:
           $ref: '#/components/schemas/Pagination'
+          description: Информация о постраничном выводе
         station:
           $ref: '#/components/schemas/StationRoute'
+          description: Список станций
         schedule:
           type: array
-          item:
+          items:
             $ref: '#/components/schemas/ScheduleRoute'
         schedule_direction:
           $ref: '#/components/schemas/Schedule_directions'
@@ -319,7 +321,7 @@ components:
       type: object
       properties:
         pagination:
-          type: array
+          type: object
           items:
             $ref: '#/components/schemas/Pagination'
         stations:
@@ -392,7 +394,7 @@ components:
       properties:
         countries:
           type: array
-          item:
+          items:
             $ref: '#/components/schemas/Countries'
             description: Список стран
     Countries:
