@@ -319,7 +319,9 @@ components:
       type: object
       properties:
         pagination:
-          $ref: '#/components/schemas/Pagination'
+          type: array
+          items:
+            $ref: '#/components/schemas/Pagination'
         stations:
           type: array
           items:
@@ -329,39 +331,55 @@ components:
       properties:
         total:
           type: integer
+          description: Общее количество станций, удовлетворяющих условиям поиска
         limit:
           type: integer
+          description: Ограничение на количество станций, которые Яндекс Расписания возвращают в ответе на запрос
         offset:
           type: integer
+          description: Смещение относительно первого результата поиска
     Station:
       type: object
       properties:
-        type:
-          type: string
-        title:
-          type: string
-        short_title:
-          type: string
-        popular_title:
-          type: string
-        code:
-          type: string
-        lat:
-          type: number
-        lng:
-          type: number
-        station_type:
-          type: string
-        station_type_name:
-          type: string
-        transport_type:
-          type: string
         distance:
           type: number
-        majority:
-          type: integer
+          description: Расстояние от указанной в запросе точки до полученной в ответе станции
+        code:
+          type: string
+          description: Код станции в системе кодирования Яндекс Расписаний
+        station_type:
+          type: string
+          description: Тип станции
+        station_type_name:
+          type: string
+          description: Название типа станции
         type_choices:
           $ref: '#/components/schemas/Schedule'
+          description: Типы расписаний, доступные для станции 
+        title:
+          type: string
+          description: Название станции
+        popular_title:
+          type: string
+          description: Популярное название станции
+        short_title:
+          type: string
+          description: Краткое название станции
+        majority:
+          type: integer
+          description: Целое число, определяющее относительную важность станции в транспортном сообщении региона
+        transport_type:
+          type: string
+          description: Основной тип транспорта для данной станции
+        lat:
+          type: number
+          description: Широта станции
+        lng:
+          type: number
+          description: Долгота станции
+        type:
+          type: string
+          description: Вид найденного пункта
     Schedule:
       type: object
       properties:
