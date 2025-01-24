@@ -187,20 +187,16 @@ components:
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
-          description: Информация о постраничном выводе
         interval_segments:
           type: array
           items:
             $ref: '#/components/schemas/IntervalSegments'
-            description: Список интервалов времени
         segments:
           type: array
           items:
             $ref: '#/components/schemas/Segments'
-            description: Список найденных рейсов
         search:
           $ref: '#/components/schemas/Search'
-          description: Указанная в запросе дата, пункт отправления и пункт прибытия
     Pagination:
       type: object
       properties:
@@ -218,10 +214,8 @@ components:
       properties:
         from:
           $ref: '#/components/schemas/From'
-          description: Информация о станции отправления рейса
         thread:
           $ref: '#/components/schemas/Thread'
-          description: Информация о нитке рейса
         departure_platform:
           type: string
           description: Номер платформы станции отправления
@@ -233,13 +227,11 @@ components:
           description: Название терминала станции отправления
         to:
           $ref: '#/components/schemas/To'
-          description: Информация о станции прибытия рейса
         has_transfers:
           type: boolean
           description: Признак наличия пересадок nпо ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
-          description: Информация о наличии билетов на рейс
         duration:
           type: number
           description: Продолжительность рейса (в секундах)
@@ -260,10 +252,8 @@ components:
           description: Время прибытия
         from:
           $ref: '#/components/schemas/From'
-          description: Информация о станции отправления рейса
         thread:
           $ref: '#/components/schemas/Thread'
-          description: Информация о нитке рейса
         departure_platform:
           type: string
           description: Номер платформы станции отправления
@@ -278,13 +268,11 @@ components:
           description: Название терминала станции отправления
         to:
           $ref: '#/components/schemas/To'
-          description: Информация о станции прибытия рейса
         has_transfers:
           type: boolean
           description: Признак наличия пересадок nпо ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
-          description: Информация о наличии билетов на рейс
         duration:
           type: number
           description: Продолжительность рейса (в секундах)
@@ -335,7 +323,6 @@ components:
           description: Название нитки
         interval:
           $ref: '#/components/schemas/Interval'
-          description: Информация о движении по интервальной нитке
         number:
           type: string
           description: Номер рейса
@@ -406,9 +393,9 @@ components:
           description: Признак возможности купить электронный билет
         places:
           type: array
+          description: Доступные типы и цена билетов
           items:
-            $ref: '#/components/schemas/Places'
-            description: Доступные типы и цена билетов
+            $ref: '#/components/schemas/Places' 
     Places:  
       type: object
       properties:
@@ -417,9 +404,9 @@ components:
           description: Идентификатор валюты, в которой указана цена
         price:
           type: array
+          description: Цена билета
           items:
             $ref: '#/components/schemas/Price'
-            description: Цена билета
         name:
           type: string
           description: Название типа билета (например, «эконом»)
@@ -455,7 +442,6 @@ components:
           description: Контактный номер телефона перевозчика
         codes:
           $ref: '#/components/schemas/Codes'
-          description: Список кодов перевозчика в других системах кодирования, поддерживаемых Яндекс Расписаниями
         address:
           type: string
           description: Юридический адрес перевозчика
@@ -497,10 +483,8 @@ components:
           description: Дата, на которую получен список рейсов, в формате «YYYY-MM-DD»
         to: 
           $ref: '#/components/schemas/To'
-          description: Информация об указанном в запросе пункте прибытия
         from:
           $ref: '#/components/schemas/From'
-          description: Информация об указанном в запросе пункте отправления
 # Расписание рейсов по станции
     ScheduleRouteByStation:
       type: object
@@ -509,21 +493,16 @@ components:
           type: string
         pagination:
           $ref: '#/components/schemas/Pagination'
-          description: Информация о постраничном выводе
         station:
           $ref: '#/components/schemas/StationRoute'
-          description: Список станций
         schedule:
           type: array
           items:
             $ref: '#/components/schemas/ScheduleRoute'
-            description: Cписок рейсов
         schedule_direction:
           $ref: '#/components/schemas/ScheduleDirections'
-          description: Код и название запрошенного направления рейсов
         directions:
           $ref: '#/components/schemas/Directions'
-          description: Коды и названия возможных направлений движения электричек по станции
     StationRoute:
       type: object
       properties:
@@ -565,7 +544,6 @@ components:
           description: Сокращенное название станции
         codes_stations:
           $ref: '#/components/schemas/CodesStations'
-          description: Список кодов станции в других системах кодирования
         transport_type:
           type: string
           description: Тип транспорта, обслуживаемый станцией
@@ -634,12 +612,11 @@ components:
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
-          description: Информация о количестве станций, удовлетворяющих условиям поиска
         stations:
           type: array
+          description: Список станций, удовлетворяющих условиям поиска
           items:
             $ref: '#/components/schemas/Station'
-            description: Список станций, удовлетворяющих условиям поиска
     Station:
       type: object
       properties:
@@ -657,7 +634,6 @@ components:
           description: Название типа станции
         type_choices:
           $ref: '#/components/schemas/Schedule'
-          description: Типы расписаний, доступные для станции 
         title:
           type: string
           description: Название станции
@@ -697,20 +673,19 @@ components:
       properties:
         countries:
           type: array
+          description: Список стран
           items:
-            $ref: '#/components/schemas/Countries'
-            description: Список стран
+            $ref: '#/components/schemas/Countries' 
     Countries:
       type: object
       properties:
         regions:
           type: array
+          description: Список регионов
           items:
             $ref: '#/components/schemas/Regions'
-            description: Список регионов
         codes:
           $ref: '#/components/schemas/CodesCountries'
-          description: Коды стран
         title:
           type: string
           description: Название страны
@@ -725,12 +700,11 @@ components:
       properties:
         settlements:
           type: array
+          description: Список населенных пунктов
           items:
             $ref: '#/components/schemas/Settlements'
-            description: Список населенных пунктов
         codes:
           $ref: '#/components/schemas/CodesRegions'
-          description: Коды регионов
         title:
           type: string
           description: Название региона
@@ -748,10 +722,8 @@ components:
           description: Название населенного пункта
         codes:
           $ref: '#/components/schemas/CodesSettlements'
-          description: Коды населенных пунктов
         stations:
           $ref: '#/components/schemas/StationsInSettlements'
-          description: Список станций
     CodesSettlements:
       type: object
       properties:
@@ -766,7 +738,6 @@ components:
           description: Направление движания поездов
         codes:
           $ref: '#/components/schemas/CodesStations'
-          description: Список кодов станций
         station_type:
           type: string
           description: Тип станции
@@ -782,12 +753,3 @@ components:
         latitude:
           type: number
           description: Широта станции
-    # Stations/Codes:
-    #   type: object
-    #   properties:
-    #     esr_code:
-    #       type: string
-    #       description: Код станции в системе кодирования ESR
-    #     yandex_code:
-    #       type: string
-    #       description: Код станции в системе кодирования Яндекс Расписаний

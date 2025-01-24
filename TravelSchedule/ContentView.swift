@@ -11,7 +11,7 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-                try scheduleBetweenStation()
+                try allStations()
             }
         }
         .padding()
