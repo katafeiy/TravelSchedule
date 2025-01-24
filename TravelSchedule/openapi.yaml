@@ -681,39 +681,33 @@ components:
       properties:
         regions:
           type: array
-          description: Список регионов
           items:
             $ref: '#/components/schemas/Regions'
         codes:
-          $ref: '#/components/schemas/CodesCountries'
+          type: object
+          properties:
+            yandex_code:
+              type: string
+              description: Код страны в системе Яндекс Расписаний
         title:
           type: string
           description: Название страны
-    CodesCountries:
-      type: object
-      properties:
-        yandex_code:
-          type: string
-          description: Код страны в системе кодирования Яндекс Расписаний
     Regions:
       type: object
       properties:
         settlements:
           type: array
-          description: Список населенных пунктов
           items:
             $ref: '#/components/schemas/Settlements'
         codes:
-          $ref: '#/components/schemas/CodesRegions'
+          type: object
+          properties:
+            yandex_code:
+              type: string
+              description: Код региона в системе Яндекс Расписаний
         title:
           type: string
           description: Название региона
-    CodesRegions:
-      type: object
-      properties:
-        yandex_code:
-          type: string
-          description: Код региона в системе кодирования Яндекс Расписаний
     Settlements:
       type: object
       properties:
@@ -721,15 +715,15 @@ components:
           type: string
           description: Название населенного пункта
         codes:
-          $ref: '#/components/schemas/CodesSettlements'
+          type: object
+          properties:
+            yandex_code:
+              type: string
+              description: Код населенного пункта в системе Яндекс Расписаний
         stations:
-          $ref: '#/components/schemas/StationsInSettlements'
-    CodesSettlements:
-      type: object
-      properties:
-        yandex_code:
-          type: string
-          description: Код населенного пункта в системе кодирования Яндекс Расписаний
+          type: array
+          items:
+            $ref: '#/components/schemas/StationsInSettlements'
     StationsInSettlements:
       type: object
       properties:
@@ -737,7 +731,14 @@ components:
           type: string
           description: Направление движания поездов
         codes:
-          $ref: '#/components/schemas/CodesInStationsSettlements'
+          type: object
+          properties:
+            yandex_code:
+              type: string
+              description: Код станции в системе Яндекс Расписаний
+            esr_code:
+              type: string
+              description: Код железнодорожной станции в системе ЕСР (если применимо)
         station_type:
           type: string
           description: Тип станции
@@ -753,12 +754,3 @@ components:
         latitude:
           type: number
           description: Широта станции
-    CodesInStationsSettlements:
-      type: object
-      properties:
-        yandex_code:
-          type: string
-          description: Код в системе кодирования Яндекс Расписаний
-        esr_code:
-          type: string
-          description: Код в системе кодирования ЕСР
