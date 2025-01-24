@@ -400,7 +400,7 @@ components:
       properties:
         regions:
           type: array
-          item:
+          items:
             $ref: '#/components/schemas/Regions'
             description: Список регионов
         codes:
@@ -420,7 +420,7 @@ components:
       properties:
         settlements:
           type: array
-          item:
+          items:
             $ref: '#/components/schemas/Settlements'
             description: Список населенных пунктов
         codes:
