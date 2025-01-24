@@ -11,9 +11,10 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-//                try stations()
-//                try route()
-                try allStations()
+//                try scheduleByStation()
+                try scheduleBetweenStation()
+                //                try stations()
+//                try allStations()
             }
         }
         .padding()
@@ -36,7 +37,7 @@ struct ContentView: View {
         }
     }
     
-    func route() throws {
+    func scheduleByStation() throws {
         let client = Client(
             serverURL: try Servers.Server1.url(),
             transport: URLSessionTransport()
@@ -66,6 +67,23 @@ struct ContentView: View {
         
         Task {
             let stations = try await service.getAllStationsList()
+            print(stations)
+        }
+    }
+    
+    func scheduleBetweenStation() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = ScheduleRouteBetweenStationService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let stations = try await service.getScheduleRouteBetweenStation(from: "s9600396", to: "s9600213")
             print(stations)
         }
     }
