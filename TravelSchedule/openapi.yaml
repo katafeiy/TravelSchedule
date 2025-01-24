@@ -386,11 +386,17 @@ components:
             $ref: '#/components/schemas/Regions'
             description: Список регионов
         codes:
-          $ref: '#/components/schemas/Codes'
+          $ref: '#/components/schemas/CodesCountries'
           description: Коды стран
         title:
           type: string
           description: Название страны
+    CodesCountries:
+      type: object
+      properties:
+        yandex_code:
+          type: string
+          description: Код страны в системе кодирования Яндекс Расписаний
     Regions:
       type: object
       properties:
@@ -400,11 +406,17 @@ components:
             $ref: '#/components/schemas/Settlements'
             description: Список населенных пунктов
         codes:
-          $ref: '#/components/schemas/Codes'
+          $ref: '#/components/schemas/CodesRegions'
           description: Коды регионов
         title:
           type: string
           description: Название региона
+    CodesRegions:
+      type: object
+      properties:
+        yandex_code:
+          type: string
+          description: Код региона в системе кодирования Яндекс Расписаний
     Settlements:
       type: object
       properties:
@@ -412,11 +424,17 @@ components:
           type: string
           description: Название населенного пункта
         codes:
-          $ref: '#/components/schemas/Codes'
+          $ref: '#/components/schemas/CodesSettlements'
           description: Коды населенных пунктов
         stations:
           $ref: '#/components/schemas/StationsInSettlements'
           description: Список станций
+    CodesSettlements:
+      type: object
+      properties:
+        yandex_code:
+          type: string
+          description: Код населенного пункта в системе кодирования Яндекс Расписаний
     StationsInSettlements:
       type: object
       properties:

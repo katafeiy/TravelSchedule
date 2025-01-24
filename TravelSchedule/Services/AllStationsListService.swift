@@ -24,7 +24,7 @@ final class AllStationsListService: AllStationsListServiceProtocol {
         
         let sequence = try response.ok.body.text_html_charset_utf_hyphen_8
         
-        var data = try await Data(collecting: sequence, upTo: 50 * 1024 * 1024)
+        let data = try await Data(collecting: sequence, upTo: 50 * 1024 * 1024)
         
         let allStations = try JSONDecoder().decode(AllStationsList.self, from: data)
         
