@@ -557,6 +557,7 @@ components:
           description: Сокращенное название станции
         codes_stations:
           $ref: '#/components/schemas/CodesStations'
+          description: Список кодов станции в других системах кодирования
         transport_type:
           type: string
           description: Тип транспорта, обслуживаемый станцией
@@ -677,8 +678,10 @@ components:
       properties:
         desktop_url:
           type: string
+          format: uri
         touch_url:
           type: string
+          format: uri
     AllStationsList:
       type: object
       properties:
