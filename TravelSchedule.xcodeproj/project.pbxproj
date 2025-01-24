@@ -68,10 +68,10 @@
 		125E6A372D423EF400D2D461 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				12606FB32D3E66F200A62639 /* NearestStationsService.swift */,
 				125E6A3C2D42471800D2D461 /* ScheduleRouteByStationService.swift */,
-				125E6A522D42D9CC00D2D461 /* AllStationsListService.swift */,
 				12F875422D43BCAB003A6C2C /* ScheduleRouteBetweenStationService.swift */,
+				12606FB32D3E66F200A62639 /* NearestStationsService.swift */,
+				125E6A522D42D9CC00D2D461 /* AllStationsListService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
