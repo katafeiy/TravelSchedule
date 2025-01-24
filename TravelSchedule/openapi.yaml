@@ -673,7 +673,6 @@ components:
       properties:
         countries:
           type: array
-          description: Список стран
           items:
             $ref: '#/components/schemas/Countries' 
     Countries:
