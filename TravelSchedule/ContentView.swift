@@ -11,10 +11,7 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-//                try scheduleByStation()
                 try scheduleBetweenStation()
-                //                try stations()
-//                try allStations()
             }
         }
         .padding()
@@ -83,7 +80,7 @@ struct ContentView: View {
         )
         
         Task {
-            let stations = try await service.getScheduleRouteBetweenStation(from: "s9600396", to: "s9600213")
+            let stations = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
             print(stations)
         }
     }
