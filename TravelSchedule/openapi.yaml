@@ -8,7 +8,9 @@ servers:
 tags:
 - name: Список ближайших станций
   description: Список ближайших станций
+# Синтаксис запроса 
 paths:
+# Расписание рейсов между станциями
   /v3.0/search/:
     get:
       tags:
@@ -47,6 +49,7 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Расписание рейсов по станции
   /v3.0/schedule/:
     get:
       tags:
@@ -85,6 +88,7 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Список ближайших станций
   /v3.0/nearest_stations/:
     get:
       tags:
@@ -141,6 +145,7 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Список всех доступных станций
   /v3.0/stations_list/:
     get:
       tags:
@@ -173,8 +178,10 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Структуры ответа
 components:
   schemas:
+# Расписание рейсов между станциями
     ScheduleRouteBetweenStation:
       type: object
       properties:
@@ -494,6 +501,7 @@ components:
         from:
           $ref: '#/components/schemas/From'
           description: Информация об указанном в запросе пункте отправления
+# Расписание рейсов по станции
     ScheduleRouteByStation:
       type: object
       properties:
@@ -620,6 +628,7 @@ components:
         title:
           type: string
           description: Название направления
+# Расписание рейсов по станции
     Stations:
       type: object
       properties:
@@ -682,6 +691,7 @@ components:
         touch_url:
           type: string
           format: uri
+# Список всех доступных станций
     AllStationsList:
       type: object
       properties:
