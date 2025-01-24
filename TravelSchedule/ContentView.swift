@@ -34,6 +34,23 @@ struct ContentView: View {
         }
     }
     
+    func scheduleBetweenStation() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = ScheduleRouteBetweenStationService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let stations = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
+            print(stations)
+        }
+    }
+    
     func scheduleByStation() throws {
         let client = Client(
             serverURL: try Servers.Server1.url(),
@@ -68,22 +85,6 @@ struct ContentView: View {
         }
     }
     
-    func scheduleBetweenStation() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = ScheduleRouteBetweenStationService(
-            client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
-        )
-        
-        Task {
-            let stations = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
-            print(stations)
-        }
-    }
 }
 
 #Preview {
