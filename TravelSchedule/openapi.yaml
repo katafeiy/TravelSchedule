@@ -737,7 +737,7 @@ components:
           type: string
           description: Направление движания поездов
         codes:
-          $ref: '#/components/schemas/CodesStations'
+          $ref: '#/components/schemas/CodesInStationsSettlements'
         station_type:
           type: string
           description: Тип станции
@@ -753,3 +753,12 @@ components:
         latitude:
           type: number
           description: Широта станции
+    CodesInStationsSettlements:
+      type: object
+      properties:
+        yandex_code:
+          type: string
+          description: Код в системе кодирования Яндекс Расписаний
+        esr_code:
+          type: string
+          description: Код в системе кодирования ЕСР
