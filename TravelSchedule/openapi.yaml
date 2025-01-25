@@ -494,7 +494,7 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
         station:
-          $ref: '#/components/schemas/StationRoute'
+          $ref: '#/components/schemas/Station'
         schedule:
           type: array
           items:
@@ -503,15 +503,21 @@ components:
           $ref: '#/components/schemas/Directions'
         directions:
           $ref: '#/components/schemas/Directions'
-    StationRoute:
+    Station:
       type: object
       properties:
+        direction:
+          type: string
+          description: Направление движания поездов
+        distance:
+          type: number
+          description: Расстояние от указанной в запросе точки до полученной в ответе станции
         code:
           type: string
-          description: Код станции 
+          description: Код станции в системе кодирования Яндекс Расписаний
         station_type:
           type: string
-          description: Тип станции   
+          description: Тип станции
 #           enum:
 #            - station - станция;
 #            - platform — платформа;
@@ -530,26 +536,56 @@ components:
 #            - wharf — пристань;
 #            - river_port — речной вокзал;
 #            - marine_station — морской вокзал.
-        station_type_name: 
+        station_type_name:
           type: string
-          description: название типа станции
-        title: 
+          description: Название типа станции
+        codes:
+          $ref: '#/components/schemas/CodesStations'
+        type_choices:
+          $ref: '#/components/schemas/Schedule'
+        title:
           type: string
           description: Название станции
-        popular_title: 
+        popular_title:
           type: string
-          description: Общепринятое название станции  
-        short_title: 
+          description: Популярное название станции
+        short_title:
           type: string
-          description: Сокращенное название станции
-        codes_stations:
-          $ref: '#/components/schemas/CodesStations'
+          description: Краткое название станции
+        majority:
+          type: integer
+          description: Целое число, определяющее относительную важность станции в транспортном сообщении региона
         transport_type:
           type: string
-          description: Тип транспорта, обслуживаемый станцией
+          description: Основной тип транспорта для данной станции
+        lat:
+          type: number
+          description: Широта станции
+        latitude:
+          oneOf:
+          - type: number
+          - type: string
+          description: Широта станции
+        lng:
+          type: number
+          description: Долгота станции
+        longitude:
+          oneOf:
+          - type: number
+          - type: string
+          description: Долгота станции
         type:
           type: string
-          description: Вид станции
+          description: Вид найденного пункта
+    CodesStations:
+      type: object
+      properties:
+        yandex_code:
+          type: string
+          description: Код станции в системе Яндекс Расписаний
+        esr_code:
+          type: string
+          description: Код железнодорожной станции в системе ЕСР (если применимо)
     ScheduleRoute:
       type: object
       properties:
@@ -579,15 +615,6 @@ components:
         platform:
           type: string
           description: Платформа или путь с которого отправляется рейс
-    CodesStations:
-      type: object
-      properties:
-        yandex_code:
-          type: string
-          description: Код станции в системе Яндекс Расписаний
-        esr_code:
-          type: string
-          description: Код железнодорожной станции в системе ЕСР (если применимо)
     Directions:
       type: object
       properties:
@@ -605,50 +632,8 @@ components:
           $ref: '#/components/schemas/Pagination'
         stations:
           type: array
-          description: Список станций, удовлетворяющих условиям поиска
           items:
             $ref: '#/components/schemas/Station'
-    Station:
-      type: object
-      properties:
-        distance:
-          type: number
-          description: Расстояние от указанной в запросе точки до полученной в ответе станции
-        code:
-          type: string
-          description: Код станции в системе кодирования Яндекс Расписаний
-        station_type:
-          type: string
-          description: Тип станции
-        station_type_name:
-          type: string
-          description: Название типа станции
-        type_choices:
-          $ref: '#/components/schemas/Schedule'
-        title:
-          type: string
-          description: Название станции
-        popular_title:
-          type: string
-          description: Популярное название станции
-        short_title:
-          type: string
-          description: Краткое название станции
-        majority:
-          type: integer
-          description: Целое число, определяющее относительную важность станции в транспортном сообщении региона
-        transport_type:
-          type: string
-          description: Основной тип транспорта для данной станции
-        lat:
-          type: number
-          description: Широта станции
-        lng:
-          type: number
-          description: Долгота станции
-        type:
-          type: string
-          description: Вид найденного пункта
     Schedule:
       type: object
       properties:
@@ -674,11 +659,7 @@ components:
           items:
             $ref: '#/components/schemas/Regions'
         codes:
-          type: object
-          properties:
-            yandex_code:
-              type: string
-              description: Код страны в системе Яндекс Расписаний
+          $ref: '#/components/schemas/CodesStations'
         title:
           type: string
           description: Название страны
@@ -690,11 +671,7 @@ components:
           items:
             $ref: '#/components/schemas/Settlements'
         codes:
-          type: object
-          properties:
-            yandex_code:
-              type: string
-              description: Код региона в системе Яндекс Расписаний
+          $ref: '#/components/schemas/CodesStations'
         title:
           type: string
           description: Название региона
@@ -705,42 +682,8 @@ components:
           type: string
           description: Название населенного пункта
         codes:
-          type: object
-          properties:
-            yandex_code:
-              type: string
-              description: Код населенного пункта в системе Яндекс Расписаний
+          $ref: '#/components/schemas/CodesStations'
         stations:
           type: array
           items:
-            $ref: '#/components/schemas/StationsInSettlements'
-    StationsInSettlements:
-      type: object
-      properties:
-        direction:
-          type: string
-          description: Направление движания поездов
-        codes:
-          type: object
-          properties:
-            yandex_code:
-              type: string
-              description: Код станции в системе Яндекс Расписаний
-            esr_code:
-              type: string
-              description: Код железнодорожной станции в системе ЕСР (если применимо)
-        station_type:
-          type: string
-          description: Тип станции
-        title:
-          type: string
-          description: Название станции
-        longitude:
-          type: number
-          description: Долгота станции
-        transport_type:
-          type: string
-          description: Тип транспорта
-        latitude:
-          type: number
-          description: Широта станции
+            $ref: '#/components/schemas/Station'

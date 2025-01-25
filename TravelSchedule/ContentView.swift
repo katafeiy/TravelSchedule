@@ -11,6 +11,7 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
+                
                 try allStations()
             }
         }
@@ -84,7 +85,6 @@ struct ContentView: View {
             print(stations)
         }
     }
-    
 }
 
 #Preview {
