@@ -240,6 +240,7 @@ components:
           description: Название терминала станции прибытия
         start_date:
           type: string
+          format: date-time
           description: Дата отправления рейса
         arrival_platform:
           type: string
@@ -249,6 +250,7 @@ components:
       properties:
         arrival:
           type: string
+          format: date-time
           description: Время прибытия
         from:
           $ref: '#/components/schemas/From'
@@ -259,6 +261,7 @@ components:
           description: Номер платформы станции отправления
         departure:
           type: string
+          format: date-time
           description: Время отправления
         stops:
           type: string
@@ -281,6 +284,7 @@ components:
           description: Название терминала станции прибытия
         start_date:
           type: string
+          format: date-time
           description: Дата отправления рейса
         arrival_platform:
           type: string
@@ -341,8 +345,7 @@ components:
           type: string
           description: Название транспортного средства
         transport_subtype:
-          type: string
-          description: Подтип транспорта
+          $ref: '#/components/schemas/TransportSubtype'
         express_type:
           type: string
           description: Признак транспрорта, экспресс или аэроэкспресс
@@ -378,13 +381,15 @@ components:
       properties:
         density:
           type: string
-          description: Описание периодичности движения в свободной форме.
-        end_time:
-          type: string
-          description: Дата и время окончания движения по нитке. Всегда указывается в часовом поясе станции отправления
+          description: Описание периодичности движения в свободной форме
         begin_time:
           type: string
+          format: date-time
           description: Дата и время начала движения по нитке. Всегда указывается в часовом поясе станции прибытия
+        end_time:
+          type: string
+          format: date-time
+          description: Дата и время окончания движения по нитке. Всегда указывается в часовом поясе станции отправления
     TicketsInfo:
       type: object
       properties:
@@ -480,6 +485,7 @@ components:
       properties:
         date:
           type: string
+          format: date
           description: Дата, на которую получен список рейсов, в формате «YYYY-MM-DD»
         to: 
           $ref: '#/components/schemas/To'
@@ -491,6 +497,7 @@ components:
       properties:
         date: 
           type: string
+          format: date
           description: Дата расписания
         pagination:
           $ref: '#/components/schemas/Pagination'
