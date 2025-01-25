@@ -13,12 +13,12 @@ struct ContentView: View {
             Task {
                 print("Получаем объекты scheduleByStation")
                 try scheduleByStation()
-//                print("Получаем объекты scheduleBetweenStation")
-//                try scheduleBetweenStation()
-//                print("Получаем объекты Station")
-//                try stations()
-//                print("Получаем объекты allStations")
-//                try allStations()
+                //                print("Получаем объекты scheduleBetweenStation")
+                //                try scheduleBetweenStation()
+                //                print("Получаем объекты Station")
+                //                try stations()
+                //                print("Получаем объекты allStations")
+                //                try allStations()
             }
         }
         .padding()
@@ -70,8 +70,12 @@ struct ContentView: View {
         )
         
         Task {
-            let stations = try await service.getScheduleRouteByStation(station: "s9600213")
-            print(stations)
+            do {
+                let stations = try await service.getScheduleRouteByStation(station: "s9600213")
+                print(stations)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     

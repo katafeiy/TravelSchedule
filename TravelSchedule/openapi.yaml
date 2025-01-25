@@ -491,6 +491,7 @@ components:
       properties:
         date: 
           type: string
+          description: Дата расписания
         pagination:
           $ref: '#/components/schemas/Pagination'
         station:
@@ -499,9 +500,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Schedule'
-        schedule_direction:
-          $ref: '#/components/schemas/Directions'
+        interval_schedule:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntervalSchedule'
         directions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Directions'
+        schedule_direction:
           $ref: '#/components/schemas/Directions'
     Station:
       type: object
@@ -594,6 +601,7 @@ components:
           description: Дни в которые нитка не курсирует
         arrival:
           type: string
+          format: date-time
           description: Время прибытия
         thread:
           $ref: '#/components/schemas/Thread'
@@ -608,6 +616,7 @@ components:
           description: Станции следования рейса, на которых совершается остановка
         departure:
           type: string
+          format: date-time
           description: Время отправления
         terminal:
           type: string
@@ -615,6 +624,27 @@ components:
         platform:
           type: string
           description: Платформа или путь с которого отправляется рейс
+    IntervalSchedule:
+      type: object
+      properties:
+        except_days:
+          type: string
+        thread:
+          $ref: '#/components/schemas/Thread'
+        interval:
+          type: object
+          properties:
+            density:
+              type: string
+              description: Частота рейсов
+            begin_time:
+              type: string
+              format: date-time
+              description: Время начала
+            end_time:
+              type: string
+              format: date-time
+              description: Время окончания
     Directions:
       type: object
       properties:
