@@ -7,17 +7,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "441A7A72-0DC0-4A44-8D67-679D7D879674"
+            uuid = "DC85505B-B317-4A72-BC6E-8A3BDDB2D8ED"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TravelSchedule/Services/AllStationsListService.swift"
+            filePath = "TravelSchedule/Services/ScheduleRouteByStationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "getAllStationsList()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getScheduleRouteByStation(station:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC7F3473-3EEE-4F62-A2DE-523627FE6BF9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TravelSchedule/Services/ScheduleRouteByStationService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "getScheduleRouteByStation(station:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FC7F3473-3EEE-4F62-A2DE-523627FE6BF9 - d9d9dcb419ed87f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TravelSchedule.ScheduleRouteByStationService.getScheduleRouteByStation(station: Swift.String) async throws -&gt; TravelSchedule.Components.Schemas.ScheduleRouteByStation"
+                  moduleName = "TravelSchedule.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/konstantinfilippov/%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20iOS-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5/%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D1%83%D0%BC%20%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/Sprint_18/TravelSchedule/TravelSchedule/Services/ScheduleRouteByStationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22">
+               </Location>
+               <Location
+                  uuid = "FC7F3473-3EEE-4F62-A2DE-523627FE6BF9 - a3bc01f595ae8408"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for TravelSchedule.ScheduleRouteByStationService.getScheduleRouteByStation(station: Swift.String) async throws -&gt; TravelSchedule.Components.Schemas.ScheduleRouteByStation"
+                  moduleName = "TravelSchedule.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/konstantinfilippov/%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20iOS-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5/%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D1%83%D0%BC%20%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/Sprint_18/TravelSchedule/TravelSchedule/Services/ScheduleRouteByStationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

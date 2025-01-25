@@ -498,7 +498,7 @@ components:
         schedule:
           type: array
           items:
-            $ref: '#/components/schemas/ScheduleRoute'
+            $ref: '#/components/schemas/Schedule'
         schedule_direction:
           $ref: '#/components/schemas/Directions'
         directions:
@@ -586,7 +586,7 @@ components:
         esr_code:
           type: string
           description: Код железнодорожной станции в системе ЕСР (если применимо)
-    ScheduleRoute:
+    Schedule:
       type: object
       properties:
         except_days:
@@ -624,7 +624,7 @@ components:
         title:
           type: string
           description: Название направления
-# Расписание рейсов по станции
+# Список ближайших станций
     Stations:
       type: object
       properties:
@@ -634,7 +634,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Station'
-    Schedule:
+    Schedule1:
       type: object
       properties:
         desktop_url:
