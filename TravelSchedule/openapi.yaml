@@ -241,6 +241,7 @@ components:
         start_date:
           type: string
           format: date-time
+          nullable: true
           description: Дата отправления рейса
         arrival_platform:
           type: string
@@ -251,6 +252,7 @@ components:
         arrival:
           type: string
           format: date-time
+          nullable: true
           description: Время прибытия
         from:
           $ref: '#/components/schemas/From'
@@ -262,6 +264,7 @@ components:
         departure:
           type: string
           format: date-time
+          nullable: true
           description: Время отправления
         stops:
           type: string
@@ -277,7 +280,7 @@ components:
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
         duration:
-          type: number
+          type: integer
           description: Продолжительность рейса (в секундах)
         arrival_terminal:
           type: string
@@ -285,6 +288,7 @@ components:
         start_date:
           type: string
           format: date-time
+          nullable: true
           description: Дата отправления рейса
         arrival_platform:
           type: string
@@ -385,10 +389,12 @@ components:
         begin_time:
           type: string
           format: date-time
+          nullable: true
           description: Дата и время начала движения по нитке. Всегда указывается в часовом поясе станции прибытия
         end_time:
           type: string
           format: date-time
+          nullable: true
           description: Дата и время окончания движения по нитке. Всегда указывается в часовом поясе станции отправления
     TicketsInfo:
       type: object
@@ -486,6 +492,7 @@ components:
         date:
           type: string
           format: date
+          nullable: true
           description: Дата, на которую получен список рейсов, в формате «YYYY-MM-DD»
         to: 
           $ref: '#/components/schemas/To'
@@ -650,10 +657,12 @@ components:
             begin_time:
               type: string
               format: date-time
+              nullable: true
               description: Время начала
             end_time:
               type: string
               format: date-time
+              nullable: true
               description: Время окончания
     Directions:
       type: object
