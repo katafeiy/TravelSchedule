@@ -498,6 +498,7 @@ components:
         date: 
           type: string
           format: date
+          nullable: true
           description: Дата расписания
         pagination:
           $ref: '#/components/schemas/Pagination'
@@ -609,6 +610,7 @@ components:
         arrival:
           type: string
           format: date-time
+          nullable: true
           description: Время прибытия
         thread:
           $ref: '#/components/schemas/Thread'
@@ -624,6 +626,7 @@ components:
         departure:
           type: string
           format: date-time
+          nullable: true
           description: Время отправления
         terminal:
           type: string
