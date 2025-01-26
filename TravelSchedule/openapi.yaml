@@ -171,7 +171,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Stations'
+                $ref: '#/components/schemas/NearestStations'
+        "400":
+          description: неверный запрос (ошибка клиента)
+        "401":
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
+        "404":
+          description: Ресурс не найден
+# Ближайший город
+  /v3.0/nearest_settlement/:
+    get:
+      tags:
+      - getNearestSettlement
+      summary: Ближайший город
+      operationId: getNearestSettlement
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: lat
+        in: query
+        description: Широта
+        required: true
+        schema:
+          type: number
+      - name: lng
+        in: query
+        description: Долгота
+        required: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: Успешное выполнение запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearestSettlement'
         "400":
           description: неверный запрос (ошибка клиента)
         "401":
@@ -782,7 +821,7 @@ components:
           type: string
           description: Платформа или путь, с которого отправляется рейс (например, «3 путь»)
 # Список ближайших станций
-    Stations:
+    NearestStations:
       type: object
       properties:
         pagination:
@@ -803,6 +842,34 @@ components:
             touch_url:
               type: string
               format: uri
+# Ближайший город
+    NearestSettlement:
+      type: object
+      properties:
+        distance:
+          type: number
+          description: Расстояние до найденного города, в километрах
+        code:
+          type: string
+          description: Код города в системе кодирования Яндекс Расписаний
+        title:
+          type: string
+          description: Название города
+        popular_title:
+          type: string
+          description: Общепринятое название города
+        short_title:
+          type: string
+          description: Краткое название города
+        lat:
+          type: number
+          description: Широта
+        lng:
+          type: number
+          description: Долгота
+        type:
+          type: string
+          description: Тип транспортного пункта
 # Список всех доступных станций
     AllStationsList:
       type: object
