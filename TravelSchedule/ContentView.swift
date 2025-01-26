@@ -11,34 +11,34 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-//                print("Получаем объекты scheduleBetweenStation")
-//                try scheduleBetweenStation()
+                print("Получаем объекты scheduleBetweenStation")
+                try scheduleBetweenStation()
                 
-//                print("Получаем объекты scheduleByStation")
-//                try scheduleByStation()
+                print("Получаем объекты scheduleByStation")
+                try scheduleByStation()
                 
-//                print("Получаем объекты stationByThread")
-//                try stationByThread()
+                print("Получаем объекты stationByThread")
+                try stationByThread()
                 
-//                print("Получаем объекты nearestSettlement")
-//                try nearestSettlement()
+                print("Получаем объекты nearestSettlement")
+                try nearestSettlement()
                 
-//                print("Получаем объекты carrierInfo")
-//                try carrierInfo()
+                print("Получаем объекты carrierInfo")
+                try carrierInfo()
                 
-//                print("Получаем объекты Station")
-//                try nearestStations()
-//
-//                print("Получаем объекты allStations")
-//                try allStations()
+                print("Получаем объекты Station")
+                try nearestStations()
+
+                print("Получаем объекты allStations")
+                try allStations()
                 
                 print("Получаем объекты copyright")
                 try copyright()
             }
         }
         .padding()
-        
     }
+    
     func scheduleBetweenStation() throws {
         let client = Client(
             serverURL: try Servers.Server1.url(),
@@ -51,8 +51,12 @@ struct ContentView: View {
         )
         
         Task {
-            let stations = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
-            print(stations)
+            do {
+                let stations = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
+                print(stations)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -111,8 +115,12 @@ struct ContentView: View {
         )
         
         Task {
-            let settlement = try await service.getNearestSettlement(lat: 52.520008, lng: 13.404954)
-            print(settlement)
+            do {
+                let settlement = try await service.getNearestSettlement(lat: 52.520008, lng: 13.404954)
+                print(settlement)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -128,8 +136,12 @@ struct ContentView: View {
         )
         
         Task {
-            let stations = try await service.getNearestStations(lat: 52.520008, lng: 13.404954, distance: 50)
-            print(stations)
+            do{
+                let stations = try await service.getNearestStations(lat: 52.520008, lng: 13.404954, distance: 50)
+                print(stations)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -166,8 +178,12 @@ struct ContentView: View {
         )
         
         Task {
-            let stations = try await service.getAllStationsList()
-            print(stations)
+            do{
+                let stations = try await service.getAllStationsList()
+                print(stations)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -183,8 +199,12 @@ struct ContentView: View {
         )
         
         Task {
-            let copyright = try await service.getCopyright()
-            print(copyright)
+            do {
+                let copyright = try await service.getCopyright()
+                print(copyright)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
