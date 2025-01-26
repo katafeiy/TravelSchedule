@@ -81,7 +81,7 @@ struct ContentView: View {
         
         Task {
             do {
-                let station = try await service.getStationsByThread(uid: "038AA_tis")
+                let station = try await service.getStationsByThread(uid: "028S_3_2")
                 print(station)
             } catch {
                 print(error.localizedDescription)

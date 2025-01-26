@@ -784,10 +784,10 @@ components:
           type: string
           description: Время отправления, в формате ISO 8601 (YYYY-MM-DDThh:mm:ss±hh:mm)
         duration:
-          type: string
+          type: integer
           description: Время в пути между станциями (в секундах)
         stop_time:
-          type: string
+          type: integer
           description: Продолжительность остановки (в секундах)
         station:
           $ref: '#/components/schemas/Station'
