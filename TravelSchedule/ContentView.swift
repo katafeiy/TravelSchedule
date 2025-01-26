@@ -11,14 +11,14 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-//                print("Получаем объекты scheduleByStation")
-//                try scheduleByStation()
-//                
 //                print("Получаем объекты scheduleBetweenStation")
 //                try scheduleBetweenStation()
                 
-                print("Получаем объекты stationByThread")
-                try stationByThread()
+                print("Получаем объекты scheduleByStation")
+                try scheduleByStation()
+                
+//                print("Получаем объекты stationByThread")
+//                try stationByThread()
                 
 //                print("Получаем объекты Station")
 //                try stations()

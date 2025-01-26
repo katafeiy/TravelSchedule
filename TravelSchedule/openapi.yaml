@@ -597,7 +597,7 @@ components:
         codes:
           $ref: '#/components/schemas/CodesStations'
         type_choices:
-          $ref: '#/components/schemas/Schedule'
+          $ref: '#/components/schemas/TypeChoices'
         title:
           type: string
           description: Название станции
@@ -690,22 +690,6 @@ components:
           type: string
         thread:
           $ref: '#/components/schemas/Thread'
-        interval:
-          type: object
-          properties:
-            density:
-              type: string
-              description: Частота рейсов
-            begin_time:
-              type: string
-              # format: date-time
-              # nullable: true
-              description: Время начала
-            end_time:
-              type: string
-              # format: date-time
-              # nullable: true
-              description: Время окончания
     Directions:
       type: object
       properties:
@@ -807,15 +791,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Station'
-    Schedule1:
+    TypeChoices:
       type: object
       properties:
-        desktop_url:
-          type: string
-          format: uri
-        touch_url:
-          type: string
-          format: uri
+        schedule:
+          type: object
+          properties:
+            desktop_url:
+              type: string
+              format: uri
+            touch_url:
+              type: string
+              format: uri
 # Список всех доступных станций
     AllStationsList:
       type: object
