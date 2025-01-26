@@ -217,6 +217,39 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Информация о перевозчике
+  /v3.0/carrier/:
+    get:
+      tags:
+      - getCarrier
+      summary: Информация о перевозчике
+      operationId: getCarrier
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        description: Код перевозчика
+        required: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: Успешное выполнение запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierInfo'
+        "400":
+          description: неверный запрос (ошибка клиента)
+        "401":
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
+        "404":
+          description: Ресурс не найден    
 # Список всех доступных станций
   /v3.0/stations_list/:
     get:
@@ -870,6 +903,14 @@ components:
         type:
           type: string
           description: Тип транспортного пункта
+# Информация о перевозчике
+    CarrierInfo:
+      type: object
+      properties:
+        carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Carrier'   
 # Список всех доступных станций
     AllStationsList:
       type: object
