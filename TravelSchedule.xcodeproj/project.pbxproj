@@ -19,6 +19,7 @@
 		12606FA82D3E630700A62639 /* openapi-generator-config.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 12606FA72D3E630300A62639 /* openapi-generator-config.yaml */; };
 		12606FB42D3E670000A62639 /* NearestStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12606FB32D3E66F200A62639 /* NearestStationsService.swift */; };
 		1277282B2D469B95002E7C8A /* StationsByThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277282A2D469B95002E7C8A /* StationsByThreadService.swift */; };
+		1277283F2D46C398002E7C8A /* NearestSettlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277283E2D46C398002E7C8A /* NearestSettlementService.swift */; };
 		12F875432D43BCAB003A6C2C /* ScheduleRouteBetweenStationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F875422D43BCAB003A6C2C /* ScheduleRouteBetweenStationService.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		12606FA72D3E630300A62639 /* openapi-generator-config.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "openapi-generator-config.yaml"; sourceTree = "<group>"; };
 		12606FB32D3E66F200A62639 /* NearestStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestStationsService.swift; sourceTree = "<group>"; };
 		1277282A2D469B95002E7C8A /* StationsByThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsByThreadService.swift; sourceTree = "<group>"; };
+		1277283E2D46C398002E7C8A /* NearestSettlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestSettlementService.swift; sourceTree = "<group>"; };
 		12F875422D43BCAB003A6C2C /* ScheduleRouteBetweenStationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouteBetweenStationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 				12F875422D43BCAB003A6C2C /* ScheduleRouteBetweenStationService.swift */,
 				125E6A3C2D42471800D2D461 /* ScheduleRouteByStationService.swift */,
 				1277282A2D469B95002E7C8A /* StationsByThreadService.swift */,
+				1277283E2D46C398002E7C8A /* NearestSettlementService.swift */,
 				12606FB32D3E66F200A62639 /* NearestStationsService.swift */,
 				125E6A522D42D9CC00D2D461 /* AllStationsListService.swift */,
 			);
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12F875432D43BCAB003A6C2C /* ScheduleRouteBetweenStationService.swift in Sources */,
+				1277283F2D46C398002E7C8A /* NearestSettlementService.swift in Sources */,
 				12606FA52D3E623800A62639 /* ContentView.swift in Sources */,
 				125E6A532D42D9CD00D2D461 /* AllStationsListService.swift in Sources */,
 				12606FB42D3E670000A62639 /* NearestStationsService.swift in Sources */,

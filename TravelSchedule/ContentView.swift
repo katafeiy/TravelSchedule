@@ -14,15 +14,18 @@ struct ContentView: View {
 //                print("Получаем объекты scheduleBetweenStation")
 //                try scheduleBetweenStation()
                 
-                print("Получаем объекты scheduleByStation")
-                try scheduleByStation()
+//                print("Получаем объекты scheduleByStation")
+//                try scheduleByStation()
                 
 //                print("Получаем объекты stationByThread")
 //                try stationByThread()
                 
+                print("Получаем объекты nearestSettlement")
+                try nearestSettlement()
+                
 //                print("Получаем объекты Station")
-//                try stations()
-//                
+//                try nearestStations()
+//
 //                print("Получаем объекты allStations")
 //                try allStations()
             }
@@ -90,7 +93,24 @@ struct ContentView: View {
         
     }
     
-    func stations() throws {
+    func nearestSettlement() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = NearestSettlementService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let settlement = try await service.getNearestSettlement(lat: 52.520008, lng: 13.404954)
+            print(settlement)
+        }
+    }
+    
+    func nearestStations() throws {
         let client = Client(
             serverURL: try Servers.Server1.url(),
             transport: URLSessionTransport()

@@ -1,7 +1,7 @@
 import OpenAPIRuntime
 import OpenAPIURLSession
 
-typealias NearestStations = Components.Schemas.Stations
+typealias NearestStations = Components.Schemas.NearestStations
 
 protocol NearestStationsServiceProtocol {
     func getNearestStations(
