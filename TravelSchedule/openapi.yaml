@@ -88,6 +88,26 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Список станций следования
+  /v3.0/thread/:
+    get:
+      tags:
+        - getStationsByThread
+      summary: Список станций следования
+      operationId: getStationsByThread
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: query
+        description: Идентификатор нитки в Яндекс Расписаниях
+        required: true
+        schema:
+          type: string
 # Список ближайших станций
   /v3.0/nearest_stations/:
     get:
@@ -240,8 +260,8 @@ components:
           description: Название терминала станции прибытия
         start_date:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Дата отправления рейса
         arrival_platform:
           type: string
@@ -251,8 +271,8 @@ components:
       properties:
         arrival:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Время прибытия
         from:
           $ref: '#/components/schemas/From'
@@ -263,8 +283,8 @@ components:
           description: Номер платформы станции отправления
         departure:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Время отправления
         stops:
           type: string
@@ -287,8 +307,8 @@ components:
           description: Название терминала станции прибытия
         start_date:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Дата отправления рейса
         arrival_platform:
           type: string
@@ -388,13 +408,13 @@ components:
           description: Описание периодичности движения в свободной форме
         begin_time:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Дата и время начала движения по нитке. Всегда указывается в часовом поясе станции прибытия
         end_time:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Дата и время окончания движения по нитке. Всегда указывается в часовом поясе станции отправления
     TicketsInfo:
       type: object
@@ -452,7 +472,7 @@ components:
           type: string
           description: Контактный номер телефона перевозчика
         codes:
-          $ref: '#/components/schemas/Codes'
+          $ref: '#/components/schemas/CodesCarrier'
         address:
           type: string
           description: Юридический адрес перевозчика
@@ -474,7 +494,7 @@ components:
         title:
           type: string
           description: Описание подтипа транспортного средства
-    Codes:
+    CodesCarrier:
       type: object
       properties:
         icao:
@@ -491,8 +511,8 @@ components:
       properties:
         date:
           type: string
-          format: date
-          nullable: true
+          # format: date
+          # nullable: true
           description: Дата, на которую получен список рейсов, в формате «YYYY-MM-DD»
         to: 
           $ref: '#/components/schemas/To'
@@ -504,8 +524,8 @@ components:
       properties:
         date: 
           type: string
-          format: date
-          nullable: true
+          # format: date
+          # nullable: true
           description: Дата расписания
         pagination:
           $ref: '#/components/schemas/Pagination'
@@ -602,9 +622,18 @@ components:
     CodesStations:
       type: object
       properties:
+        express:
+          type: string
+          description: Код станции в системе Экспресс-3
+        yandex:
+          type: string
+          description: Код станции в системе Яндекс Расписаний
         yandex_code:
           type: string
           description: Код станции в системе Яндекс Расписаний
+        esr:
+          type: string
+          description: Код станции в системе ЕСР
         esr_code:
           type: string
           description: Код железнодорожной станции в системе ЕСР (если применимо)
@@ -616,8 +645,8 @@ components:
           description: Дни в которые нитка не курсирует
         arrival:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Время прибытия
         thread:
           $ref: '#/components/schemas/Thread'
@@ -632,8 +661,8 @@ components:
           description: Станции следования рейса, на которых совершается остановка
         departure:
           type: string
-          format: date-time
-          nullable: true
+          # format: date-time
+          # nullable: true
           description: Время отправления
         terminal:
           type: string
@@ -656,13 +685,13 @@ components:
               description: Частота рейсов
             begin_time:
               type: string
-              format: date-time
-              nullable: true
+              # format: date-time
+              # nullable: true
               description: Время начала
             end_time:
               type: string
-              format: date-time
-              nullable: true
+              # format: date-time
+              # nullable: true
               description: Время окончания
     Directions:
       type: object
@@ -673,6 +702,88 @@ components:
         title:
           type: string
           description: Название направления
+# Список станций следования
+    StationsByThread:
+      type: object
+      properties:
+        except_days:
+          type: string
+          description: Дни, в которые нитка не курсирует
+        arrival_date:
+          type: string
+          description: Дата прибытия на станцию
+        from:
+          type: string
+          description: Пункт отправления
+        uid:
+          type: string
+          description: Идентификатор нитки, принятый в Яндекс Расписаниях
+        title:
+          type: string
+          description: Название нитки, составленное из полных названий первой и последней станций следования
+        interval:
+          $ref: '#/components/schemas/Interval'
+        departure_date:
+          type: string
+          description: Дата отправления со станции
+        start_time:
+          type: string
+          description: Время отправления с первой станции следования по местному времени станции
+        number:
+          type: string
+          description: Номер рейса
+        short_title:
+          type: string
+          description: Название нитки, составленное из коротких названий первой и последней станций следования
+        days:
+          type: string
+          description: Дни курсирования нитки
+        to:
+          type: string
+          description: Пункт прибытия
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        transport_type:
+          type: string
+          description: Тип транспорта
+        stops:
+          type: array
+          description: Список станций следования
+          items:
+            $ref: '#/components/schemas/Stops'
+        vehicle:
+          type: string
+          description: Название транспортного средства
+        start_date:
+          type: string
+          description: Дата отправления с первой станции следования
+        transport_subtype:
+          $ref: '#/components/schemas/TransportSubtype'
+        express_type:
+          type: string
+    Stops:
+      type: object
+      properties:
+        arrival:
+          type: string
+          description: Время прибытия, в формате ISO 8601 (YYYY-MM-DDThh:mm:ss±hh:mm)
+        departure:
+          type: string
+          description: Время отправления, в формате ISO 8601 (YYYY-MM-DDThh:mm:ss±hh:mm)
+        duration:
+          type: string
+          description: Время в пути между станциями (в секундах)
+        stop_time:
+          type: string
+          description: Продолжительность остановки (в секундах)
+        station:
+          $ref: '#/components/schemas/Station'
+        terminal:
+          type: string
+          description: Терминал аэропорта (например, «D»)
+        platform:
+          type: string
+          description: Платформа или путь, с которого отправляется рейс (например, «3 путь»)
 # Список ближайших станций
     Stations:
       type: object
