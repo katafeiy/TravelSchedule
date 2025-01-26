@@ -108,6 +108,19 @@ paths:
         required: true
         schema:
           type: string
+      responses:
+        "200":
+          description: Успешное выполнение запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StationsByThread'
+        "400":
+          description: неверный запрос (ошибка клиента)
+        "401":
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
+        "404":
+          description: Ресурс не найден
 # Список ближайших станций
   /v3.0/nearest_stations/:
     get:

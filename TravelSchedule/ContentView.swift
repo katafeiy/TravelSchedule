@@ -11,36 +11,25 @@ struct ContentView: View {
         }
         .onAppear(){
             Task {
-                print("Получаем объекты scheduleByStation")
-                try scheduleByStation()
-                //                print("Получаем объекты scheduleBetweenStation")
-                //                try scheduleBetweenStation()
-                //                print("Получаем объекты Station")
-                //                try stations()
-                //                print("Получаем объекты allStations")
-                //                try allStations()
+//                print("Получаем объекты scheduleByStation")
+//                try scheduleByStation()
+//                
+//                print("Получаем объекты scheduleBetweenStation")
+//                try scheduleBetweenStation()
+                
+                print("Получаем объекты stationByThread")
+                try stationByThread()
+                
+//                print("Получаем объекты Station")
+//                try stations()
+//                
+//                print("Получаем объекты allStations")
+//                try allStations()
             }
         }
         .padding()
         
     }
-    func stations() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = NearestStationsService(
-            client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
-        )
-        
-        Task {
-            let stations = try await service.getNearestStations(lat: 52.520008, lng: 13.404954, distance: 50)
-            print(stations)
-        }
-    }
-    
     func scheduleBetweenStation() throws {
         let client = Client(
             serverURL: try Servers.Server1.url(),
@@ -78,6 +67,46 @@ struct ContentView: View {
             }
         }
     }
+    
+    func stationByThread() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = StationsByThreadService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            do {
+                let station = try await service.getStationsByThread(uid: "038AA_tis")
+                print(station)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
+    func stations() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = NearestStationsService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let stations = try await service.getNearestStations(lat: 52.520008, lng: 13.404954, distance: 50)
+            print(stations)
+        }
+    }
+    
     
     func allStations() throws {
         let client = Client(
