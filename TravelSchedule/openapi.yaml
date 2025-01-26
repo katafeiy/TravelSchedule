@@ -221,9 +221,9 @@ paths:
   /v3.0/carrier/:
     get:
       tags:
-      - getCarrier
+      - getCarrierInfo
       summary: Информация о перевозчике
-      operationId: getCarrier
+      operationId: getCarrierInfo
       parameters:
       - name: apikey
         in: query
@@ -236,7 +236,7 @@ paths:
         description: Код перевозчика
         required: true
         schema:
-          type: number
+          type: integer
       responses:
         "200":
           description: Успешное выполнение запроса
@@ -283,6 +283,40 @@ paths:
           description: несанкционированный доступ (отсутствует или неверный API-ключ)
         "404":
           description: Ресурс не найден
+# Копирайт Яндекс Расписаний
+  /v3.0/copyright/:
+    get:
+      tags:
+      - getCopyright
+      summary: Копирайт Яндекс Расписаний
+      operationId: getCopyright
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: Формат ответа (json по умолчанию)
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Успешное выполнение запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Copyright'
+        "400":
+          description: неверный запрос (ошибка клиента)
+        "401":
+          description: несанкционированный доступ (отсутствует или неверный API-ключ)
+        "404":
+          description: Ресурс не найден
+          
 # Структуры ответа
 components:
   schemas:
@@ -539,7 +573,7 @@ components:
       type: object
       properties:
         code:
-          type: number
+          type: integer
           description: Код перевозчика в системе кодирования Яндекс Расписаний
         contacts:
           type: string
@@ -907,10 +941,8 @@ components:
     CarrierInfo:
       type: object
       properties:
-        carriers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Carrier'   
+        carrier:
+          $ref: '#/components/schemas/Carrier'
 # Список всех доступных станций
     AllStationsList:
       type: object
@@ -918,7 +950,7 @@ components:
         countries:
           type: array
           items:
-            $ref: '#/components/schemas/Countries' 
+            $ref: '#/components/schemas/Countries'
     Countries:
       type: object
       properties:
@@ -955,3 +987,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Station'
+# Копирайт Яндекс расписаний
+    Copyright:
+      type: object
+      properties:
+        copyright:
+          type: object
+          properties:
+            logo_vm:
+              type: string
+              description: Вертикальный монохромный баннер
+            url:
+              type: string
+              description: URL Яндекс Расписаний
+            logo_vd:
+              type: string
+              description: Вертикальный черно-белый баннер
+            logo_hy:
+              type: string
+              description: Горизонтальный цветной баннер
+            logo_hd:
+              type: string
+              description: Горизонтальный черно-белый баннер
+            logo_vy:
+              type: string
+              description: Вертикальный цветной баннер
+            logo_hm:
+              type: string
+              description: Горизонтальный монохромный баннер
+            text:
+              type: string
+              description: Уведомительный текст

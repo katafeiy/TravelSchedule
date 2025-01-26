@@ -20,14 +20,20 @@ struct ContentView: View {
 //                print("Получаем объекты stationByThread")
 //                try stationByThread()
                 
-                print("Получаем объекты nearestSettlement")
-                try nearestSettlement()
+//                print("Получаем объекты nearestSettlement")
+//                try nearestSettlement()
+                
+//                print("Получаем объекты carrierInfo")
+//                try carrierInfo()
                 
 //                print("Получаем объекты Station")
 //                try nearestStations()
 //
 //                print("Получаем объекты allStations")
 //                try allStations()
+                
+                print("Получаем объекты copyright")
+                try copyright()
             }
         }
         .padding()
@@ -127,6 +133,26 @@ struct ContentView: View {
         }
     }
     
+    func carrierInfo() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = CarrierInfoService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            do {
+                let carrierInfo = try await service.getCarrierInfo(code: 680)
+                print(carrierInfo)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     func allStations() throws {
         let client = Client(
@@ -142,6 +168,23 @@ struct ContentView: View {
         Task {
             let stations = try await service.getAllStationsList()
             print(stations)
+        }
+    }
+    
+    func copyright() throws {
+        let client = Client(
+            serverURL: try Servers.Server1.url(),
+            transport: URLSessionTransport()
+        )
+        
+        let service = CopyrightService(
+            client: client,
+            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+        )
+        
+        Task {
+            let copyright = try await service.getCopyright()
+            print(copyright)
         }
     }
 }
