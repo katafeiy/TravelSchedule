@@ -9,31 +9,36 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
-        .onAppear(){
+        .onAppear() {
             Task {
-                print("Получаем объекты scheduleBetweenStation")
-                try scheduleBetweenStation()
-                
-                print("Получаем объекты scheduleByStation")
-                try scheduleByStation()
-                
-                print("Получаем объекты stationByThread")
-                try stationByThread()
-                
-                print("Получаем объекты nearestSettlement")
-                try nearestSettlement()
-                
-                print("Получаем объекты carrierInfo")
-                try carrierInfo()
-                
-                print("Получаем объекты Station")
-                try nearestStations()
-
-                print("Получаем объекты allStations")
-                try allStations()
-                
-                print("Получаем объекты copyright")
-                try copyright()
+                do {
+                    
+                    try scheduleBetweenStation()
+                    print("Получаем объекты scheduleBetweenStation")
+                    
+                    print("Получаем объекты scheduleByStation")
+                    try scheduleByStation()
+                    
+                    print("Получаем объекты stationByThread")
+                    try stationByThread()
+                    
+                    print("Получаем объекты Station")
+                    try nearestStations()
+                    
+                    print("Получаем объекты nearestSettlement")
+                    try nearestSettlement()
+                    
+                    print("Получаем объекты carrierInfo")
+                    try carrierInfo()
+                    
+                    print("Получаем объекты allStations")
+                    try allStations()
+                    
+                    print("Получаем объекты copyright")
+                    try copyright()
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
         .padding()
@@ -47,13 +52,13 @@ struct ContentView: View {
         
         let service = ScheduleRouteBetweenStationService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
             do {
-                let stations = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
-                print(stations)
+                let schedule = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
+                print(schedule)
             } catch {
                 print(error.localizedDescription)
             }
@@ -68,13 +73,13 @@ struct ContentView: View {
         
         let service = ScheduleRouteByStationService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
             do {
-                let stations = try await service.getScheduleRouteByStation(station: "s9600213")
-                print(stations)
+                let schedule = try await service.getScheduleRouteByStation(station: "s9600213")
+                print(schedule)
             } catch {
                 print(error.localizedDescription)
             }
@@ -89,7 +94,7 @@ struct ContentView: View {
         
         let service = StationsByThreadService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
@@ -111,7 +116,7 @@ struct ContentView: View {
         
         let service = NearestSettlementService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
@@ -132,7 +137,7 @@ struct ContentView: View {
         
         let service = NearestStationsService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
@@ -153,13 +158,13 @@ struct ContentView: View {
         
         let service = CarrierInfoService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
             do {
-                let carrierInfo = try await service.getCarrierInfo(code: 680)
-                print(carrierInfo)
+                let carrier = try await service.getCarrierInfo(code: 680)
+                print(carrier)
             } catch {
                 print(error.localizedDescription)
             }
@@ -174,7 +179,7 @@ struct ContentView: View {
         
         let service = AllStationsListService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
@@ -195,7 +200,7 @@ struct ContentView: View {
         
         let service = CopyrightService(
             client: client,
-            apiKey: "6cf81d84-1f01-4f3b-b53c-214afd378412"
+            apiKey: APIKey.apikey.stringValue
         )
         
         Task {
