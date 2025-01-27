@@ -11,206 +11,92 @@ struct ContentView: View {
         }
         .onAppear() {
             Task {
-                do {
-                    
-                    try scheduleBetweenStation()
-                    print("Получаем объекты scheduleBetweenStation")
-                    
-                    print("Получаем объекты scheduleByStation")
-                    try scheduleByStation()
-                    
-                    print("Получаем объекты stationByThread")
-                    try stationByThread()
-                    
-                    print("Получаем объекты Station")
-                    try nearestStations()
-                    
-                    print("Получаем объекты nearestSettlement")
-                    try nearestSettlement()
-                    
-                    print("Получаем объекты carrierInfo")
-                    try carrierInfo()
-                    
-                    print("Получаем объекты allStations")
-                    try allStations()
-                    
-                    print("Получаем объекты copyright")
-                    try copyright()
-                } catch {
-                    print(error.localizedDescription)
-                }
+                await mainRequest()
             }
         }
         .padding()
     }
     
-    func scheduleBetweenStation() throws {
+    private func createService() throws -> TravelNetworkService {
         let client = Client(
             serverURL: try Servers.Server1.url(),
             transport: URLSessionTransport()
         )
-        
-        let service = ScheduleRouteBetweenStationService(
+        return TravelNetworkService(
             client: client,
             apiKey: APIKey.apikey.stringValue
         )
-        
-        Task {
-            do {
-                let schedule = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
-                print(schedule)
-            } catch {
-                print(error.localizedDescription)
-            }
+    }
+    
+    private func mainRequest() async {
+        do {
+            try await scheduleBetweenStation()
+            try await scheduleByStation()
+            try await stationByThread()
+            try await nearestStations()
+            try await nearestSettlement()
+            try await carrierInfo()
+            try await allStations()
+            try await copyright()
+        } catch {
+            print("Ошибка: \(error.localizedDescription)")
         }
     }
     
-    func scheduleByStation() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = ScheduleRouteByStationService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do {
-                let schedule = try await service.getScheduleRouteByStation(station: "s9600213")
-                print(schedule)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    func scheduleBetweenStation() async throws {
+        let service = try createService()
+        print("Получаем объекты scheduleBetweenStation")
+        let schedule = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
+        print("Получили обЪекты \(schedule)\n")
     }
     
-    func stationByThread() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = StationsByThreadService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do {
-                let station = try await service.getStationsByThread(uid: "028S_3_2")
-                print(station)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        
+    func scheduleByStation() async throws {
+        let service = try createService()
+        print("Получаем объекты scheduleByStation")
+        let schedule = try await service.getScheduleRouteByStation(station: "s9600213")
+        print("Получили обЪекты \(schedule)\n")
     }
     
-    func nearestSettlement() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = NearestSettlementService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do {
-                let settlement = try await service.getNearestSettlement(lat: 52.520008, lng: 13.404954)
-                print(settlement)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    func stationByThread() async throws {
+        let service = try createService()
+        print("Получаем объекты stationByThread")
+        let station = try await service.getStationsByThread(uid: "028S_3_2")
+        print("Получили обЪекты \(station)\n")
     }
     
-    func nearestStations() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = NearestStationsService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do{
-                let stations = try await service.getNearestStations(lat: 52.520008, lng: 13.404954, distance: 50)
-                print(stations)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    func nearestStations() async throws {
+        let service = try createService()
+        print("Получаем объекты Station")
+        let stations = try await service.getNearestStations(lat: 52.520008, lng: 13.404954, distance: 50)
+        print("Получили обЪекты \(stations)\n")
     }
     
-    func carrierInfo() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = CarrierInfoService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do {
-                let carrier = try await service.getCarrierInfo(code: 680)
-                print(carrier)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    func nearestSettlement() async throws {
+        let service = try createService()
+        print("Получаем объекты nearestSettlement")
+        let settlement = try await service.getNearestSettlement(lat: 52.520008, lng: 13.404954)
+        print("Получили обЪекты \(settlement)\n")
+    }
+
+    func carrierInfo() async throws {
+        let service = try createService()
+        print("Получаем объекты carrierInfo")
+        let carrier = try await service.getCarrierInfo(code: 680)
+        print("Получили обЪекты \(carrier)\n")
     }
     
-    func allStations() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = AllStationsListService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do{
-                let stations = try await service.getAllStationsList()
-                print(stations)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    func allStations() async throws {
+        let service = try createService()
+        print("Получаем объекты allStations")
+        let stations = try await service.getAllStationsList()
+        print("Получили обЪекты \(stations)\n")
     }
     
-    func copyright() throws {
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: URLSessionTransport()
-        )
-        
-        let service = CopyrightService(
-            client: client,
-            apiKey: APIKey.apikey.stringValue
-        )
-        
-        Task {
-            do {
-                let copyright = try await service.getCopyright()
-                print(copyright)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+    func copyright() async throws {
+        let service = try createService()
+        print("Получаем объекты copyright")
+        let copyright = try await service.getCopyright()
+        print("Получили обЪекты \(copyright)\n")
     }
 }
 
