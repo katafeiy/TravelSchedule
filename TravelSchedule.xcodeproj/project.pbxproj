@@ -15,6 +15,7 @@
 		12606FA52D3E623800A62639 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12606F9E2D3E623800A62639 /* ContentView.swift */; };
 		12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12606FA02D3E623800A62639 /* TravelScheduleApp.swift */; };
 		12606FA82D3E630700A62639 /* openapi-generator-config.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 12606FA72D3E630300A62639 /* openapi-generator-config.yaml */; };
+		126809132D4CCFD30035263F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126809122D4CCFD30035263F /* ContentViewModel.swift */; };
 		12C36D322D4788D900380192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D312D4788D900380192 /* APIKey.swift */; };
 		12C36D342D478BFD00380192 /* TravelNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D332D478BFD00380192 /* TravelNetworkService.swift */; };
 		12C36D362D478CA900380192 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D352D478CA900380192 /* Typealiases.swift */; };
@@ -28,6 +29,7 @@
 		12606F9F2D3E623800A62639 /* openapi.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = openapi.yaml; sourceTree = "<group>"; };
 		12606FA02D3E623800A62639 /* TravelScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleApp.swift; sourceTree = "<group>"; };
 		12606FA72D3E630300A62639 /* openapi-generator-config.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "openapi-generator-config.yaml"; sourceTree = "<group>"; };
+		126809122D4CCFD30035263F /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		12C36D312D4788D900380192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		12C36D332D478BFD00380192 /* TravelNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNetworkService.swift; sourceTree = "<group>"; };
 		12C36D352D478CA900380192 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				12606F9C2D3E623800A62639 /* Preview Content */,
 				12606F9D2D3E623800A62639 /* Assets.xcassets */,
 				12606F9E2D3E623800A62639 /* ContentView.swift */,
+				126809122D4CCFD30035263F /* ContentViewModel.swift */,
 				12606FA02D3E623800A62639 /* TravelScheduleApp.swift */,
 				125E6A372D423EF400D2D461 /* Services */,
 				12C36D2F2D4783FB00380192 /* OpenAPI */,
@@ -203,6 +206,7 @@
 			files = (
 				12C36D342D478BFD00380192 /* TravelNetworkService.swift in Sources */,
 				12606FA52D3E623800A62639 /* ContentView.swift in Sources */,
+				126809132D4CCFD30035263F /* ContentViewModel.swift in Sources */,
 				12C36D322D4788D900380192 /* APIKey.swift in Sources */,
 				12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */,
 				12C36D362D478CA900380192 /* Typealiases.swift in Sources */,
