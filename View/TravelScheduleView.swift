@@ -1,8 +1,8 @@
 import SwiftUI
 import OpenAPIURLSession
 
-struct ContentView: View {
-    @State private var viewModel = ContentViewModel()
+struct TravelScheduleView: View {
+    @State private var viewModel = TravelScheduleViewModel()
     
     var body: some View {
         VStack {
@@ -16,13 +16,13 @@ struct ContentView: View {
                 .foregroundStyle(.primary)
                 .padding(.bottom)
             
-            Button(action: {
+            Button("Request", action: {
                 Task {
                     await viewModel.mainRequest()
                 }
-            }) {
-                Text("Request")
-            }
+            })
+            .buttonStyle(.borderedProminent)
+            ProgressView(value: viewModel.progress)
         }
         .onAppear() {
             
@@ -30,6 +30,7 @@ struct ContentView: View {
         .padding()
     }
 }
+
 #Preview {
-    ContentView()
+    TravelScheduleView()
 }

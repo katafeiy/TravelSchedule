@@ -1,9 +1,10 @@
-
 import SwiftUI
 import OpenAPIURLSession
 
-class ContentViewModel: ObservableObject {
-   
+class TravelScheduleViewModel: ObservableObject {
+    
+    @State var progress: Float = 0
+    
     private func createService() throws -> TravelNetworkService {
         let client = Client(
             serverURL: try Servers.Server1.url(),
@@ -34,12 +35,14 @@ class ContentViewModel: ObservableObject {
     func scheduleBetweenStation() async throws {
         let service = try createService()
         print("Получаем объекты scheduleBetweenStation")
+        progress = 0.125
         let schedule = try await service.getScheduleRouteBetweenStation(from: "s9600213", to: "s9600216")
         print("Получили обЪекты \(schedule)\n")
     }
     
     func scheduleByStation() async throws {
         let service = try createService()
+        progress = 0.25
         print("Получаем объекты scheduleByStation")
         let schedule = try await service.getScheduleRouteByStation(station: "s9600213")
         print("Получили обЪекты \(schedule)\n")
@@ -87,5 +90,4 @@ class ContentViewModel: ObservableObject {
         print("Получили обЪекты \(copyright)\n")
     }
 }
-
 

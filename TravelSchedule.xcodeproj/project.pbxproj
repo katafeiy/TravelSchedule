@@ -15,7 +15,8 @@
 		12606FA52D3E623800A62639 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12606F9E2D3E623800A62639 /* ContentView.swift */; };
 		12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12606FA02D3E623800A62639 /* TravelScheduleApp.swift */; };
 		12606FA82D3E630700A62639 /* openapi-generator-config.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 12606FA72D3E630300A62639 /* openapi-generator-config.yaml */; };
-		126809132D4CCFD30035263F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126809122D4CCFD30035263F /* ContentViewModel.swift */; };
+		126855202D51467C00277F4D /* TravelScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268551F2D51467C00277F4D /* TravelScheduleView.swift */; };
+		126855262D51481F00277F4D /* TravelScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126855252D51481F00277F4D /* TravelScheduleViewModel.swift */; };
 		12C36D322D4788D900380192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D312D4788D900380192 /* APIKey.swift */; };
 		12C36D342D478BFD00380192 /* TravelNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D332D478BFD00380192 /* TravelNetworkService.swift */; };
 		12C36D362D478CA900380192 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D352D478CA900380192 /* Typealiases.swift */; };
@@ -29,7 +30,8 @@
 		12606F9F2D3E623800A62639 /* openapi.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = openapi.yaml; sourceTree = "<group>"; };
 		12606FA02D3E623800A62639 /* TravelScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleApp.swift; sourceTree = "<group>"; };
 		12606FA72D3E630300A62639 /* openapi-generator-config.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "openapi-generator-config.yaml"; sourceTree = "<group>"; };
-		126809122D4CCFD30035263F /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		1268551F2D51467C00277F4D /* TravelScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleView.swift; sourceTree = "<group>"; };
+		126855252D51481F00277F4D /* TravelScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleViewModel.swift; sourceTree = "<group>"; };
 		12C36D312D4788D900380192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		12C36D332D478BFD00380192 /* TravelNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNetworkService.swift; sourceTree = "<group>"; };
 		12C36D352D478CA900380192 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
@@ -52,6 +54,11 @@
 			isa = PBXGroup;
 			children = (
 				12606FA12D3E623800A62639 /* TravelSchedule */,
+				1268551E2D51462000277F4D /* View */,
+				126855242D5146E400277F4D /* ViewModel */,
+				125E6A372D423EF400D2D461 /* Services */,
+				12C36D2F2D4783FB00380192 /* OpenAPI */,
+				12C36D302D4788AA00380192 /* AuxiliaryTools */,
 				12606F932D3E606600A62639 /* Frameworks */,
 				1223BE372D3CDFAF00E1B171 /* Products */,
 			);
@@ -91,16 +98,28 @@
 		12606FA12D3E623800A62639 /* TravelSchedule */ = {
 			isa = PBXGroup;
 			children = (
-				12C36D302D4788AA00380192 /* AuxiliaryTools */,
 				12606F9C2D3E623800A62639 /* Preview Content */,
-				12606F9D2D3E623800A62639 /* Assets.xcassets */,
-				12606F9E2D3E623800A62639 /* ContentView.swift */,
-				126809122D4CCFD30035263F /* ContentViewModel.swift */,
 				12606FA02D3E623800A62639 /* TravelScheduleApp.swift */,
-				125E6A372D423EF400D2D461 /* Services */,
-				12C36D2F2D4783FB00380192 /* OpenAPI */,
+				12606F9D2D3E623800A62639 /* Assets.xcassets */,
 			);
 			path = TravelSchedule;
+			sourceTree = "<group>";
+		};
+		1268551E2D51462000277F4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12606F9E2D3E623800A62639 /* ContentView.swift */,
+				1268551F2D51467C00277F4D /* TravelScheduleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		126855242D5146E400277F4D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				126855252D51481F00277F4D /* TravelScheduleViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		12C36D2F2D4783FB00380192 /* OpenAPI */ = {
@@ -206,10 +225,11 @@
 			files = (
 				12C36D342D478BFD00380192 /* TravelNetworkService.swift in Sources */,
 				12606FA52D3E623800A62639 /* ContentView.swift in Sources */,
-				126809132D4CCFD30035263F /* ContentViewModel.swift in Sources */,
 				12C36D322D4788D900380192 /* APIKey.swift in Sources */,
 				12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */,
 				12C36D362D478CA900380192 /* Typealiases.swift in Sources */,
+				126855202D51467C00277F4D /* TravelScheduleView.swift in Sources */,
+				126855262D51481F00277F4D /* TravelScheduleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
