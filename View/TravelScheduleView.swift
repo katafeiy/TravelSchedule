@@ -23,7 +23,6 @@ struct TravelScheduleView: View {
                         }
                     }
                 }
-                
                 ZStack {
                     HStack {
                         VStack (alignment: .leading, spacing: 15) {
@@ -58,9 +57,8 @@ struct TravelScheduleView: View {
                         .foregroundColor(.blue)
                         .background(Color.white)
                         .clipShape(Circle())
-                        
                     }
-                    
+                    .frame(width: 311, height: 96)
                 }
                 .frame(width: 343, height: 128)
                 .background(Color.blue)

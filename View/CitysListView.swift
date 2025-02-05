@@ -27,6 +27,7 @@ struct CitysListView: View {
                     .foregroundColor(.black)
             }
         }
+        .ignoresSafeArea(.all)
         .navigationTitle(Text("Выберите город"))
     }
 }
