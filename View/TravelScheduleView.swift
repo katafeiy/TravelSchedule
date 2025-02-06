@@ -42,7 +42,7 @@ struct TravelScheduleView: View {
                                     .padding(.leading, 20)
                             }
                         }
-                        .background()
+                        .background(.white)
                         .frame(width: 259, height: 96)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         Button {

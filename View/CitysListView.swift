@@ -17,30 +17,36 @@ struct CitysListView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 SearchBar(searchText: $searchString)
-                ForEach(searchResults) { city in
-                    Button {
-                        selectedCity = city.name
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        NavigationLink(destination: Text("Выбор станции")) {
-                            Text(city.name)
-                                .foregroundColor(.black)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.gray)
+                if searchResults.isEmpty {
+                    Spacer()
+                    Text("Город не найден")
+                        .font(.system(size: 24, weight: .bold))
+                    Spacer()
+                } else {
+                    ForEach(searchResults) { city in
+                        Button {
+                            selectedCity = city.name
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            NavigationLink(destination: Text("Выбор станции")) {
+                                Text(city.name)
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
                         }
-                        .padding()
                     }
+                    Spacer()
                 }
-                Spacer()
             }
         }
         .navigationTitle("Выберите город")
     }
-    
 }
 
 #Preview {

@@ -6,7 +6,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         if isSplashScreenActive {
-            MainTabView()
+            TabBarView()
         } else {
             Image("splashScreen")
                 .resizable()

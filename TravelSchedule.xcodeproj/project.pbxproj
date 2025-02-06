@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		123C77812D52278F00009502 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C77802D52278F00009502 /* ModelData.swift */; };
 		123C778A2D52289900009502 /* PreviewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C77892D52289900009502 /* PreviewImage.swift */; };
-		123C77E82D526CFF00009502 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C77E72D526CFF00009502 /* MainTabView.swift */; };
+		123C77E82D526CFF00009502 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C77E72D526CFF00009502 /* TabBarView.swift */; };
 		123C77EE2D526D4300009502 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C77ED2D526D4300009502 /* SettingView.swift */; };
 		12606F8D2D3E5F7600A62639 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 12606F8C2D3E5F7600A62639 /* OpenAPIRuntime */; };
 		12606F902D3E5F9700A62639 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 12606F8F2D3E5F9700A62639 /* OpenAPIURLSession */; };
@@ -39,7 +39,7 @@
 		1223BE362D3CDFAF00E1B171 /* TravelSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		123C77802D52278F00009502 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		123C77892D52289900009502 /* PreviewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImage.swift; sourceTree = "<group>"; };
-		123C77E72D526CFF00009502 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		123C77E72D526CFF00009502 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		123C77ED2D526D4300009502 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		12606F9B2D3E623800A62639 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12606F9D2D3E623800A62639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				128A86892D53905E0061F82A /* SplashScreenView.swift */,
 				12606F9E2D3E623800A62639 /* ContentView.swift */,
-				123C77E72D526CFF00009502 /* MainTabView.swift */,
+				123C77E72D526CFF00009502 /* TabBarView.swift */,
 				1268551F2D51467C00277F4D /* TravelScheduleView.swift */,
 				123C77ED2D526D4300009502 /* SettingView.swift */,
 				126855392D514C0500277F4D /* PreviewCellView.swift */,
@@ -271,7 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12849C152D54CA0800C56A84 /* YPUserAgreement.swift in Sources */,
-				123C77E82D526CFF00009502 /* MainTabView.swift in Sources */,
+				123C77E82D526CFF00009502 /* TabBarView.swift in Sources */,
 				12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */,
 				128A868A2D53905E0061F82A /* SplashScreenView.swift in Sources */,
 				128A867B2D5386D90061F82A /* SearchBar.swift in Sources */,
