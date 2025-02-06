@@ -19,7 +19,7 @@ struct TravelScheduleView: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     LazyHGrid(rows: rows, alignment: .center, spacing: 20) {
                         ForEach(ModelData().images) { imageItem in
-                            PreviewRow(imageName: imageItem.name)
+                            PreviewCellView(imageName: imageItem.name)
                         }
                     }
                 }
@@ -42,7 +42,7 @@ struct TravelScheduleView: View {
                                     .padding(.leading, 20)
                             }
                         }
-                        .background(Color.white)
+                        .background()
                         .frame(width: 259, height: 96)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         Button {

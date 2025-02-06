@@ -21,13 +21,17 @@
 		12606FA82D3E630700A62639 /* openapi-generator-config.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 12606FA72D3E630300A62639 /* openapi-generator-config.yaml */; };
 		126855202D51467C00277F4D /* TravelScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268551F2D51467C00277F4D /* TravelScheduleView.swift */; };
 		126855262D51481F00277F4D /* TravelScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126855252D51481F00277F4D /* TravelScheduleViewModel.swift */; };
-		1268553A2D514C0500277F4D /* PreviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126855392D514C0500277F4D /* PreviewRow.swift */; };
+		1268553A2D514C0500277F4D /* PreviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126855392D514C0500277F4D /* PreviewCellView.swift */; };
+		12849BE82D54B3E900C56A84 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849BE72D54B3E900C56A84 /* Station.swift */; };
+		12849BF82D54C31700C56A84 /* UserAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849BF72D54C31700C56A84 /* UserAgreementView.swift */; };
+		12849C032D54C4EA00C56A84 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849C022D54C4EA00C56A84 /* WebView.swift */; };
+		12849C152D54CA0800C56A84 /* YPUserAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */; };
 		128A862B2D535AAE0061F82A /* Citys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A862A2D535AAE0061F82A /* Citys.swift */; };
 		128A863F2D535FDD0061F82A /* CitysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A863E2D535FDD0061F82A /* CitysListView.swift */; };
 		128A867B2D5386D90061F82A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A867A2D5386D90061F82A /* SearchBar.swift */; };
 		128A868A2D53905E0061F82A /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A86892D53905E0061F82A /* SplashScreenView.swift */; };
 		12C36D322D4788D900380192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D312D4788D900380192 /* APIKey.swift */; };
-		12C36D342D478BFD00380192 /* TravelNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D332D478BFD00380192 /* TravelNetworkService.swift */; };
+		12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */; };
 		12C36D362D478CA900380192 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D352D478CA900380192 /* Typealiases.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,13 +49,17 @@
 		12606FA72D3E630300A62639 /* openapi-generator-config.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "openapi-generator-config.yaml"; sourceTree = "<group>"; };
 		1268551F2D51467C00277F4D /* TravelScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleView.swift; sourceTree = "<group>"; };
 		126855252D51481F00277F4D /* TravelScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleViewModel.swift; sourceTree = "<group>"; };
-		126855392D514C0500277F4D /* PreviewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRow.swift; sourceTree = "<group>"; };
+		126855392D514C0500277F4D /* PreviewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCellView.swift; sourceTree = "<group>"; };
+		12849BE72D54B3E900C56A84 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		12849BF72D54C31700C56A84 /* UserAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgreementView.swift; sourceTree = "<group>"; };
+		12849C022D54C4EA00C56A84 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPUserAgreement.swift; sourceTree = "<group>"; };
 		128A862A2D535AAE0061F82A /* Citys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Citys.swift; sourceTree = "<group>"; };
 		128A863E2D535FDD0061F82A /* CitysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitysListView.swift; sourceTree = "<group>"; };
 		128A867A2D5386D90061F82A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		128A86892D53905E0061F82A /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		12C36D312D4788D900380192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		12C36D332D478BFD00380192 /* TravelNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNetworkService.swift; sourceTree = "<group>"; };
+		12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleNetworkService.swift; sourceTree = "<group>"; };
 		12C36D352D478CA900380192 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,8 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				123C77892D52289900009502 /* PreviewImage.swift */,
-				123C77802D52278F00009502 /* ModelData.swift */,
 				128A862A2D535AAE0061F82A /* Citys.swift */,
+				12849BE72D54B3E900C56A84 /* Station.swift */,
+				123C77802D52278F00009502 /* ModelData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,7 +113,7 @@
 		125E6A372D423EF400D2D461 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				12C36D332D478BFD00380192 /* TravelNetworkService.swift */,
+				12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -137,14 +146,16 @@
 		1268551E2D51462000277F4D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				123C77E72D526CFF00009502 /* MainTabView.swift */,
+				128A86892D53905E0061F82A /* SplashScreenView.swift */,
 				12606F9E2D3E623800A62639 /* ContentView.swift */,
+				123C77E72D526CFF00009502 /* MainTabView.swift */,
 				1268551F2D51467C00277F4D /* TravelScheduleView.swift */,
-				126855392D514C0500277F4D /* PreviewRow.swift */,
 				123C77ED2D526D4300009502 /* SettingView.swift */,
+				126855392D514C0500277F4D /* PreviewCellView.swift */,
 				128A863E2D535FDD0061F82A /* CitysListView.swift */,
 				128A867A2D5386D90061F82A /* SearchBar.swift */,
-				128A86892D53905E0061F82A /* SplashScreenView.swift */,
+				12849BF72D54C31700C56A84 /* UserAgreementView.swift */,
+				12849C022D54C4EA00C56A84 /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 		12C36D302D4788AA00380192 /* AuxiliaryTools */ = {
 			isa = PBXGroup;
 			children = (
+				12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */,
 				12C36D312D4788D900380192 /* APIKey.swift */,
 				12C36D352D478CA900380192 /* Typealiases.swift */,
 			);
@@ -258,8 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12849C152D54CA0800C56A84 /* YPUserAgreement.swift in Sources */,
 				123C77E82D526CFF00009502 /* MainTabView.swift in Sources */,
-				12C36D342D478BFD00380192 /* TravelNetworkService.swift in Sources */,
+				12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */,
 				128A868A2D53905E0061F82A /* SplashScreenView.swift in Sources */,
 				128A867B2D5386D90061F82A /* SearchBar.swift in Sources */,
 				12606FA52D3E623800A62639 /* ContentView.swift in Sources */,
@@ -268,11 +281,14 @@
 				12C36D322D4788D900380192 /* APIKey.swift in Sources */,
 				12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */,
 				12C36D362D478CA900380192 /* Typealiases.swift in Sources */,
-				1268553A2D514C0500277F4D /* PreviewRow.swift in Sources */,
+				1268553A2D514C0500277F4D /* PreviewCellView.swift in Sources */,
 				123C77EE2D526D4300009502 /* SettingView.swift in Sources */,
 				126855202D51467C00277F4D /* TravelScheduleView.swift in Sources */,
+				12849C032D54C4EA00C56A84 /* WebView.swift in Sources */,
 				128A863F2D535FDD0061F82A /* CitysListView.swift in Sources */,
 				126855262D51481F00277F4D /* TravelScheduleViewModel.swift in Sources */,
+				12849BE82D54B3E900C56A84 /* Station.swift in Sources */,
+				12849BF82D54C31700C56A84 /* UserAgreementView.swift in Sources */,
 				128A862B2D535AAE0061F82A /* Citys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

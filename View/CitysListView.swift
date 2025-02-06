@@ -17,19 +17,30 @@ struct CitysListView: View {
     }
     
     var body: some View {
-        SearchBar(searchText: $searchString)
-        List(searchResults) { city in
-            Button {
-                selectedCity = city.name
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text(city.name)
-                    .foregroundColor(.black)
+        NavigationView {
+            VStack {
+                SearchBar(searchText: $searchString)
+                ForEach(searchResults) { city in
+                    Button {
+                        selectedCity = city.name
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        NavigationLink(destination: Text("Выбор станции")) {
+                            Text(city.name)
+                                .foregroundColor(.black)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                        }
+                        .padding()
+                    }
+                }
+                Spacer()
             }
         }
-        .ignoresSafeArea(.all)
-        .navigationTitle(Text("Выберите город"))
+        .navigationTitle("Выберите город")
     }
+    
 }
 
 #Preview {

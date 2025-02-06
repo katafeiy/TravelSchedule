@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PreviewRow: View {
+struct PreviewCellView: View {
     
     let imageName: String
     let imageHeight: Double = 140
@@ -22,5 +22,5 @@ struct PreviewRow: View {
 }
 
 #Preview {
-    PreviewRow(imageName: "preview1")
+    PreviewCellView(imageName: "preview1")
 }

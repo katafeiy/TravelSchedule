@@ -13,7 +13,7 @@ class ModelData {
         PreviewImage(name: "preview8")
     ]
     
-    var citys: [Citys] = [
+    @Published var citys: [Citys] = [
         Citys(name: "Москва"),
         Citys(name: "Санкт-Петербург"),
         Citys(name: "Сочи"),
@@ -23,4 +23,7 @@ class ModelData {
         Citys(name: "Краснодар"),
         Citys(name: "Новосибирск"),
     ]
+    
+    
+    
 }
