@@ -20,7 +20,7 @@ struct SettingView: View {
                 }
                 Spacer()
                 VStack {
-                    Text("Приложение использует API Яндекс.Расписания")
+                    Text("Приложение использует API \u{00AB}Яндекс.Расписания\u{00BB}")
                         .padding(.bottom, 16)
                     Text("Версия 1.0 (Beta)")
                 }

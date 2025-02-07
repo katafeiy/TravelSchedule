@@ -1,16 +1,16 @@
 import SwiftUI
 
 struct CitysListView: View {
+    @Binding var selectedCity: String
+    var onStationSelected: (String) -> Void
     
     @State private var searchString: String = ""
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var selectedCity: String
     
-    var searchResults: [Citys] {
+    var searchResults: [MockData] {
         if searchString.isEmpty {
-            return ModelData().citys
+            return MockData.allCases
         } else {
-            return ModelData().citys.filter {
+            return MockData.allCases.filter {
                 $0.name.contains(searchString)
             }
         }
@@ -26,17 +26,17 @@ struct CitysListView: View {
                         .font(.system(size: 24, weight: .bold))
                     Spacer()
                 } else {
-                    ForEach(searchResults) { city in
-                        Button {
+                    ForEach(searchResults, id: \.self) { city in
+                        NavigationLink(destination: StationsListView(cityStations: city.stations, onStationSelected: { stationName in
                             selectedCity = city.name
-                            presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            NavigationLink(destination: Text("Выбор станции")) {
+                            onStationSelected(stationName)
+                        })) {
+                            HStack {
                                 Text(city.name)
                                     .foregroundColor(.black)
                                 Spacer()
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.black)
                             }
                             .padding()
                         }
@@ -50,5 +50,6 @@ struct CitysListView: View {
 }
 
 #Preview {
-    CitysListView(selectedCity: .constant(""))
+    CitysListView(selectedCity: .constant(""), onStationSelected: { _ in })
 }
+

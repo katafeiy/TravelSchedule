@@ -26,7 +26,9 @@ struct TravelScheduleView: View {
                 ZStack {
                     HStack {
                         VStack (alignment: .leading, spacing: 15) {
-                            NavigationLink(destination: CitysListView(selectedCity: $from)) {
+                            NavigationLink(destination: CitysListView(selectedCity: $from, onStationSelected: { station in
+                            from = "\(from)(\(station))"
+                            })) {
                                 Text(from)
                                     .foregroundColor((from == "Откуда" || from == "Куда") ? .gray : .black)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -34,7 +36,9 @@ struct TravelScheduleView: View {
                                     .padding(.leading, 20)
                             }
                             Divider()
-                            NavigationLink(destination: CitysListView(selectedCity: $toIn)) {
+                            NavigationLink(destination: CitysListView(selectedCity: $toIn, onStationSelected: { station in
+                                toIn = "\(toIn)(\(station))"
+                            })) {
                                 Text(toIn)
                                     .foregroundColor((toIn == "Куда" || toIn == "Откуда") ? .gray : .black)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,7 +58,7 @@ struct TravelScheduleView: View {
                                 .frame(width: 24, height: 24)
                         }
                         .frame(width: 36, height: 36)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.uBlue)
                         .background(Color.white)
                         .clipShape(Circle())
                     }
