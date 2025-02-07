@@ -23,11 +23,14 @@ struct TravelScheduleView: View {
                         }
                     }
                 }
+                
+                Spacer(minLength: 20)
+                
                 ZStack {
                     HStack {
                         VStack (alignment: .leading, spacing: 15) {
                             NavigationLink(destination: CitysListView(selectedCity: $from, onStationSelected: { station in
-                            from = "\(from)(\(station))"
+                                from = "\(from)(\(station))"
                             })) {
                                 Text(from)
                                     .foregroundColor((from == "Откуда" || from == "Куда") ? .gray : .black)
@@ -68,18 +71,14 @@ struct TravelScheduleView: View {
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            Spacer()
-            Button("Request", action: {
-                Task {
-                    await viewModel.mainRequest()
-                }
-            })
-            .buttonStyle(.borderedProminent)
+            .padding()
         }
+        
+        Spacer(minLength: 432)
+        
         .onAppear() {
             
         }
-        .padding()
     }
 }
 

@@ -15,9 +15,8 @@ struct PreviewCellView: View {
         }
         .padding()
         .frame(maxWidth: 92, maxHeight: 140)
-        .background(Color.gray)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(radius: 10)
+        .background()
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
 
