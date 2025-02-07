@@ -70,12 +70,10 @@ struct TravelScheduleView: View {
                 .frame(width: 343, height: 128)
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
+                Spacer(minLength: 432)
             }
-            .padding()
+            .padding(16)
         }
-        
-        Spacer(minLength: 432)
-        
         .onAppear() {
             
         }
