@@ -45,7 +45,6 @@ struct CarrierList: View {
         .frame(width: 343, height: 104)
         .background(Color.uLightGray)
         .clipShape(RoundedRectangle(cornerRadius: 24))
-        
     }
 }
 

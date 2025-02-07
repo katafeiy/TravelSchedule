@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CitysListView: View {
+    
     @Binding var selectedCity: String
     var onStationSelected: (String) -> Void
     
