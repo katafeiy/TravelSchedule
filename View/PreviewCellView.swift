@@ -13,7 +13,6 @@ struct PreviewCellView: View {
                 .frame(height: imageHeight)
 
         }
-        .padding()
         .frame(maxWidth: 92, maxHeight: 140)
         .background()
         .clipShape(RoundedRectangle(cornerRadius: 16))

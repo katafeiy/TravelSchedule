@@ -32,9 +32,10 @@ struct StationsListView: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
-                        .foregroundColor(.black)
+                        .foregroundColor(.ypBlack)
                         .padding(16)
                     }
+                    
                 }
             }
             Spacer()

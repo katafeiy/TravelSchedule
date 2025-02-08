@@ -4,8 +4,6 @@ struct TabBarView: View {
     
     @State private var selectedTab = 0
     
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false
-    
     var body: some View {
         TabView {
             TravelScheduleView()
@@ -25,7 +23,7 @@ struct TabBarView: View {
                 .tag(1)
                 .toolbarBackground(.visible, for: .tabBar)
         }
-        .accentColor(selectedTab == 0 ? (isDarkMode ? .white : .black)   : .gray)
+        .accentColor(selectedTab == 0 ? .ypBlack : .uGray)
     }
 }
 

@@ -24,6 +24,11 @@ class ModelData {
         Citys(name: "Новосибирск"),
     ]
     
+    @Published var carriers: [Carrier] = [
+        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), taimInRoute: 20, date: Date()),
+        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), taimInRoute: 15, date: Date()),
+        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), taimInRoute: 18, date: Date())
+    ]
 }
 
 enum MockData: CaseIterable, Hashable {
@@ -83,9 +88,3 @@ enum MockData: CaseIterable, Hashable {
         }
     }
 }
-
-var carriers: [Carrier] = [
-    Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), taimInRoute: 20, date: Date()),
-    Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), taimInRoute: 15, date: Date()),
-    Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), taimInRoute: 18, date: Date())
-]

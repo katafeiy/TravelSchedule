@@ -34,10 +34,10 @@ struct CitysListView: View {
                         })) {
                             HStack {
                                 Text(city.name)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.ypBlack)
                                 Spacer()
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.ypBlack)
                             }
                             .padding()
                         }
