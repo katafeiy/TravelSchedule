@@ -35,7 +35,6 @@ struct StationsListView: View {
                         .foregroundColor(.ypBlack)
                         .padding(16)
                     }
-                    
                 }
             }
             Spacer()

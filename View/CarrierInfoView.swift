@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct CarierInfoView: View {
+struct CarrierInfoView: View {
+    
     var body: some View {
-        
         
         VStack(alignment: .leading, spacing: 20) {
             
@@ -30,5 +30,5 @@ struct CarierInfoView: View {
 }
 
 #Preview {
-    CarierInfoView()
+    CarrierInfoView()
 }

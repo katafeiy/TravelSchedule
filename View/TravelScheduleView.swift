@@ -10,7 +10,7 @@ struct TravelScheduleView: View {
         let rows = [GridItem(.flexible())]
         
         NavigationStack {
-            
+        
             VStack(spacing: 20) {
                 
                 ScrollView(.horizontal, showsIndicators: false){

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FromToInView: View {
     
-    @State var areYouGoingToSecondView: Bool = false
+    @State var goToCarrierList: Bool = false
     @State private var from: String = ""
     @State private var toIn: String = ""
     
@@ -60,7 +60,7 @@ struct FromToInView: View {
     
     func fineButton() -> some View {
         Button {
-            self.areYouGoingToSecondView = true
+            self.goToCarrierList = true
         } label: {
             Text("Найти")
                 .foregroundColor(.uWhite)
@@ -69,7 +69,7 @@ struct FromToInView: View {
         .frame(width: 150, height: 60)
         .background(.uBlue)
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .navigationDestination(isPresented: $areYouGoingToSecondView) {
+        .navigationDestination(isPresented: $goToCarrierList) {
             CarrierList(from: from, to: toIn)
         }
         .opacity(!from.isEmpty && !toIn.isEmpty ? 1 : 0)
