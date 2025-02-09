@@ -13,7 +13,7 @@ struct FilterView: View {
     ]
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Время отправления")
