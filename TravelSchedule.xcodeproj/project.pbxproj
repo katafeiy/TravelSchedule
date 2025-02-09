@@ -35,6 +35,8 @@
 		12849C152D54CA0800C56A84 /* YPUserAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */; };
 		12849C802D55401800C56A84 /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849C7F2D55401800C56A84 /* StationsListView.swift */; };
 		1287FAF82D58AA3D00A71F2D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287FAF72D58AA3D00A71F2D /* FilterView.swift */; };
+		1287FB3E2D5940FE00A71F2D /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287FB3D2D5940FE00A71F2D /* ServerError.swift */; };
+		1287FB462D59422200A71F2D /* NoInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287FB452D59422200A71F2D /* NoInternet.swift */; };
 		128A862B2D535AAE0061F82A /* Citys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A862A2D535AAE0061F82A /* Citys.swift */; };
 		128A863F2D535FDD0061F82A /* CitysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A863E2D535FDD0061F82A /* CitysListView.swift */; };
 		128A867B2D5386D90061F82A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A867A2D5386D90061F82A /* SearchBar.swift */; };
@@ -72,6 +74,8 @@
 		12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPUserAgreement.swift; sourceTree = "<group>"; };
 		12849C7F2D55401800C56A84 /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		1287FAF72D58AA3D00A71F2D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		1287FB3D2D5940FE00A71F2D /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		1287FB452D59422200A71F2D /* NoInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternet.swift; sourceTree = "<group>"; };
 		128A862A2D535AAE0061F82A /* Citys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Citys.swift; sourceTree = "<group>"; };
 		128A863E2D535FDD0061F82A /* CitysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitysListView.swift; sourceTree = "<group>"; };
 		128A867A2D5386D90061F82A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				128A867A2D5386D90061F82A /* SearchBar.swift */,
 				12849C022D54C4EA00C56A84 /* WebView.swift */,
 				12681F7C2D567AA400A1E687 /* CarrierInfoView.swift */,
+				1287FB3D2D5940FE00A71F2D /* ServerError.swift */,
+				1287FB452D59422200A71F2D /* NoInternet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,8 +308,10 @@
 				123C77E82D526CFF00009502 /* TabBarView.swift in Sources */,
 				12681F0B2D56266B00A1E687 /* DateFormat.swift in Sources */,
 				12849C802D55401800C56A84 /* StationsListView.swift in Sources */,
+				1287FB3E2D5940FE00A71F2D /* ServerError.swift in Sources */,
 				12681F782D567A3800A1E687 /* CarrierInfo.swift in Sources */,
 				12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */,
+				1287FB462D59422200A71F2D /* NoInternet.swift in Sources */,
 				128A868A2D53905E0061F82A /* SplashScreenView.swift in Sources */,
 				128A867B2D5386D90061F82A /* SearchBar.swift in Sources */,
 				12681ECE2D560EB300A1E687 /* Carrier.swift in Sources */,
