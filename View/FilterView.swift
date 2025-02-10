@@ -27,7 +27,7 @@ struct FilterView: View {
                         }
                     }
                     .padding(.vertical, 10)
-    
+                    
                     Text("Время отправления")
                         .font(.system(size: 24, weight: .bold))
                         .lineLimit(nil)
@@ -76,7 +76,7 @@ struct FilterView: View {
                 .padding(.horizontal, 16)
                 
                 Button {
-                    
+                    dismiss()
                 } label: {
                     Text("Применить")
                         .foregroundColor(.uWhite)

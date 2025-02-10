@@ -9,7 +9,7 @@ struct CarrierList: View {
     let to: String
     
     var body: some View {
-        NavigationStack {
+        
             VStack() {
                 HStack {
                     Button(action: {
@@ -59,7 +59,7 @@ struct CarrierList: View {
             }
             .navigationBarBackButtonHidden(true)
             .padding(.horizontal, 16)
-        }
+        
     }
 }
 
