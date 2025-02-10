@@ -2,8 +2,10 @@ import SwiftUI
 
 struct CitysListView: View {
     
-    var onSelection: (String, String) -> Void
+    @Environment(\.dismiss) private var dismiss
     @State private var searchString: String = ""
+    
+    var onSelection: (String, String) -> Void
     
     var searchResults: [MockData] {
         if searchString.isEmpty {
@@ -16,7 +18,23 @@ struct CitysListView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
+            HStack {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.ypBlack)
+                        .font(.system(size: 20, weight: .regular))
+                }
+                Spacer()
+                Text("Выбор города")
+                    .font(.headline)
+                    .padding(.bottom, 5)
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            
             SearchBar(searchText: $searchString)
             if searchResults.isEmpty {
                 Spacer()
@@ -41,7 +59,7 @@ struct CitysListView: View {
                         }
                     }
                 }
-                .navigationTitle("Выберите город")
+                .navigationBarBackButtonHidden(true)
             }
         }
         Spacer()

@@ -2,9 +2,26 @@ import SwiftUI
 
 struct CarrierInfoView: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 20) {
+            
+            HStack {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.ypBlack)
+                        .font(.system(size: 20, weight: .regular))
+                }
+                Spacer()
+                Text("Информация о перевозчике")
+                    .font(.headline)
+                    .padding(.bottom, 5)
+                Spacer()
+            }
             
             Image("RZHD")
                 .padding()
@@ -25,6 +42,8 @@ struct CarrierInfoView: View {
                     .foregroundColor(.uBlue)
             }
         }
+        .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
         Spacer()
     }
 }

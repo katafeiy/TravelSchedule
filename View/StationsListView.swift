@@ -2,6 +2,7 @@ import SwiftUI
 
 struct StationsListView: View {
     
+    @Environment(\.dismiss) private var dismiss
     @State private var searchString: String = ""
     @State var cityStations: [Station]
     
@@ -20,8 +21,23 @@ struct StationsListView: View {
     }
     
     var body: some View {
-        
-        VStack {
+        VStack(spacing: 10) {
+            HStack {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.ypBlack)
+                        .font(.system(size: 20, weight: .regular))
+                }
+                Spacer()
+                Text("Выбор станции")
+                    .font(.headline)
+                    .padding(.bottom, 5)
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+     
             SearchBar(searchText: $searchString)
             ForEach(searchResults) { station in
                 Button {
@@ -37,7 +53,7 @@ struct StationsListView: View {
                 }
             }
         }
-        .navigationTitle("Список станций")
+        .navigationBarBackButtonHidden(true)
         Spacer()
     }
 }

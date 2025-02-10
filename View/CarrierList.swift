@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CarrierList: View {
     
+    @Environment(\.dismiss) private var dismiss
     @State var goToFilterList: Bool = false
     
     let from: String
@@ -10,6 +11,18 @@ struct CarrierList: View {
     var body: some View {
         NavigationStack {
             VStack() {
+                HStack {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.ypBlack)
+                            .font(.system(size: 20, weight: .regular))
+                    }
+                    Spacer()
+                }
+                .padding(.vertical, 10)
+                
                 Text("\(from) -> \(to)")
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(nil)
@@ -44,10 +57,10 @@ struct CarrierList: View {
                     .padding(.bottom, 24)
                 }
             }
+            .navigationBarBackButtonHidden(true)
             .padding(.horizontal, 16)
         }
     }
-    
 }
 
 #Preview {

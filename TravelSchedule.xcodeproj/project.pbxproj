@@ -41,6 +41,7 @@
 		128A863F2D535FDD0061F82A /* CitysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A863E2D535FDD0061F82A /* CitysListView.swift */; };
 		128A867B2D5386D90061F82A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A867A2D5386D90061F82A /* SearchBar.swift */; };
 		128A868A2D53905E0061F82A /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A86892D53905E0061F82A /* SplashScreenView.swift */; };
+		128B57342D5A680400D5DED4 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128B57332D5A680400D5DED4 /* NavigationModel.swift */; };
 		12C36D322D4788D900380192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D312D4788D900380192 /* APIKey.swift */; };
 		12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */; };
 		12C36D362D478CA900380192 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D352D478CA900380192 /* Typealiases.swift */; };
@@ -80,6 +81,7 @@
 		128A863E2D535FDD0061F82A /* CitysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitysListView.swift; sourceTree = "<group>"; };
 		128A867A2D5386D90061F82A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		128A86892D53905E0061F82A /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		128B57332D5A680400D5DED4 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		12C36D312D4788D900380192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleNetworkService.swift; sourceTree = "<group>"; };
 		12C36D352D478CA900380192 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		123C777C2D52276400009502 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				128B57332D5A680400D5DED4 /* NavigationModel.swift */,
 				123C77892D52289900009502 /* PreviewImage.swift */,
 				128A862A2D535AAE0061F82A /* Citys.swift */,
 				12849BE72D54B3E900C56A84 /* Station.swift */,
@@ -320,6 +323,7 @@
 				123C77812D52278F00009502 /* ModelData.swift in Sources */,
 				12C36D322D4788D900380192 /* APIKey.swift in Sources */,
 				12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */,
+				128B57342D5A680400D5DED4 /* NavigationModel.swift in Sources */,
 				125C53D22D57395E00DA3EC0 /* FromToInView.swift in Sources */,
 				12C36D362D478CA900380192 /* Typealiases.swift in Sources */,
 				125C54132D57733000DA3EC0 /* CarrierList.swift in Sources */,

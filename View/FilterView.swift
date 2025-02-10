@@ -2,6 +2,8 @@ import SwiftUI
 import SwiftUI
 
 struct FilterView: View {
+    
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedTimes: Set<String> = []
     @State private var showTransfers: Bool? = nil
 
@@ -13,9 +15,19 @@ struct FilterView: View {
     ]
 
     var body: some View {
-        NavigationStack {
             VStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 20) {
+                    HStack {
+                        Button(action: {
+                            dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.ypBlack)
+                                .font(.system(size: 20, weight: .regular))
+                        }
+                    }
+                    .padding(.vertical, 10)
+    
                     Text("Время отправления")
                         .font(.system(size: 24, weight: .bold))
                         .lineLimit(nil)
@@ -60,6 +72,7 @@ struct FilterView: View {
                     .frame(height: 60)
                     Spacer()
                 }
+                .navigationBarBackButtonHidden(true)
                 .padding(.horizontal, 16)
                 
                 Button {
@@ -74,13 +87,10 @@ struct FilterView: View {
                 }
                 .opacity(!selectedTimes.isEmpty ? 1 : 0)
             }
-        }
     }
 }
 
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterView()
-    }
+#Preview {
+    FilterView()
 }
 

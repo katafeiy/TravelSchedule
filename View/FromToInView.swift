@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FromToInView: View {
     
-    @Binding var path: NavigationPath
+    @EnvironmentObject var navModel: NavigationModel
     @State private var from: String = ""
     @State private var toIn: String = ""
     @State var goToCarrierList: Bool = false
@@ -14,7 +14,7 @@ struct FromToInView: View {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
                         Button {
-                            path.append("CitySelectionFrom")
+                            navModel.push(.cityFrom)
                         } label: {
                             Text(from.isEmpty ? "Откуда" : from)
                                 .foregroundColor(from.isEmpty ? .uGray : .uBlack)
@@ -27,7 +27,7 @@ struct FromToInView: View {
                         }
                         Divider()
                         Button {
-                            path.append("CitySelectionTo")
+                            navModel.push(.cityTo)
                         } label: {
                             Text(toIn.isEmpty ? "Куда" : toIn)
                                 .foregroundColor(toIn.isEmpty ? .uGray : .uBlack)
@@ -62,15 +62,17 @@ struct FromToInView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
             
         }
-        .navigationDestination(for: String.self) { destination in
-            if destination == "CitySelectionFrom" || destination == "CitySelectionTo" {
+        .navigationDestination(for: ScreenNames.self) { screenNames in
+            switch screenNames {
+            case .cityFrom, .cityTo:
                 CitysListView { city, station in
-                    if destination == "CitySelectionFrom" {
+                    switch screenNames {
+                    case .cityFrom:
                         from = "\(city) (\(station))"
-                    } else {
+                    case .cityTo:
                         toIn = "\(city) (\(station))"
                     }
-                    path = NavigationPath()
+                    navModel.popRoot()
                 }
             }
         }
@@ -97,5 +99,5 @@ struct FromToInView: View {
 
 
 #Preview {
-    FromToInView(path: .constant(NavigationPath()))
+    FromToInView()
 }

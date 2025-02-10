@@ -3,13 +3,14 @@ import OpenAPIURLSession
 
 struct TravelScheduleView: View {
     
+    @StateObject var navModel = NavigationModel()
     @StateObject private var viewModel = TravelScheduleViewModel()
-    @State private var path = NavigationPath()
     
     var body: some View {
         
         let rows = [GridItem(.flexible())]
-        NavigationStack(path: $path) {
+        
+        NavigationStack(path: $navModel.path) {
             VStack(spacing: 20) {
                 ScrollView(.horizontal, showsIndicators: false){
                     LazyHGrid(rows: rows, alignment: .center, spacing: 20) {
@@ -18,11 +19,12 @@ struct TravelScheduleView: View {
                         }
                     }
                 }
-                FromToInView(path: $path)
+                FromToInView()
             }
             .padding(.horizontal, 16)
             Spacer(minLength: 273)
         }
+        .environmentObject(navModel)
         .onAppear() {
             
         }
