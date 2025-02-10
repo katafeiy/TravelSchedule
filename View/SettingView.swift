@@ -24,7 +24,7 @@ struct SettingView: View {
                         .padding(.bottom, 16)
                     Text("Версия 1.0 (Beta)")
                 }
-                .padding(.bottom, 24)
+                .padding(.bottom, 58)
                 .font(.system(size: 12, weight: .light))
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)
