@@ -2,9 +2,10 @@ import SwiftUI
 
 struct FromToInView: View {
     
-    @State var goToCarrierList: Bool = false
+    @Binding var path: NavigationPath
     @State private var from: String = ""
     @State private var toIn: String = ""
+    @State var goToCarrierList: Bool = false
     
     var body: some View {
         
@@ -12,24 +13,30 @@ struct FromToInView: View {
             ZStack {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
-                        NavigationLink(destination: CitysListView(selectedCity: $from, onStationSelected: { station in
-                            from = "\(from)(\(station))"
-                        })) {
-                        Text(from.isEmpty ? "Откуда" : from)
+                        Button {
+                            path.append("CitySelectionFrom")
+                        } label: {
+                            Text(from.isEmpty ? "Откуда" : from)
                                 .foregroundColor(from.isEmpty ? .uGray : .uBlack)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top, 20)
                                 .padding(.leading, 20)
+                                .lineLimit(1)
+                                .multilineTextAlignment(.leading)
+                                .truncationMode(.tail)
                         }
                         Divider()
-                        NavigationLink(destination: CitysListView(selectedCity: $toIn, onStationSelected: { station in
-                            toIn = "\(toIn)(\(station))"
-                        })) {
+                        Button {
+                            path.append("CitySelectionTo")
+                        } label: {
                             Text(toIn.isEmpty ? "Куда" : toIn)
                                 .foregroundColor(toIn.isEmpty ? .uGray : .uBlack)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.bottom, 20)
                                 .padding(.leading, 20)
+                                .lineLimit(1)
+                                .multilineTextAlignment(.leading)
+                                .truncationMode(.tail)
                         }
                     }
                     .background(.uWhite)
@@ -54,8 +61,20 @@ struct FromToInView: View {
             .background(.uBlue)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             
-            fineButton()
         }
+        .navigationDestination(for: String.self) { destination in
+            if destination == "CitySelectionFrom" || destination == "CitySelectionTo" {
+                CitysListView { city, station in
+                    if destination == "CitySelectionFrom" {
+                        from = "\(city) (\(station))"
+                    } else {
+                        toIn = "\(city) (\(station))"
+                    }
+                    path = NavigationPath()
+                }
+            }
+        }
+        fineButton()
     }
     
     func fineButton() -> some View {
@@ -76,6 +95,7 @@ struct FromToInView: View {
     }
 }
 
+
 #Preview {
-    FromToInView()
+    FromToInView(path: .constant(NavigationPath()))
 }

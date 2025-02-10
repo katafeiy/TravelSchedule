@@ -2,11 +2,12 @@ import SwiftUI
 
 struct StationsListView: View {
     
-    @Environment(\.presentationMode) var presentationMode
     @State private var searchString: String = ""
     @State var cityStations: [Station]
     
     var onStationSelected: (String) -> Void
+    
+    
     
     var searchResults: [Station] {
         if searchString.isEmpty {
@@ -19,27 +20,25 @@ struct StationsListView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                SearchBar(searchText: $searchString)
-                ForEach(searchResults) { station in
-                    Button {
-                        onStationSelected(station.name)
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        HStack {
-                            Text(station.name)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                        }
-                        .foregroundColor(.ypBlack)
-                        .padding(16)
+        
+        VStack {
+            SearchBar(searchText: $searchString)
+            ForEach(searchResults) { station in
+                Button {
+                    onStationSelected(station.name)
+                } label: {
+                    HStack {
+                        Text(station.name)
+                        Spacer()
+                        Image(systemName: "chevron.right")
                     }
+                    .foregroundColor(.ypBlack)
+                    .padding(16)
                 }
             }
-            Spacer()
         }
         .navigationTitle("Список станций")
+        Spacer()
     }
 }
 
