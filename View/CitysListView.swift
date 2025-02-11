@@ -59,9 +59,9 @@ struct CitysListView: View {
                         }
                     }
                 }
-                .navigationBarBackButtonHidden(true)
             }
         }
+        .navigationBarBackButtonHidden(true)
         Spacer()
     }
 }

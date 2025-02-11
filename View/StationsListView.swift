@@ -37,19 +37,26 @@ struct StationsListView: View {
                 Spacer()
             }
             .padding(.horizontal, 10)
-     
+            
             SearchBar(searchText: $searchString)
-            ForEach(searchResults) { station in
-                Button {
-                    onStationSelected(station.name)
-                } label: {
-                    HStack {
-                        Text(station.name)
-                        Spacer()
-                        Image(systemName: "chevron.right")
+            if searchResults.isEmpty {
+                Spacer()
+                Text("Станция не найдена")
+                    .font(.system(size: 24, weight: .bold))
+                Spacer()
+            } else {
+                ForEach(searchResults) { station in
+                    Button {
+                        onStationSelected(station.name)
+                    } label: {
+                        HStack {
+                            Text(station.name)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .foregroundColor(.ypBlack)
+                        .padding(16)
                     }
-                    .foregroundColor(.ypBlack)
-                    .padding(16)
                 }
             }
         }
