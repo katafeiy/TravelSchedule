@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FilterView: View {
     
+    @Binding var isTabBarHidden: Bool
     @Environment(\.dismiss) private var dismiss
     @State private var selectedTimes: Set<String> = []
     @State private var showTransfers: Bool? = nil
@@ -77,6 +78,7 @@ struct FilterView: View {
                 
                 Button {
                     dismiss()
+                    isTabBarHidden = true
                 } label: {
                     Text("Применить")
                         .foregroundColor(.uWhite)
@@ -91,6 +93,6 @@ struct FilterView: View {
 }
 
 #Preview {
-    FilterView()
+    FilterView(isTabBarHidden: .constant(true))
 }
 

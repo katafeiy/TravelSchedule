@@ -3,6 +3,7 @@ import OpenAPIURLSession
 
 struct TravelScheduleView: View {
     
+    @Binding var isTabBarHidden: Bool
     @StateObject var navModel = NavigationModel()
     @StateObject private var viewModel = TravelScheduleViewModel()
     
@@ -19,18 +20,17 @@ struct TravelScheduleView: View {
                         }
                     }
                 }
-                FromToInView()
+                FromToInView(isTabBarHidden: $isTabBarHidden)
             }
             .padding(.horizontal, 16)
             Spacer(minLength: 273)
         }
         .environmentObject(navModel)
         .onAppear() {
-            
         }
     }
 }
 
 #Preview {
-    TravelScheduleView()
+    TravelScheduleView(isTabBarHidden: .constant(true))
 }

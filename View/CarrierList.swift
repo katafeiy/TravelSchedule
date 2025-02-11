@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CarrierList: View {
     
+    @Binding var isTabBarHidden: Bool
     @Environment(\.dismiss) private var dismiss
     @State var goToFilterList: Bool = false
     
@@ -43,6 +44,7 @@ struct CarrierList: View {
                     
                     Button{
                         self.goToFilterList = true
+                        isTabBarHidden = true
                     } label: {
                         Text("Уточнить время")
                             .foregroundColor(.uWhite)
@@ -52,7 +54,7 @@ struct CarrierList: View {
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                     .navigationDestination(isPresented: $goToFilterList){
-                        FilterView()
+                        FilterView(isTabBarHidden: $isTabBarHidden)
                     }
                     .padding(.bottom, 24)
                 }
@@ -64,5 +66,5 @@ struct CarrierList: View {
 }
 
 #Preview {
-    CarrierList(from: "Санкт-Петербург(Финляндский вокзал)", to: "Новосибирск(Новосибирск-Пассажирский)")
+    CarrierList(isTabBarHidden: .constant(true), from: "Санкт-Петербург(Финляндский вокзал)", to: "Новосибирск(Новосибирск-Пассажирский)")
 }

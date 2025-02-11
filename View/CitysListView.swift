@@ -18,6 +18,7 @@ struct CitysListView: View {
     }
     
     var body: some View {
+        
         VStack(spacing: 10) {
             HStack {
                 Button(action: {

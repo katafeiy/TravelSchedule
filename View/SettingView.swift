@@ -2,14 +2,19 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @Binding var isTabBarHidden: Bool
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    @State private var isUserAgreementActive: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Toggle("Темная тема", isOn: $isDarkMode)
                     .padding(16)
-                NavigationLink(destination: UserAgreementView()) {
+                Button {
+                    isUserAgreementActive = true
+                    isTabBarHidden = true
+                } label: {
                     HStack {
                         Text("Пользовательское соглашение")
                         Spacer()
@@ -17,6 +22,9 @@ struct SettingView: View {
                     }
                     .padding(16)
                     .foregroundColor(isDarkMode ? .white : .black)
+                }
+                .navigationDestination(isPresented: $isUserAgreementActive){
+                    UserAgreementView(isTabBarHidden: $isTabBarHidden)
                 }
                 Spacer()
                 VStack {
@@ -28,11 +36,10 @@ struct SettingView: View {
                 .font(.system(size: 12, weight: .light))
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)
-            .navigationTitle("Настройки")
         }
     }
 }
 
 #Preview {
-    SettingView()
+    SettingView(isTabBarHidden: .constant(false))
 }

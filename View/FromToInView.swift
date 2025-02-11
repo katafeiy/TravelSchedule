@@ -3,6 +3,7 @@ import SwiftUI
 struct FromToInView: View {
     
     @EnvironmentObject var navModel: NavigationModel
+    @Binding var isTabBarHidden: Bool
     @State private var from: String = ""
     @State private var toIn: String = ""
     @State var goToCarrierList: Bool = false
@@ -15,6 +16,7 @@ struct FromToInView: View {
                     VStack (alignment: .leading, spacing: 15) {
                         Button {
                             navModel.push(.cityFrom)
+                            isTabBarHidden = true
                         } label: {
                             Text(from.isEmpty ? "Откуда" : from)
                                 .foregroundColor(from.isEmpty ? .uGray : .uBlack)
@@ -28,6 +30,7 @@ struct FromToInView: View {
                         Divider()
                         Button {
                             navModel.push(.cityTo)
+                            isTabBarHidden = true
                         } label: {
                             Text(toIn.isEmpty ? "Куда" : toIn)
                                 .foregroundColor(toIn.isEmpty ? .uGray : .uBlack)
@@ -60,7 +63,9 @@ struct FromToInView: View {
             .padding(16)
             .background(.uBlue)
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            
+            .onAppear() {
+                isTabBarHidden = false
+            }
         }
         .navigationDestination(for: ScreenNames.self) { screenNames in
             switch screenNames {
@@ -82,6 +87,7 @@ struct FromToInView: View {
     func fineButton() -> some View {
         Button {
             self.goToCarrierList = true
+            isTabBarHidden = true
         } label: {
             Text("Найти")
                 .foregroundColor(.uWhite)
@@ -91,7 +97,7 @@ struct FromToInView: View {
         .background(.uBlue)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .navigationDestination(isPresented: $goToCarrierList) {
-            CarrierList(from: from, to: toIn)
+            CarrierList(isTabBarHidden: $isTabBarHidden, from: from, to: toIn)
         }
         .opacity(!from.isEmpty && !toIn.isEmpty ? 1 : 0)
     }
@@ -99,5 +105,5 @@ struct FromToInView: View {
 
 
 #Preview {
-    FromToInView()
+    FromToInView(isTabBarHidden: .constant(false))
 }

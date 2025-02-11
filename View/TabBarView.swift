@@ -35,46 +35,51 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab = 0
+    @State private var isTabBarHidden = false
     @Namespace private var animation
     
     var body: some View {
         ZStack {
             if selectedTab == 0 {
-                TravelScheduleView()
+                TravelScheduleView(isTabBarHidden: $isTabBarHidden)
                     .transition(.move(edge: .leading))
             } else {
-                SettingView()
+                SettingView(isTabBarHidden: $isTabBarHidden)
                     .transition(.move(edge: .trailing))
             }
             
-            VStack {
-                Spacer()
-                Rectangle()
-                    .fill(.uGray)
-                    .frame(height: 1)
-                HStack {
-                    TabBarButton(
-                        icon: "schedule",
-                        title: "Расписание",
-                        isSelected: selectedTab == 0
-                    ) {
-                        withAnimation(.easeInOut) {
-                            selectedTab = 0
+            if !isTabBarHidden {
+                VStack {
+                    Spacer()
+                    Rectangle()
+                        .fill(.uGray)
+                        .frame(height: 1)
+                    HStack {
+                        TabBarButton(
+                            icon: "schedule",
+                            title: "Расписание",
+                            isSelected: selectedTab == 0
+                        ) {
+                            withAnimation(.easeInOut) {
+                                selectedTab = 0
+                                isTabBarHidden = false
+                            }
+                        }
+                        
+                        TabBarButton(
+                            icon: "settings",
+                            title: "Настройки",
+                            isSelected: selectedTab == 1
+                        ) {
+                            withAnimation(.easeInOut) {
+                                selectedTab = 1
+                                isTabBarHidden = false
+                            }
                         }
                     }
-                    
-                    TabBarButton(
-                        icon: "settings",
-                        title: "Настройки",
-                        isSelected: selectedTab == 1
-                    ) {
-                        withAnimation(.easeInOut) { 
-                            selectedTab = 1
-                        }
-                    }
+                    .frame(height: 60)
+                    .padding(.vertical, 8)
                 }
-                .frame(height: 60)
-                .padding(.vertical, 8)
             }
         }
         .edgesIgnoringSafeArea(.bottom)
