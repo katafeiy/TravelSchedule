@@ -15,28 +15,33 @@ struct CarrierCellView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(carrierInfo.carrierName)
                             .font(.system(size: 17, weight: .regular))
+                            .foregroundColor(.uBlack)
                         Text("С пересадкой в Костроме")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundColor(.uRed)
                     }
                     Spacer()
-                    Text(DateFormatTime.formatDate(carrierInfo.date, format: DateFormatTime.Format.dMMMM.rawValue))
+                    Text(DateFormatTime.formatDate(carrierInfo.date, format: DateFormatTime.Format.dMMMM))
                         .font(.system(size: 12, weight: .regular))
+                        .foregroundColor(.uBlack)
                         .padding(.bottom, 27)
                 }
                 HStack(alignment: .center) {
-                    Text(DateFormatTime.formatDate(carrierInfo.startTime, format: DateFormatTime.Format.HHmm.rawValue))
+                    Text(DateFormatTime.formatDate(carrierInfo.startTime, format: DateFormatTime.Format.HHmm))
                         .font(.system(size: 17, weight: .regular))
+                        .foregroundColor(.uBlack)
                     Rectangle()
                         .fill(.uGray)
                         .frame(height: 1)
-                    Text("\(carrierInfo.taimInRoute) часов")
+                    Text("\(carrierInfo.timeInRoute) часов")
                         .font(.system(size: 12, weight: .regular))
+                        .foregroundColor(.uBlack)
                     Rectangle()
                         .fill(.uGray)
                         .frame(height: 1)
-                    Text(DateFormatTime.formatDate(carrierInfo.endTime, format: DateFormatTime.Format.HHmm.rawValue))
+                    Text(DateFormatTime.formatDate(carrierInfo.endTime, format: DateFormatTime.Format.HHmm))
                         .font(.system(size: 17, weight: .regular))
+                        .foregroundColor(.uBlack)
                 }
             }
         }
@@ -49,5 +54,5 @@ struct CarrierCellView: View {
 }
 
 #Preview {
-    CarrierCellView(carrierInfo: Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), taimInRoute: 20, date: Date()))
+    CarrierCellView(carrierInfo: Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()))
 }

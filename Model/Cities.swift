@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Citys: Identifiable {
+struct Cities: Identifiable {
     let id = UUID()
     let name: String
 }

@@ -13,24 +13,24 @@ class ModelData {
         PreviewImage(name: "preview8")
     ]
     
-    @Published var citys: [Citys] = [
-        Citys(name: "Москва"),
-        Citys(name: "Санкт-Петербург"),
-        Citys(name: "Сочи"),
-        Citys(name: "Саратов"),
-        Citys(name: "Красноярск"),
-        Citys(name: "Омск"),
-        Citys(name: "Краснодар"),
-        Citys(name: "Новосибирск"),
+    @Published var citys: [Cities] = [
+        Cities(name: "Москва"),
+        Cities(name: "Санкт-Петербург"),
+        Cities(name: "Сочи"),
+        Cities(name: "Саратов"),
+        Cities(name: "Красноярск"),
+        Cities(name: "Омск"),
+        Cities(name: "Краснодар"),
+        Cities(name: "Новосибирск"),
     ]
     
     @Published var carriers: [Carrier] = [
-        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), taimInRoute: 20, date: Date()),
-        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), taimInRoute: 15, date: Date()),
-        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), taimInRoute: 18, date: Date()),
-        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), taimInRoute: 19, date: Date()),
-        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), taimInRoute: 14, date: Date()),
-        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), taimInRoute: 17, date: Date())
+        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()),
+        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 15, date: Date()),
+        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 18, date: Date()),
+        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 19, date: Date()),
+        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 14, date: Date()),
+        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 17, date: Date())
     ]
     
     @Published var carriersInfo: [CarrierInfo] = [

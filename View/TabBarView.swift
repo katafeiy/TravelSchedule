@@ -34,20 +34,21 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State private var selectedTab = 0
+    
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    @State private var selectedTabIndex = 0
     @State private var isTabBarHidden = false
     @Namespace private var animation
     
     var body: some View {
         ZStack {
-            if selectedTab == 0 {
+            if selectedTabIndex == 0 {
                 TravelScheduleView(isTabBarHidden: $isTabBarHidden)
                     .transition(.move(edge: .leading))
             } else {
                 SettingView(isTabBarHidden: $isTabBarHidden)
                     .transition(.move(edge: .trailing))
             }
-            
             if !isTabBarHidden {
                 VStack {
                     Spacer()
@@ -57,22 +58,19 @@ struct TabBarView: View {
                     HStack {
                         TabBarButton(
                             icon: "schedule",
-                            title: "Расписание",
-                            isSelected: selectedTab == 0
+                            isSelected: selectedTabIndex == 0
                         ) {
                             withAnimation(.easeInOut) {
-                                selectedTab = 0
+                                selectedTabIndex = 0
                                 isTabBarHidden = false
                             }
                         }
-                        
                         TabBarButton(
                             icon: "settings",
-                            title: "Настройки",
-                            isSelected: selectedTab == 1
+                            isSelected: selectedTabIndex == 1
                         ) {
                             withAnimation(.easeInOut) {
-                                selectedTab = 1
+                                selectedTabIndex = 1
                                 isTabBarHidden = false
                             }
                         }
@@ -83,12 +81,12 @@ struct TabBarView: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 
 struct TabBarButton: View {
     let icon: String
-    let title: String
     let isSelected: Bool
     let action: () -> Void
     
@@ -97,9 +95,6 @@ struct TabBarButton: View {
             VStack {
                 Image(icon)
                     .renderingMode(.template)
-                    .foregroundColor(isSelected ? .ypBlack : .uGray)
-                Text(title)
-                    .font(.caption)
                     .foregroundColor(isSelected ? .ypBlack : .uGray)
             }
             .frame(maxWidth: .infinity)

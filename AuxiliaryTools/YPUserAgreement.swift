@@ -5,7 +5,7 @@ enum YPUserAgreement {
     var stringValue: String {
         switch self {
         case .YPUAUrl:
-            return "https://yandex.ru/legal/practicum_offer/"
+            "https://yandex.ru/legal/practicum_offer/"
         }
     }
 }

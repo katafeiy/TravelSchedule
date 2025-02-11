@@ -2,14 +2,14 @@ import SwiftUI
 import OpenAPIURLSession
 
 struct TravelScheduleView: View {
+
+    @StateObject private var viewModel = TravelScheduleViewModel()
     
     @Binding var isTabBarHidden: Bool
     @StateObject var navModel = NavigationModel()
-    @StateObject private var viewModel = TravelScheduleViewModel()
+    let rows = [GridItem(.flexible())]
     
     var body: some View {
-        
-        let rows = [GridItem(.flexible())]
         
         NavigationStack(path: $navModel.path) {
             VStack(spacing: 20) {
@@ -26,11 +26,9 @@ struct TravelScheduleView: View {
             Spacer(minLength: 273)
         }
         .environmentObject(navModel)
-        .onAppear() {
-        }
     }
 }
 
 #Preview {
-    TravelScheduleView(isTabBarHidden: .constant(true))
+    TravelScheduleView(isTabBarHidden: .constant(false))
 }

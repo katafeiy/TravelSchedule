@@ -7,7 +7,7 @@ struct Carrier: Identifiable {
     let carrierLogo: Image
     let startTime: Date
     let endTime: Date
-    let taimInRoute: Int
+    let timeInRoute: Int
     let date: Date
 }
 

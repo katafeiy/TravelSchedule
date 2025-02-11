@@ -2,8 +2,9 @@ import SwiftUI
 
 struct SettingView: View {
     
-    @Binding var isTabBarHidden: Bool
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    
+    @Binding var isTabBarHidden: Bool
     @State private var isUserAgreementActive: Bool = false
     
     var body: some View {
@@ -35,7 +36,6 @@ struct SettingView: View {
                 .padding(.bottom, 58)
                 .font(.system(size: 12, weight: .light))
             }
-            .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
