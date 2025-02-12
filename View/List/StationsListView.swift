@@ -8,8 +8,6 @@ struct StationsListView: View {
     
     var onStationSelected: (String) -> Void
     
-    
-    
     var searchResults: [Station] {
         if searchString.isEmpty {
             return cityStations
@@ -64,7 +62,6 @@ struct StationsListView: View {
         Spacer()
     }
 }
-
 
 #Preview {
     StationsListView(cityStations: MockData.moscow.stations, onStationSelected: { _ in })

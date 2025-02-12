@@ -28,6 +28,7 @@ struct FromToInView: View {
                                 .truncationMode(.tail)
                         }
                         Divider()
+                        
                         Button {
                             navModel.push(.cityTo)
                             isTabBarHidden = true
@@ -58,7 +59,6 @@ struct FromToInView: View {
                     .background(.uWhite)
                     .clipShape(Circle())
                 }
-                
             }
             .padding(16)
             .background(.uBlue)
