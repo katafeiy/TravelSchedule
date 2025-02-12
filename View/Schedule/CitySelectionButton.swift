@@ -20,17 +20,3 @@ struct CitySelectionButton: View {
         }
     }
 }
-
-//Button {
-//    navModel.push(.cityFrom)
-//    isTabBarHidden = true
-//} label: {
-//    Text(from.isEmpty ? "Откуда" : from)
-//        .foregroundColor(from.isEmpty ? .uGray : .uBlack)
-//        .frame(maxWidth: .infinity, alignment: .leading)
-//        .padding(.top, 20)
-//        .padding(.leading, 20)
-//        .lineLimit(1)
-//        .multilineTextAlignment(.leading)
-//        .truncationMode(.tail)
-//}

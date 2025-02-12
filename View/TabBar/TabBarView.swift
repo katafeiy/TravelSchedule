@@ -57,7 +57,7 @@ struct TabBarView: View {
                         .frame(height: 1)
                     HStack {
                         TabBarButton(
-                            icon: "schedule",
+                            icon: .schedule,
                             isSelected: selectedTabIndex == 0
                         ) {
                             withAnimation(.easeInOut) {
@@ -66,7 +66,7 @@ struct TabBarView: View {
                             }
                         }
                         TabBarButton(
-                            icon: "settings",
+                            icon: .settings,
                             isSelected: selectedTabIndex == 1
                         ) {
                             withAnimation(.easeInOut) {

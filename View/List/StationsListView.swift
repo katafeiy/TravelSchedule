@@ -37,23 +37,27 @@ struct StationsListView: View {
             .padding(.horizontal, 10)
             
             SearchBar(searchText: $searchString)
-            if searchResults.isEmpty {
+            if searchResults.isEmpty, !searchString.isEmpty {
                 Spacer()
                 Text("Станция не найдена")
                     .font(.system(size: 24, weight: .bold))
                 Spacer()
             } else {
-                ForEach(searchResults) { station in
-                    Button {
-                        onStationSelected(station.name)
-                    } label: {
-                        HStack {
-                            Text(station.name)
-                            Spacer()
-                            Image(systemName: "chevron.right")
+                if searchResults.isEmpty {
+                    ErrorsView(errors: .serverError)
+                } else {
+                    ForEach(searchResults) { station in
+                        Button {
+                            onStationSelected(station.name)
+                        } label: {
+                            HStack {
+                                Text(station.name)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .foregroundColor(.ypBlack)
+                            .padding(16)
                         }
-                        .foregroundColor(.ypBlack)
-                        .padding(16)
                     }
                 }
             }
@@ -64,5 +68,9 @@ struct StationsListView: View {
 }
 
 #Preview {
-    StationsListView(cityStations: Cities.moscow.stations, onStationSelected: { _ in })
+    StationsListView(cityStations: ModelData.massive.first!.stations, onStationSelected: { _ in })
+}
+
+#Preview {
+    StationsListView(cityStations: [], onStationSelected: { _ in })
 }

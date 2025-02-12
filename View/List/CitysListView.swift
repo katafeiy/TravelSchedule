@@ -7,13 +7,14 @@ struct CitysListView: View {
     
     var onSelection: (String, String) -> Void
     
-    var searchResults: [Cities] {
+    var data: [City] = []
+    
+    var searchResults: [City] {
         if searchString.isEmpty {
-            return Cities.allCases
+            return data
         } else {
-            return Cities.allCases.filter {
-                $0.name.name.contains(searchString)
-//                $0.name.contains(searchString)
+            return data.filter {
+                $0.name.contains(searchString)
             }
         }
     }
@@ -38,26 +39,30 @@ struct CitysListView: View {
             .padding(.horizontal, 10)
             
             SearchBar(searchText: $searchString)
-            if searchResults.isEmpty {
+            if searchResults.isEmpty, !searchString.isEmpty {
                 Spacer()
                 Text("Город не найден")
                     .font(.system(size: 24, weight: .bold))
                 Spacer()
             } else {
-                ForEach(searchResults, id: \.self) { city in
-                    NavigationLink(value: city) {
-                        HStack {
-                            Text(city.name.name)
-                                .foregroundColor(.ypBlack)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.ypBlack)
+                if searchResults.isEmpty {
+                    ErrorsView(errors: .noInternet)
+                } else {
+                    ForEach(searchResults, id: \.self) { city in
+                        NavigationLink(value: city) {
+                            HStack {
+                                Text(city.name)
+                                    .foregroundColor(.ypBlack)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.ypBlack)
+                            }
+                            .padding()
                         }
-                        .padding()
-                    }
-                    .navigationDestination(for: Cities.self) { city in
-                        StationsListView(cityStations: city.stations) { station in
-                            onSelection(city.name.name, station)
+                        .navigationDestination(for: City.self) { city in
+                            StationsListView(cityStations: city.stations) { station in
+                                onSelection(city.name, station)
+                            }
                         }
                     }
                 }
@@ -69,6 +74,10 @@ struct CitysListView: View {
 }
 
 #Preview {
-    CitysListView(onSelection: { _, _  in })
+    CitysListView(onSelection: { _, _  in }, data: ModelData.massive)
 }
+#Preview {
+    CitysListView(onSelection: { _, _  in }, data: [])
+}
+
 

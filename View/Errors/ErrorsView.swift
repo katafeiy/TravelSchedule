@@ -9,6 +9,7 @@ struct ErrorsView: View {
     
     var body: some View {
         VStack {
+            Spacer()
             Image(errors.type.image)
                 .resizable()
                 .frame(width: 223, height: 223)
@@ -16,6 +17,7 @@ struct ErrorsView: View {
             Text(errors.type.title)
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.ypBlack)
+            Spacer()
         }
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TabBarButton: View {
-    let icon: String
+    let icon: ImageResource
     let isSelected: Bool
     let action: () -> Void
     

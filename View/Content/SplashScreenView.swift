@@ -2,13 +2,13 @@ import SwiftUI
 
 struct SplashScreenView: View {
     
-    @State var isSplashScreenActive: Bool = false
+    @State private var isSplashScreenActive: Bool = false
     
     var body: some View {
         if isSplashScreenActive {
             TabBarView()
         } else {
-            Image("splashScreen")
+            Image(.splashScreen)
                 .resizable()
                 .ignoresSafeArea(edges: .all)
                 .onAppear {

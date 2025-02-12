@@ -6,7 +6,7 @@ struct FromToInView: View {
     @Binding var isTabBarHidden: Bool
     @State private var from: String = ""
     @State private var toIn: String = ""
-    @State var goToCarrierList: Bool = false
+    @State private var goToCarrierList: Bool = false
     
     var body: some View {
         

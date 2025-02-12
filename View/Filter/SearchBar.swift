@@ -3,7 +3,7 @@ import SwiftUI
 struct SearchBar: View {
     
     @Binding var searchText: String
-    @State var isSearching: Bool = false
+    @State private var isSearching: Bool = false
     var placeholder = "Поиск..."
     
     var body: some View {

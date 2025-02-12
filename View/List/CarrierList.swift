@@ -4,7 +4,7 @@ struct CarrierList: View {
     
     @Binding var isTabBarHidden: Bool
     @Environment(\.dismiss) private var dismiss
-    @State var goToFilterList: Bool = false
+    @State private var goToFilterList: Bool = false
     
     let from: String
     let to: String
