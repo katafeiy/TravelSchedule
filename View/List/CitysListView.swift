@@ -7,12 +7,13 @@ struct CitysListView: View {
     
     var onSelection: (String, String) -> Void
     
-    var searchResults: [MockData] {
+    var searchResults: [Cities] {
         if searchString.isEmpty {
-            return MockData.allCases
+            return Cities.allCases
         } else {
-            return MockData.allCases.filter {
-                $0.name.contains(searchString)
+            return Cities.allCases.filter {
+                $0.name.name.contains(searchString)
+//                $0.name.contains(searchString)
             }
         }
     }
@@ -46,7 +47,7 @@ struct CitysListView: View {
                 ForEach(searchResults, id: \.self) { city in
                     NavigationLink(value: city) {
                         HStack {
-                            Text(city.name)
+                            Text(city.name.name)
                                 .foregroundColor(.ypBlack)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -54,9 +55,9 @@ struct CitysListView: View {
                         }
                         .padding()
                     }
-                    .navigationDestination(for: MockData.self) { city in
+                    .navigationDestination(for: Cities.self) { city in
                         StationsListView(cityStations: city.stations) { station in
-                            onSelection(city.name, station)
+                            onSelection(city.name.name, station)
                         }
                     }
                 }

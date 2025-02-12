@@ -14,50 +14,21 @@ struct FromToInView: View {
             ZStack {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
-                        Button {
+                        CitySelectionButton(title: "Откуда", city: from, isIndentation: true) {
                             navModel.push(.cityFrom)
                             isTabBarHidden = true
-                        } label: {
-                            Text(from.isEmpty ? "Откуда" : from)
-                                .foregroundColor(from.isEmpty ? .uGray : .uBlack)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 20)
-                                .padding(.leading, 20)
-                                .lineLimit(1)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
                         }
                         Divider()
-                        
-                        Button {
+                        CitySelectionButton(title: "Куда", city: toIn, isIndentation: false) {
                             navModel.push(.cityTo)
                             isTabBarHidden = true
-                        } label: {
-                            Text(toIn.isEmpty ? "Куда" : toIn)
-                                .foregroundColor(toIn.isEmpty ? .uGray : .uBlack)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.bottom, 20)
-                                .padding(.leading, 20)
-                                .lineLimit(1)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
                         }
                     }
                     .background(.uWhite)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    
-                    Button {
+                    SwapButton{
                         swap(&from, &toIn)
-                    } label: {
-                        Image("change")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
                     }
-                    .frame(width: 36, height: 36)
-                    .foregroundColor(.uBlue)
-                    .background(.uWhite)
-                    .clipShape(Circle())
                 }
             }
             .padding(16)
@@ -65,6 +36,10 @@ struct FromToInView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .onAppear() {
                 isTabBarHidden = false
+            }
+            FindButton(isEnabled: !from.isEmpty && !toIn.isEmpty) {
+                goToCarrierList = true
+                isTabBarHidden = true
             }
         }
         .navigationDestination(for: ScreenNames.self) { screenNames in
@@ -81,28 +56,11 @@ struct FromToInView: View {
                 }
             }
         }
-        fineButton()
-    }
-    
-    func fineButton() -> some View {
-        Button {
-            self.goToCarrierList = true
-            isTabBarHidden = true
-        } label: {
-            Text("Найти")
-                .foregroundColor(.uWhite)
-                .font(.system(size: 17, weight: .bold))
-        }
-        .frame(width: 150, height: 60)
-        .background(.uBlue)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
         .navigationDestination(isPresented: $goToCarrierList) {
             CarrierList(isTabBarHidden: $isTabBarHidden, from: from, to: toIn)
         }
-        .opacity(!from.isEmpty && !toIn.isEmpty ? 1 : 0)
     }
 }
-
 
 #Preview {
     FromToInView(isTabBarHidden: .constant(false))

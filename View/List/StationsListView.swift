@@ -64,5 +64,5 @@ struct StationsListView: View {
 }
 
 #Preview {
-    StationsListView(cityStations: MockData.moscow.stations, onStationSelected: { _ in })
+    StationsListView(cityStations: Cities.moscow.stations, onStationSelected: { _ in })
 }

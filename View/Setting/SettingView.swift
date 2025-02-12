@@ -36,6 +36,7 @@ struct SettingView: View {
                 .padding(.bottom, 58)
                 .font(.system(size: 12, weight: .light))
             }
+            .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }

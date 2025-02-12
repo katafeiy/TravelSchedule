@@ -2,26 +2,15 @@ import SwiftUI
 
 class ModelData {
     
-    @Published var images: [PreviewImage] = [
-        PreviewImage(name: "preview1"),
-        PreviewImage(name: "preview2"),
-        PreviewImage(name: "preview3"),
-        PreviewImage(name: "preview4"),
-        PreviewImage(name: "preview5"),
-        PreviewImage(name: "preview6"),
-        PreviewImage(name: "preview7"),
-        PreviewImage(name: "preview8")
-    ]
-    
-    @Published var citys: [Cities] = [
-        Cities(name: "Москва"),
-        Cities(name: "Санкт-Петербург"),
-        Cities(name: "Сочи"),
-        Cities(name: "Саратов"),
-        Cities(name: "Красноярск"),
-        Cities(name: "Омск"),
-        Cities(name: "Краснодар"),
-        Cities(name: "Новосибирск"),
+    @Published var images: [Preview] = [
+        Preview(name: "preview1"),
+        Preview(name: "preview2"),
+        Preview(name: "preview3"),
+        Preview(name: "preview4"),
+        Preview(name: "preview5"),
+        Preview(name: "preview6"),
+        Preview(name: "preview7"),
+        Preview(name: "preview8")
     ]
     
     @Published var carriers: [Carrier] = [
@@ -38,7 +27,7 @@ class ModelData {
     ]
 }
 
-enum MockData: CaseIterable, Hashable {
+enum Cities: CaseIterable, Hashable {
     
     case moscow
     case santiPetr
@@ -49,16 +38,16 @@ enum MockData: CaseIterable, Hashable {
     case krasnodar
     case novosibirsk
     
-    var name: String {
+    var name: City {
         return switch self {
-        case .moscow: "Москва"
-        case .santiPetr: "Санкт-Петербург"
-        case .sochi: "Сочи"
-        case .saratov: "Саратов"
-        case .krasnoyarsk: "Красноярск"
-        case .omsk: "Омск"
-        case .krasnodar: "Краснодар"
-        case .novosibirsk: "Новосибирск"
+        case .moscow: City(name: "Москва")
+        case .santiPetr: City(name: "Санкт-Петербург")
+        case .sochi: City(name: "Сочи")
+        case .saratov: City(name: "Саратов")
+        case .krasnoyarsk: City(name: "Красноярск")
+        case .omsk: City(name: "Омск")
+        case .krasnodar: City(name: "Краснодар")
+        case .novosibirsk: City(name: "Новосибирск")
         }
     }
     
@@ -95,3 +84,4 @@ enum MockData: CaseIterable, Hashable {
         }
     }
 }
+

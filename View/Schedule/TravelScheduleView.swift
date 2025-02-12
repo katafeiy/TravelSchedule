@@ -4,9 +4,9 @@ import OpenAPIURLSession
 struct TravelScheduleView: View {
 
     @StateObject private var viewModel = TravelScheduleViewModel()
-    
-    @Binding var isTabBarHidden: Bool
     @StateObject var navModel = NavigationModel()
+    @Binding var isTabBarHidden: Bool
+    
     let rows = [GridItem(.flexible())]
     
     var body: some View {
