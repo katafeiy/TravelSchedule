@@ -5,10 +5,9 @@ struct CitysListView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var searchString: String = ""
     
-    var onSelection: (String, String) -> Void
-    
     var data: [City] = []
-    
+    var onSelection: (String, String) -> Void
+
     var searchResults: [City] {
         if searchString.isEmpty {
             return data
@@ -74,10 +73,10 @@ struct CitysListView: View {
 }
 
 #Preview {
-    CitysListView(onSelection: { _, _  in }, data: ModelData.massive)
+    CitysListView(data: ModelData.massive, onSelection: { _, _  in })
 }
 #Preview {
-    CitysListView(onSelection: { _, _  in }, data: [])
+    CitysListView(data: [], onSelection: { _, _  in })
 }
 
 

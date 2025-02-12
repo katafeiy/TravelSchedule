@@ -45,7 +45,7 @@ struct FromToInView: View {
         .navigationDestination(for: ScreenNames.self) { screenNames in
             switch screenNames {
             case .cityFrom, .cityTo:
-                CitysListView { city, station in
+                CitysListView(data: ModelData.massive) { city, station in
                     switch screenNames {
                     case .cityFrom:
                         from = "\(city) (\(station))"
