@@ -6,7 +6,6 @@ struct StationsListView: View {
     @State private var searchString: String = ""
     
     var cityStations: [Station]
-    
     var onStationSelected: (String) -> Void
     
     var searchResults: [Station] {
