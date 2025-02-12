@@ -2,12 +2,13 @@ import SwiftUI
 
 struct CitysListView: View {
     
+    @EnvironmentObject var navModel: NavigationModel
     @Environment(\.dismiss) private var dismiss
     @State private var searchString: String = ""
     
     var data: [City] = []
-    var onSelection: (String, String) -> Void
-
+    @Binding var output: String
+    
     var searchResults: [City] {
         if searchString.isEmpty {
             return data
@@ -60,7 +61,8 @@ struct CitysListView: View {
                         }
                         .navigationDestination(for: City.self) { city in
                             StationsListView(cityStations: city.stations) { station in
-                                onSelection(city.name, station)
+                                output = "\(city.name) (\(station))"
+                                navModel.popRoot()
                             }
                         }
                     }
@@ -73,10 +75,10 @@ struct CitysListView: View {
 }
 
 #Preview {
-    CitysListView(data: ModelData.massive, onSelection: { _, _  in })
+    CitysListView(data: ModelData.massive, output: .constant(""))
 }
 #Preview {
-    CitysListView(data: [], onSelection: { _, _  in })
+    CitysListView(data: [], output: .constant(""))
 }
 
 

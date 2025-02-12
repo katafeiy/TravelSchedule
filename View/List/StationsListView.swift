@@ -4,7 +4,8 @@ struct StationsListView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var searchString: String = ""
-    @State var cityStations: [Station]
+    
+    var cityStations: [Station]
     
     var onStationSelected: (String) -> Void
     

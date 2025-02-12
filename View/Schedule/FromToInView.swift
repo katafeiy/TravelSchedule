@@ -45,15 +45,7 @@ struct FromToInView: View {
         .navigationDestination(for: ScreenNames.self) { screenNames in
             switch screenNames {
             case .cityFrom, .cityTo:
-                CitysListView(data: ModelData.massive) { city, station in
-                    switch screenNames {
-                    case .cityFrom:
-                        from = "\(city) (\(station))"
-                    case .cityTo:
-                        toIn = "\(city) (\(station))"
-                    }
-                    navModel.popRoot()
-                }
+                CitysListView(data: ModelData.massive, output: screenNames == .cityFrom ? $from : $toIn )
             }
         }
         .navigationDestination(isPresented: $goToCarrierList) {

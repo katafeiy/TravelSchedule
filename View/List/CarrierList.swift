@@ -53,7 +53,7 @@ struct CarrierList: View {
                             .background(.uBlue)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
-                    .navigationDestination(isPresented: $goToFilterList){
+                    .navigationDestination(isPresented: $goToFilterList) {
                         FilterView(isTabBarHidden: $isTabBarHidden)
                     }
                     .padding(.bottom, 24)
@@ -66,5 +66,5 @@ struct CarrierList: View {
 }
 
 #Preview {
-    CarrierList(isTabBarHidden: .constant(true), from: "Санкт-Петербург(Финляндский вокзал)", to: "Новосибирск(Новосибирск-Пассажирский)")
+    CarrierList(isTabBarHidden: .constant(true), from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
 }
