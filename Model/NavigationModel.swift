@@ -21,15 +21,3 @@ class NavigationModel: ObservableObject {
         path = NavigationPath()
     }
 }
-
-//struct Router {
-//    @ViewBuilder
-//    static func destination(for screen: ScreenNames, onSelection: @escaping (String, String) -> Void) -> some View {
-//        switch screen {
-//        case .cityFrom:
-//            CitysListView(onSelection: onSelection)
-//        case .cityTo:
-//            CitysListView(onSelection: onSelection)
-//        }
-//    }
-//}
