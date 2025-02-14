@@ -3,7 +3,9 @@ import SwiftUI
 enum Screen: Hashable {
     case city(Bool)
     case station(String, [Station], Bool)
-//    case carrier(Bool, String, String)
+    case carrier(String, String)
+    case carrierInfo
+    case filter
     case toRoot
 }
 
@@ -16,7 +18,11 @@ final class NavigationModel: ObservableObject {
     }
     
     func pop() {
-        path.removeLast()
+        if !path.isEmpty {
+            path.removeLast()
+        } else {
+            return
+        }
     }
     
     func popRoot() {
@@ -32,8 +38,12 @@ struct Route {
             CitysListView(data: ModelData.cities, selectedCity: isFrom ? from : toIn, isFrom: isFrom)
         case .station(let city, let stations, let isFrom):
             StationsListView(city: city, stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
-//        case .carrier(let isHidden, let fromCity, let toCity):
-//            CarrierList(isTabBarHidden: isHidden, from: fromCity, to: toCity)
+        case .carrier(let fromCity, let toCity):
+            CarrierList(from: fromCity, to: toCity)
+        case .carrierInfo:
+            CarrierInfoView()
+        case .filter:
+            FilterView()
         case .toRoot:
             EmptyView()
         }

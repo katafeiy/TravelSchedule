@@ -60,14 +60,6 @@ struct CitysListView: View {
                         .padding(.vertical)
                     }
                 }
-                //                .navigationDestination(for: Screen.self) { screen in
-                //                    Route.destination(screen)
-                //                   Route.destination(screen, station: ModelData.cities.first!.stations) { station in
-                //                   StationsListView(cityStations: city.stations) { station in
-                //                       output = "\(ModelData.cities.first!.name) (\(station))"
-                //                       navModel.popRoot()
-                //                    }
-                //                }
                 .animation(.easeInOut, value: searchResults)
                 .listStyle(.plain)
             }

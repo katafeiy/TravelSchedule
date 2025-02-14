@@ -2,19 +2,17 @@ import SwiftUI
 
 struct CarrierList: View {
     
-    @Binding var isTabBarHidden: Bool
-    @Environment(\.dismiss) private var dismiss
-    @State private var goToFilterList: Bool = false
+    @EnvironmentObject var navModel: NavigationModel
     
     let from: String
     let to: String
     
     var body: some View {
         
-        VStack {
+        VStack(spacing: 10){
             HStack {
                 Button(action: {
-                    dismiss()
+                    navModel.pop()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -29,22 +27,24 @@ struct CarrierList: View {
                 .lineLimit(nil)
             
             ZStack(alignment: .bottom) {
-                
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        ForEach(ModelData().carriers) { carrier in
-                            NavigationLink(destination: CarrierInfoView()) {
-                                CarrierCellView(carrierInfo: carrier)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
+                List(ModelData().carriers) { carrier in
+                    Button  {
+                        navModel.push(.carrierInfo)
+                    } label: {
+                        CarrierCellView(carrierInfo: carrier)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 5)
                     }
-                    .padding(.bottom, 100)
+                    .buttonStyle(PlainButtonStyle())
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
                 }
+                .listStyle(.plain)
+                .scrollIndicators(.hidden)
+                .padding(.bottom, 16)
                 
                 Button{
-                    goToFilterList = true
-                    isTabBarHidden = true
+                    navModel.push(.filter)
                 } label: {
                     Text("Уточнить время")
                         .foregroundColor(.uWhite)
@@ -52,9 +52,6 @@ struct CarrierList: View {
                         .frame(width: 343, height: 60)
                         .background(.uBlue)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
-                }
-                .navigationDestination(isPresented: $goToFilterList) {
-                    FilterView(isTabBarHidden: $isTabBarHidden)
                 }
                 .padding(.bottom, 24)
             }
@@ -66,6 +63,7 @@ struct CarrierList: View {
 
 #Preview {
     NavigationStack {
-        CarrierList(isTabBarHidden: .constant(true), from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
+        CarrierList(from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
+            .environmentObject(NavigationModel())
     }
 }

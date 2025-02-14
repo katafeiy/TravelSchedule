@@ -7,8 +7,6 @@ struct FromToInView: View {
     @State private var fromCity: String = ""
     @State private var toCity: String = ""
 
-    @State private var goToCarrierList: Bool = false
-    
     var body: some View {
         
         VStack(spacing: 16) {
@@ -39,15 +37,12 @@ struct FromToInView: View {
                 isTabBarHidden = false
             }
             FindButton(isEnabled: !fromCity.isEmpty && !toCity.isEmpty) {
-                goToCarrierList = true
+                navModel.push(.carrier(fromCity, toCity))
                 isTabBarHidden = true
             }
         }
         .navigationDestination(for: Screen.self) { screen in
             Route.destination(screen, from: $fromCity, toIn: $toCity)
-        }
-        .navigationDestination(isPresented: $goToCarrierList) {
-            CarrierList(isTabBarHidden: $isTabBarHidden, from: fromCity, to: toCity)
         }
     }
 }
