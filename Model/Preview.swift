@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 struct Preview: Identifiable {
     let id = UUID()

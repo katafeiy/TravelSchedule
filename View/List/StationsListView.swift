@@ -2,27 +2,25 @@ import SwiftUI
 
 struct StationsListView: View {
     
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var navModel: NavigationModel
     @State private var searchString: String = ""
     
-    var cityStations: [Station]
-    var onStationSelected: (String) -> Void
+    var city: String
+    var stations: [Station]
+    @Binding var selectedStation: String
+    var isFrom: Bool
     
     var searchResults: [Station] {
-        if searchString.isEmpty {
-            return cityStations
-        } else {
-            return cityStations.filter {
-                $0.name.contains(searchString)
-            }
-        }
+        searchString.isEmpty
+        ? stations
+        : stations.filter { $0.name.lowercased().contains(searchString.lowercased())}
     }
     
     var body: some View {
         VStack(spacing: 10) {
             HStack {
                 Button(action: {
-                    dismiss()
+                    navModel.pop()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -44,21 +42,24 @@ struct StationsListView: View {
                 Spacer()
             } else {
                 if searchResults.isEmpty {
-                    ErrorsView(errors: .serverError)
+                    ErrorView(errors: .serverError)
                 } else {
-                    ForEach(searchResults) { station in
+                    List(searchResults) { station in
                         Button {
-                            onStationSelected(station.name)
+                            selectedStation = "\(city) (\(station.name))"
+                            navModel.popRoot()
                         } label: {
                             HStack {
                                 Text(station.name)
                                 Spacer()
                                 Image(systemName: "chevron.right")
+                                    .foregroundColor(.ypBlack)
                             }
-                            .foregroundColor(.ypBlack)
-                            .padding(16)
+                            .padding(.vertical)
                         }
                     }
+                    .animation(.easeInOut, value: searchResults)
+                    .listStyle(.plain)
                 }
             }
         }
@@ -68,9 +69,15 @@ struct StationsListView: View {
 }
 
 #Preview {
-    StationsListView(cityStations: ModelData.massive.first!.stations, onStationSelected: { _ in })
+    NavigationStack {
+        StationsListView(city: "", stations: ModelData.cities.first!.stations, selectedStation: .constant(""), isFrom: true)
+            .environmentObject(NavigationModel())
+    }
 }
 
 #Preview {
-    StationsListView(cityStations: [], onStationSelected: { _ in })
+    NavigationStack{
+        StationsListView(city: "", stations: [], selectedStation: .constant(""), isFrom: false)
+            .environmentObject(NavigationModel())
+    }
 }

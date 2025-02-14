@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 struct City: Identifiable, Hashable {
     let id = UUID()

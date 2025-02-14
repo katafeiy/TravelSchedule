@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct ErrorsView: View {
-    private var errors: Errors
+struct ErrorView: View {
+    private var errors: AppError
     
-    init(errors: Errors) {
+    init(errors: AppError) {
         self.errors = errors
     }
     
@@ -23,5 +23,5 @@ struct ErrorsView: View {
 }
 
 #Preview {
-    ErrorsView(errors: Errors.noInternet)
+    ErrorView(errors: AppError.noInternet)
 }

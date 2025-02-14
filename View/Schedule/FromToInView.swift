@@ -4,8 +4,9 @@ struct FromToInView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @Binding var isTabBarHidden: Bool
-    @State private var from: String = ""
-    @State private var toIn: String = ""
+    @State private var fromCity: String = ""
+    @State private var toCity: String = ""
+
     @State private var goToCarrierList: Bool = false
     
     var body: some View {
@@ -14,20 +15,20 @@ struct FromToInView: View {
             ZStack {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
-                        CitySelectionButton(title: "Откуда", city: from, isIndentation: true) {
-                            navModel.push(.cityFrom)
+                        CitySelectionButton(title: "Откуда", city: fromCity, isIndentation: true) {
+                            navModel.push(.city(true))
                             isTabBarHidden = true
                         }
                         Divider()
-                        CitySelectionButton(title: "Куда", city: toIn, isIndentation: false) {
-                            navModel.push(.cityTo)
+                        CitySelectionButton(title: "Куда", city: toCity, isIndentation: false) {
+                            navModel.push(.city(false))
                             isTabBarHidden = true
                         }
                     }
                     .background(.uWhite)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     SwapButton{
-                        swap(&from, &toIn)
+                        swap(&fromCity, &toCity)
                     }
                 }
             }
@@ -37,23 +38,23 @@ struct FromToInView: View {
             .onAppear() {
                 isTabBarHidden = false
             }
-            FindButton(isEnabled: !from.isEmpty && !toIn.isEmpty) {
+            FindButton(isEnabled: !fromCity.isEmpty && !toCity.isEmpty) {
                 goToCarrierList = true
                 isTabBarHidden = true
             }
         }
-        .navigationDestination(for: ScreenNames.self) { screenNames in
-            switch screenNames {
-            case .cityFrom, .cityTo:
-                CitysListView(data: ModelData.massive, output: screenNames == .cityFrom ? $from : $toIn )
-            }
+        .navigationDestination(for: Screen.self) { screen in
+            Route.destination(screen, from: $fromCity, toIn: $toCity)
         }
         .navigationDestination(isPresented: $goToCarrierList) {
-            CarrierList(isTabBarHidden: $isTabBarHidden, from: from, to: toIn)
+            CarrierList(isTabBarHidden: $isTabBarHidden, from: fromCity, to: toCity)
         }
     }
 }
 
 #Preview {
-    FromToInView(isTabBarHidden: .constant(false))
+    NavigationStack {
+        FromToInView(isTabBarHidden: .constant(false))
+            .environmentObject(NavigationModel())
+    }
 }

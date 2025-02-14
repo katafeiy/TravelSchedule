@@ -35,7 +35,7 @@
 		12849C152D54CA0800C56A84 /* YPUserAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */; };
 		12849C802D55401800C56A84 /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12849C7F2D55401800C56A84 /* StationsListView.swift */; };
 		1287FAF82D58AA3D00A71F2D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287FAF72D58AA3D00A71F2D /* FilterView.swift */; };
-		1287FB3E2D5940FE00A71F2D /* ErrorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287FB3D2D5940FE00A71F2D /* ErrorsView.swift */; };
+		1287FB3E2D5940FE00A71F2D /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287FB3D2D5940FE00A71F2D /* ErrorView.swift */; };
 		128A862B2D535AAE0061F82A /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A862A2D535AAE0061F82A /* City.swift */; };
 		128A863F2D535FDD0061F82A /* CitysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A863E2D535FDD0061F82A /* CitysListView.swift */; };
 		128A867B2D5386D90061F82A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128A867A2D5386D90061F82A /* SearchBar.swift */; };
@@ -46,7 +46,7 @@
 		128D20382D5CD9C4001FCC2A /* SwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D20372D5CD9C4001FCC2A /* SwapButton.swift */; };
 		128D20452D5CE7C0001FCC2A /* CitySelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D20442D5CE7C0001FCC2A /* CitySelectionButton.swift */; };
 		129F439E2D5BEFEE004C74DC /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F439D2D5BEFEE004C74DC /* ErrorModel.swift */; };
-		12C36D322D4788D900380192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D312D4788D900380192 /* APIKey.swift */; };
+		12C36D322D4788D900380192 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D312D4788D900380192 /* Constant.swift */; };
 		12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */; };
 		12C36D362D478CA900380192 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C36D352D478CA900380192 /* Typealiases.swift */; };
 /* End PBXBuildFile section */
@@ -79,7 +79,7 @@
 		12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPUserAgreement.swift; sourceTree = "<group>"; };
 		12849C7F2D55401800C56A84 /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
 		1287FAF72D58AA3D00A71F2D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
-		1287FB3D2D5940FE00A71F2D /* ErrorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsView.swift; sourceTree = "<group>"; };
+		1287FB3D2D5940FE00A71F2D /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		128A862A2D535AAE0061F82A /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		128A863E2D535FDD0061F82A /* CitysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitysListView.swift; sourceTree = "<group>"; };
 		128A867A2D5386D90061F82A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		128D20372D5CD9C4001FCC2A /* SwapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapButton.swift; sourceTree = "<group>"; };
 		128D20442D5CE7C0001FCC2A /* CitySelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionButton.swift; sourceTree = "<group>"; };
 		129F439D2D5BEFEE004C74DC /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
-		12C36D312D4788D900380192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		12C36D312D4788D900380192 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		12C36D332D478BFD00380192 /* TravelScheduleNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleNetworkService.swift; sourceTree = "<group>"; };
 		12C36D352D478CA900380192 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -265,7 +265,7 @@
 		128D1FFF2D5CB59D001FCC2A /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				1287FB3D2D5940FE00A71F2D /* ErrorsView.swift */,
+				1287FB3D2D5940FE00A71F2D /* ErrorView.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			children = (
 				12681F092D56266000A1E687 /* DateFormat.swift */,
 				12849C132D54C9EE00C56A84 /* YPUserAgreement.swift */,
-				12C36D312D4788D900380192 /* APIKey.swift */,
+				12C36D312D4788D900380192 /* Constant.swift */,
 				12C36D352D478CA900380192 /* Typealiases.swift */,
 			);
 			path = AuxiliaryTools;
@@ -388,7 +388,7 @@
 				123C77E82D526CFF00009502 /* TabBarView.swift in Sources */,
 				12681F0B2D56266B00A1E687 /* DateFormat.swift in Sources */,
 				12849C802D55401800C56A84 /* StationsListView.swift in Sources */,
-				1287FB3E2D5940FE00A71F2D /* ErrorsView.swift in Sources */,
+				1287FB3E2D5940FE00A71F2D /* ErrorView.swift in Sources */,
 				12681F782D567A3800A1E687 /* CarrierInfo.swift in Sources */,
 				128D20302D5CD7B5001FCC2A /* FindButton.swift in Sources */,
 				129F439E2D5BEFEE004C74DC /* ErrorModel.swift in Sources */,
@@ -399,7 +399,7 @@
 				12606FA52D3E623800A62639 /* ContentView.swift in Sources */,
 				123C778A2D52289900009502 /* Preview.swift in Sources */,
 				123C77812D52278F00009502 /* ModelData.swift in Sources */,
-				12C36D322D4788D900380192 /* APIKey.swift in Sources */,
+				12C36D322D4788D900380192 /* Constant.swift in Sources */,
 				12606FA62D3E623800A62639 /* TravelScheduleApp.swift in Sources */,
 				128B57342D5A680400D5DED4 /* NavigationModel.swift in Sources */,
 				125C53D22D57395E00DA3EC0 /* FromToInView.swift in Sources */,

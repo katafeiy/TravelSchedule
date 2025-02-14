@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct TravelScheduleApp: App {
     
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    @AppStorage(Constant.isDarkMode.stringValue) private var isDarkMode: Bool = false
     
     var body: some Scene {
         WindowGroup {

@@ -3,20 +3,16 @@ import SwiftUI
 struct CitysListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    @Environment(\.dismiss) private var dismiss
     @State private var searchString: String = ""
     
     var data: [City] = []
-    @Binding var output: String
+    @Binding var selectedCity: String
+    var isFrom: Bool
     
     var searchResults: [City] {
-        if searchString.isEmpty {
-            return data
-        } else {
-            return data.filter {
-                $0.name.contains(searchString)
-            }
-        }
+        searchString.isEmpty
+        ? data
+        : data.filter { $0.name.lowercased().contains(searchString.lowercased())}
     }
     
     var body: some View {
@@ -24,7 +20,7 @@ struct CitysListView: View {
         VStack(spacing: 10) {
             HStack {
                 Button(action: {
-                    dismiss()
+                    navModel.pop()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -39,46 +35,60 @@ struct CitysListView: View {
             .padding(.horizontal, 10)
             
             SearchBar(searchText: $searchString)
-            if searchResults.isEmpty, !searchString.isEmpty {
-                Spacer()
-                Text("Город не найден")
-                    .font(.system(size: 24, weight: .bold))
-                Spacer()
-            } else {
-                if searchResults.isEmpty {
-                    ErrorsView(errors: .noInternet)
+            
+            if searchResults.isEmpty {
+                if searchResults.isEmpty && searchString.isEmpty {
+                    ErrorView(errors: .noInternet)
                 } else {
-                    ForEach(searchResults, id: \.self) { city in
-                        NavigationLink(value: city) {
-                            HStack {
-                                Text(city.name)
-                                    .foregroundColor(.ypBlack)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.ypBlack)
-                            }
-                            .padding()
+                    Spacer()
+                    Text("Город не найден")
+                        .font(.system(size: 24, weight: .bold))
+                    Spacer()
+                }
+            } else {
+                List(searchResults, id: \.self) { city in
+                    Button {
+                        navModel.push(.station(city.name, city.stations, isFrom))
+                    } label: {
+                        HStack {
+                            Text(city.name)
+                                .foregroundColor(.ypBlack)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.ypBlack)
                         }
-                        .navigationDestination(for: City.self) { city in
-                            StationsListView(cityStations: city.stations) { station in
-                                output = "\(city.name) (\(station))"
-                                navModel.popRoot()
-                            }
-                        }
+                        .padding(.vertical)
                     }
                 }
+                //                .navigationDestination(for: Screen.self) { screen in
+                //                    Route.destination(screen)
+                //                   Route.destination(screen, station: ModelData.cities.first!.stations) { station in
+                //                   StationsListView(cityStations: city.stations) { station in
+                //                       output = "\(ModelData.cities.first!.name) (\(station))"
+                //                       navModel.popRoot()
+                //                    }
+                //                }
+                .animation(.easeInOut, value: searchResults)
+                .listStyle(.plain)
             }
         }
         .navigationBarBackButtonHidden(true)
-        Spacer()
+    }
+}
+
+
+#Preview {
+    NavigationStack {
+        CitysListView(data: ModelData.cities, selectedCity: .constant(""), isFrom: true)
+            .environmentObject(NavigationModel())
     }
 }
 
 #Preview {
-    CitysListView(data: ModelData.massive, output: .constant(""))
-}
-#Preview {
-    CitysListView(data: [], output: .constant(""))
+    NavigationStack {
+        CitysListView(data: [], selectedCity: .constant(""), isFrom: false)
+            .environmentObject(NavigationModel())
+    }
 }
 
 

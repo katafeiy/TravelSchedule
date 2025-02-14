@@ -3,7 +3,7 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    @AppStorage(Constant.isDarkMode.stringValue) var isDarkMode: Bool = false
     @State private var selectedTabIndex = 0
     @State private var isTabBarHidden = false
     @Namespace private var animation

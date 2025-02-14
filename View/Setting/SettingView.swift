@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SettingView: View {
     
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    @AppStorage(Constant.isDarkMode.stringValue) var isDarkMode: Bool = false
     @Binding var isTabBarHidden: Bool
     @State private var isUserAgreementActive: Bool = false
     

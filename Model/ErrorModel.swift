@@ -1,20 +1,20 @@
 import SwiftUI
 
 struct ErrorModel {
-    var title: String
-    var image: ImageResource
+    let title: String
+    let image: ImageResource
 }
 
-enum Errors {
+enum AppError {
     case serverError
     case noInternet
     
     var type: ErrorModel {
         switch self {
         case .serverError:
-            return ErrorModel(title: "Ошибка сервера", image: .serverError)
+            ErrorModel(title: "Ошибка сервера", image: .serverError)
         case .noInternet:
-            return ErrorModel(title: "Нет интернета", image: .noInternet)
+            ErrorModel(title: "Нет интернета", image: .noInternet)
         }
     }
 }

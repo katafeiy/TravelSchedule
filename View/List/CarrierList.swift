@@ -11,7 +11,7 @@ struct CarrierList: View {
     
     var body: some View {
         
-            VStack() {
+            VStack {
                 HStack {
                     Button(action: {
                         dismiss()
@@ -24,7 +24,7 @@ struct CarrierList: View {
                 }
                 .padding(.vertical, 10)
                 
-                Text("\(from) -> \(to)")
+                Text(from + " -> " + to)
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(nil)
                 
@@ -61,10 +61,11 @@ struct CarrierList: View {
             }
             .navigationBarBackButtonHidden(true)
             .padding(.horizontal, 16)
-        
     }
 }
 
 #Preview {
-    CarrierList(isTabBarHidden: .constant(true), from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
+    NavigationStack {
+        CarrierList(isTabBarHidden: .constant(true), from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
+    }
 }

@@ -10,7 +10,7 @@ class TravelScheduleViewModel: ObservableObject {
         )
         return TravelNetworkService(
             client: client,
-            apiKey: APIKey.apikey.stringValue
+            apiKey: Constant.apikey.stringValue
         )
     }
     

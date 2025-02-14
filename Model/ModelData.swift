@@ -1,6 +1,6 @@
 import SwiftUI
 
-class ModelData {
+final class ModelData {
     
     @Published var images: [Preview] = [
         Preview(name: "preview1"),
@@ -26,7 +26,7 @@ class ModelData {
         CarrierInfo(logo: Image("RZHD"), name: "ОАО \u{00AB}РЖД\u{00BB}", phoneNumber: "+7 (495) 123-45-67", email: "info@rzhd.ru")
     ]
     
-    static var massive: [City] = [
+    static var cities: [City] = [
         City(name: "Москва", stations: [Station(name: "Белорусский вокзал"),
                                         Station(name: "Казанский вокзал"),
                                         Station(name: "Киевский вокзал"),

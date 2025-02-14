@@ -2,12 +2,12 @@ import SwiftUI
 
 struct CarrierCellView: View {
     
-    var carrierInfo: Carrier
+    let carrierInfo: Carrier
     
     var body: some View {
         ZStack {
-            VStack(alignment: .center, spacing: 12)  {
-                HStack(alignment: .center) {
+            VStack(spacing: 12)  {
+                HStack {
                    carrierInfo.carrierLogo
                         .resizable()
                         .frame(width: 38, height: 38)
@@ -26,7 +26,7 @@ struct CarrierCellView: View {
                         .foregroundColor(.uBlack)
                         .padding(.bottom, 27)
                 }
-                HStack(alignment: .center) {
+                HStack {
                     Text(DateFormatTime.formatDate(carrierInfo.startTime, format: DateFormatTime.Format.HHmm))
                         .font(.system(size: 17, weight: .regular))
                         .foregroundColor(.uBlack)
@@ -45,8 +45,7 @@ struct CarrierCellView: View {
                 }
             }
         }
-        .padding(.leading, 16)
-        .padding(.trailing, 16)
+        .padding(.horizontal, 16)
         .frame(width: 343, height: 104)
         .background(Color.uLightGray)
         .clipShape(RoundedRectangle(cornerRadius: 24))
