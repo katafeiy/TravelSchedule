@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CarrierInfoView: View {
     
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var navModel: NavigationModel
     
     var body: some View {
         
@@ -10,7 +10,7 @@ struct CarrierInfoView: View {
             
             HStack {
                 Button(action: {
-                    dismiss()
+                    navModel.pop()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -49,5 +49,8 @@ struct CarrierInfoView: View {
 }
 
 #Preview {
-    CarrierInfoView()
+    NavigationStack {
+        CarrierInfoView()
+            .environmentObject(NavigationModel())
+    }
 }

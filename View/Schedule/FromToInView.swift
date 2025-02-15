@@ -4,8 +4,8 @@ struct FromToInView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @Binding var isTabBarHidden: Bool
-    @State private var fromCity: String = ""
-    @State private var toCity: String = ""
+    @Binding var fromCity: String
+    @Binding var toCity: String
 
     var body: some View {
         
@@ -33,23 +33,18 @@ struct FromToInView: View {
             .padding(16)
             .background(.uBlue)
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .onAppear() {
-                isTabBarHidden = false
-            }
+            
             FindButton(isEnabled: !fromCity.isEmpty && !toCity.isEmpty) {
                 navModel.push(.carrier(fromCity, toCity))
                 isTabBarHidden = true
             }
-        }
-        .navigationDestination(for: Screen.self) { screen in
-            Route.destination(screen, from: $fromCity, toIn: $toCity)
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        FromToInView(isTabBarHidden: .constant(false))
+        FromToInView(isTabBarHidden: .constant(false), fromCity: .constant(""), toCity: .constant(""))
             .environmentObject(NavigationModel())
     }
 }

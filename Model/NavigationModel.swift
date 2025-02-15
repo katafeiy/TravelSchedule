@@ -6,6 +6,7 @@ enum Screen: Hashable {
     case carrier(String, String)
     case carrierInfo
     case filter
+    case userAgreement
     case toRoot
 }
 
@@ -44,6 +45,8 @@ struct Route {
             CarrierInfoView()
         case .filter:
             FilterView()
+        case .userAgreement:
+            UserAgreementView()
         case .toRoot:
             EmptyView()
         }

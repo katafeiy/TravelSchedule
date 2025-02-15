@@ -19,15 +19,3 @@ struct SwapButton: View {
     }
 }
 
-//                    Button {
-//                        swap(&from, &toIn)
-//                    } label: {
-//                        Image(.change)
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 24, height: 24)
-//                    }
-//                    .frame(width: 36, height: 36)
-//                    .foregroundColor(.uBlue)
-//                    .background(.uWhite)
-//                    .clipShape(Circle())
