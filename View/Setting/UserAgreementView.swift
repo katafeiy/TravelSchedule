@@ -10,7 +10,7 @@ struct UserAgreementView: View {
         VStack {
             HStack {
                 Button(action: {
-                    navModel.pop()
+                    navModel.pop(.setting(.void))
                     //                dismiss()
                 }) {
                     Image(systemName: "chevron.left")

@@ -14,12 +14,12 @@ struct FromToInView: View {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
                         CitySelectionButton(title: "Откуда", city: fromCity, isIndentation: true) {
-                            navModel.push(.city(true))
+                            navModel.push(.schedule(.city(true)))
                             isTabBarHidden = true
                         }
                         Divider()
                         CitySelectionButton(title: "Куда", city: toCity, isIndentation: false) {
-                            navModel.push(.city(false))
+                            navModel.push(.schedule(.city(false)))
                             isTabBarHidden = true
                         }
                     }
@@ -35,7 +35,7 @@ struct FromToInView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
             
             FindButton(isEnabled: !fromCity.isEmpty && !toCity.isEmpty) {
-                navModel.push(.carrier(fromCity, toCity))
+                navModel.push(.schedule(.carrier(fromCity, toCity)))
                 isTabBarHidden = true
             }
         }

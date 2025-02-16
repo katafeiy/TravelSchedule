@@ -7,12 +7,12 @@ struct SettingView: View {
     @Binding var isTabBarHidden: Bool
     
     var body: some View {
-        
+        NavigationStack(path: $navModel.pathSettings) {
             VStack {
                 Toggle("Темная тема", isOn: $isDarkMode)
                     .padding(16)
                 Button {
-                    navModel.push(.userAgreement)
+                    navModel.push(.setting(.userAgreement))
                     isTabBarHidden = true
                 } label: {
                     HStack {
@@ -36,12 +36,14 @@ struct SettingView: View {
                 isTabBarHidden = false
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)
+            .navigationDestination(for: Screen.Setting.self) { screen in
+                Route.settingFlowDestination(screen)
+            }
+        }
     }
 }
 
 #Preview {
-    NavigationStack {
-        SettingView(isTabBarHidden: .constant(false))
-            .environmentObject(NavigationModel())
-    }
+    SettingView(isTabBarHidden: .constant(false))
+        .environmentObject(NavigationModel())
 }

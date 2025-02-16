@@ -20,7 +20,7 @@ struct StationsListView: View {
         VStack(spacing: 10) {
             HStack {
                 Button(action: {
-                    navModel.pop()
+                    navModel.pop(.schedule(.void))
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -47,7 +47,7 @@ struct StationsListView: View {
                     List(searchResults) { station in
                         Button {
                             selectedStation = "\(city) (\(station.name))"
-                            navModel.popRoot()
+                            navModel.popRoot(.schedule(.toRoot))
                         } label: {
                             HStack {
                                 Text(station.name)

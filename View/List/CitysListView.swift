@@ -20,7 +20,7 @@ struct CitysListView: View {
         VStack(spacing: 10) {
             HStack {
                 Button(action: {
-                    navModel.pop()
+                    navModel.pop(.schedule(.void))
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -48,7 +48,7 @@ struct CitysListView: View {
             } else {
                 List(searchResults, id: \.self) { city in
                     Button {
-                        navModel.push(.station(city.name, city.stations, isFrom))
+                        navModel.push(.schedule(.station(city.name, city.stations, isFrom)))
                     } label: {
                         HStack {
                             Text(city.name)
@@ -67,7 +67,6 @@ struct CitysListView: View {
         .navigationBarBackButtonHidden(true)
     }
 }
-
 
 #Preview {
     NavigationStack {

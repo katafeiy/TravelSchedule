@@ -10,7 +10,7 @@ struct CarrierInfoView: View {
             
             HStack {
                 Button(action: {
-                    navModel.pop()
+                    navModel.pop(.schedule(.void))
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)

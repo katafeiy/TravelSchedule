@@ -12,7 +12,7 @@ struct CarrierList: View {
         VStack(spacing: 10){
             HStack {
                 Button(action: {
-                    navModel.pop()
+                    navModel.pop(.schedule(.void))
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -29,7 +29,7 @@ struct CarrierList: View {
             ZStack(alignment: .bottom) {
                 List(ModelData().carriers) { carrier in
                     Button  {
-                        navModel.push(.carrierInfo)
+                        navModel.push(.schedule(.carrierInfo))
                     } label: {
                         CarrierCellView(carrierInfo: carrier)
                             .padding(.horizontal, 16)
@@ -44,7 +44,7 @@ struct CarrierList: View {
                 .padding(.bottom, 16)
                 
                 Button{
-                    navModel.push(.filter)
+                    navModel.push(.schedule(.filter))
                 } label: {
                     Text("Уточнить время")
                         .foregroundColor(.uWhite)
