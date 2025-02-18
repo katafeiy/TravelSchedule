@@ -4,14 +4,13 @@ import WebKit
 struct UserAgreementView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-//    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
                     navModel.pop(.setting(.void))
-                    //                dismiss()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -26,9 +25,7 @@ struct UserAgreementView: View {
             .navigationBarBackButtonHidden(true)
             .padding(.horizontal, 10)
             
-            NavigationView {
-                WebView(url: URL(string: YPUserAgreement.YPUAUrl.stringValue)!)
-            }
+            WebView(url: URL(string: YPUserAgreement.YPUAUrl.stringValue)!, colorScheme: colorScheme)
         }
     }
 }

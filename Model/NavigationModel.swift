@@ -60,7 +60,7 @@ final class NavigationModel: ObservableObject {
 struct Route {
     
     @ViewBuilder
-    static func scheduleFlowDestination(_ screen: Screen.Schedule, from: Binding<String>, toIn: Binding<String> ) -> some View {
+    static func scheduleFlowDestination(_ screen: Screen.Schedule, from: Binding<String>, toIn: Binding<String>) -> some View {
         switch screen {
         case .city(let isFrom):
             CitysListView(data: ModelData.cities, selectedCity: isFrom ? from : toIn, isFrom: isFrom)
