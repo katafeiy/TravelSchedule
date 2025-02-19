@@ -11,6 +11,7 @@ struct WebView: UIViewRepresentable {
         webView.navigationDelegate = context.coordinator
         webView.backgroundColor = colorScheme == .dark ? .uBlack : .uWhite
         webView.isOpaque = false
+        webView.isHidden = true
         return webView
     }
     
@@ -51,7 +52,11 @@ struct WebView: UIViewRepresentable {
             
             let script = colorScheme == .dark ? darkModeCSS : lightModeCSS
             
-            webView.evaluateJavaScript(script, completionHandler: nil)
+            DispatchQueue.main.async {
+                webView.evaluateJavaScript(script, completionHandler: nil)
+            }
+            
+            webView.isHidden = false
         }
     }
 }
