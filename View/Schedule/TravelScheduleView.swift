@@ -23,9 +23,12 @@ struct TravelScheduleView: View {
                     LazyHGrid(rows: rows, alignment: .top, spacing: 20) {
                         
                         ForEach(ModelData().images) { imageItem in
-                            PreviewCellView(imageName: imageItem.name)
+                            Button{
+                                navModel.push(.schedule(.contentStory(imageItem.story)))
+                            } label: {
+                                PreviewCellView(storyPreview: imageItem.small)
+                            }
                         }
-                        
                     }
                     .padding(.vertical, 24)
                     .frame(height: 188)

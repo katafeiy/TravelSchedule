@@ -29,7 +29,7 @@ struct SettingView: View {
                         .padding(.bottom, 16)
                     Text("Версия 1.0 (Beta)")
                 }
-                .padding(.bottom, 100)
+                .padding(.bottom, 70)
                 .font(.system(size: 12, weight: .light))
             }
             .onAppear() {

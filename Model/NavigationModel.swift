@@ -6,6 +6,7 @@ enum Screen: Hashable {
     case setting(Setting)
     
     enum Schedule: Hashable {
+        case contentStory([ContentStory])
         case city(Bool)
         case station(String, [Station], Bool)
         case carrier(String, String)
@@ -62,6 +63,8 @@ struct Route {
     @ViewBuilder
     static func scheduleFlowDestination(_ screen: Screen.Schedule, from: Binding<String>, toIn: Binding<String>) -> some View {
         switch screen {
+        case .contentStory(let contentStory):
+            ContentStoryView(story: contentStory)
         case .city(let isFrom):
             CitysListView(data: ModelData.cities, selectedCity: isFrom ? from : toIn, isFrom: isFrom)
         case .station(let city, let stations, let isFrom):
