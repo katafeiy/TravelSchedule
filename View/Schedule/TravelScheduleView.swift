@@ -25,6 +25,7 @@ struct TravelScheduleView: View {
                         ForEach(ModelData().images) { imageItem in
                             Button{
                                 navModel.push(.schedule(.contentStory(imageItem.story)))
+                                isTabBarHidden = true
                             } label: {
                                 PreviewCellView(storyPreview: imageItem.small)
                             }
