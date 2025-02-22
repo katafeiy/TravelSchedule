@@ -7,21 +7,15 @@ struct TravelScheduleView: View {
     @EnvironmentObject var navModel: NavigationModel
     @State private var fromCity: String = ""
     @State private var toCity: String = ""
-    
     @Binding var isTabBarHidden: Bool
-    
     let rows = [GridItem(.fixed(140))]
     
     var body: some View {
         
         NavigationStack(path: $navModel.pathSchedule) {
-            
             VStack {
-                
                 ScrollView(.horizontal, showsIndicators: false) {
-                    
                     LazyHGrid(rows: rows, alignment: .top, spacing: 20) {
-                        
                         ForEach(ModelData().images) { imageItem in
                             Button{
                                 navModel.push(.schedule(.contentStory(imageItem.story)))
