@@ -16,7 +16,7 @@ struct TravelScheduleView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: rows, alignment: .top, spacing: 20) {
-                        ForEach(ModelData().images) { imageItem in
+                        ForEach(ModelData().stories) { imageItem in
                             Button{
                                 navModel.push(.schedule(.contentStory(imageItem.story)))
                                 isTabBarHidden = true

@@ -2,7 +2,7 @@ import SwiftUI
 
 final class ModelData {
     
-    @Published var images: [Story] = [
+    @Published var stories: [Story] = [
         Story(small: .preview1, story: [ContentStory(big: .big11,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму

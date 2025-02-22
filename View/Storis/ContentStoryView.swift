@@ -2,30 +2,30 @@ import SwiftUI
 import Combine
 
 struct ContentStoryView: View {
-   
+    
     @EnvironmentObject var navModel: NavigationModel
     
-    let stories: [ContentStory]
+    let contentStories: [ContentStory]
     private let configuration: ConfigProgressBar
-    private var currentStory: ContentStory { stories[indexStory] }
-    private var indexStory: Int { Int(progress * CGFloat(stories.count)) }
+    private var currentStory: ContentStory { contentStories[indexStory] }
+    private var indexStory: Int { Int(progress * CGFloat(contentStories.count)) }
     @State private var progress: CGFloat = 0
     @State private var timer: Timer.TimerPublisher = Timer.publish(every: 5, on: .main, in: .common)
     @State private var cancellable: Cancellable?
     
     init(stories: [ContentStory]) {
-        self.stories = stories
+        self.contentStories = stories
         self.configuration = ConfigProgressBar(storiesCount: stories.count)
         self.timer = Self.createTimer(configuration: configuration)
     }
-
+    
     var body: some View {
         
         ZStack(alignment: .topTrailing) {
             
             StorisView(story: currentStory)
             
-            ProgressBar(numberOfSections: stories.count, progress: progress)
+            ProgressBar(numberOfSections: contentStories.count, progress: progress)
                 .padding(.init(top: 28, leading: 16, bottom: 0, trailing: 16))
             
             CloseButton(icon: .close, action: { navModel.popRoot(.schedule(.toRoot)) })
@@ -49,6 +49,21 @@ struct ContentStoryView: View {
             nextStory()
             resetTimer()
         }
+        .gesture(
+            DragGesture()
+                .onEnded { value in
+                    if value.translation.width < -50 {
+                        nextStory()
+                        resetTimer()
+                    } else if value.translation.width > 50 {
+                        previousStory()
+                        resetTimer()
+                    } else if value.translation.height > 50 {
+                        navModel.popRoot(.schedule(.toRoot))
+                    }
+                }
+        )
+        
     }
     
     private func timerTick() {
@@ -62,11 +77,20 @@ struct ContentStoryView: View {
     }
     
     private func nextStory() {
-        let storiesCount = stories.count
+        let storiesCount = contentStories.count
         let currentStoryIndex = Int(progress * CGFloat(storiesCount))
         let nextStoryIndex = currentStoryIndex + 1 < storiesCount ? currentStoryIndex + 1 : 0
         withAnimation {
             progress = CGFloat(nextStoryIndex) / CGFloat(storiesCount)
+        }
+    }
+    
+    private func previousStory() {
+        let storiesCount = contentStories.count
+        let currentStoryIndex = Int(progress * CGFloat(storiesCount))
+        let previousStoryIndex = currentStoryIndex - 1 >= 0 ? currentStoryIndex - 1 : storiesCount - 1
+        withAnimation {
+            progress = CGFloat(previousStoryIndex) / CGFloat(storiesCount)
         }
     }
     
@@ -82,5 +106,9 @@ struct ContentStoryView: View {
 }
 
 #Preview {
-    ContentStoryView(stories: ModelData().images.first!.story)
+    NavigationStack {
+        ContentStoryView(stories: ModelData().stories.first!.story)
+            .environmentObject(NavigationModel())
+    }
 }
+
