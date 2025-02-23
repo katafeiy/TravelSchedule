@@ -12,11 +12,15 @@ struct ContentStoryView: View {
     @State private var progress: CGFloat = 0
     @State private var timer: Timer.TimerPublisher = Timer.publish(every: 5, on: .main, in: .common)
     @State private var cancellable: Cancellable?
+    @Binding var isPresented: Bool
+    @Binding var isViewed: Bool
     
-    init(stories: [ContentStory]) {
+    init(stories: [ContentStory], isPresented: Binding<Bool>, isViewed: Binding<Bool>) {
         self.contentStories = stories
         self.configuration = ConfigProgressBar(storiesCount: stories.count)
         self.timer = Self.createTimer(configuration: configuration)
+        self._isPresented = isPresented
+        self._isViewed =  isViewed
     }
     
     var body: some View {
@@ -28,7 +32,7 @@ struct ContentStoryView: View {
             ProgressBar(numberOfSections: contentStories.count, progress: progress)
                 .padding(.init(top: 28, leading: 16, bottom: 0, trailing: 16))
             
-            CloseButton(icon: .close, action: { navModel.popRoot(.schedule(.toRoot)) })
+            CloseButton(icon: .close, action: { isPresented = false; isViewed = true })
                 .padding(.top, 57)
                 .padding(.trailing, 12)
             
@@ -46,7 +50,11 @@ struct ContentStoryView: View {
             timerTick()
         }
         .onTapGesture {apGesture in
-            nextStory()
+            if apGesture.x < UIScreen.main.bounds.width / 2 {
+                previousStory()
+            } else {
+                nextStory()
+            }
             resetTimer()
         }
         .gesture(
@@ -69,6 +77,7 @@ struct ContentStoryView: View {
     private func timerTick() {
         var nextProgress = progress + configuration.progressPerTick
         if nextProgress >= 1 {
+            closeStory()
             nextProgress = 0
         }
         withAnimation {
@@ -100,6 +109,15 @@ struct ContentStoryView: View {
         cancellable = timer.connect()
     }
     
+    private func closeStory() {
+        let storiesCount = contentStories.count
+        let currentStoryIndex = Int(progress * CGFloat(storiesCount))
+        if currentStoryIndex == storiesCount - 1 {
+            isPresented = false
+            isViewed = true
+        }
+    }
+    
     private static func createTimer(configuration: ConfigProgressBar) -> Timer.TimerPublisher {
         Timer.publish(every: configuration.timerTickInternal, on: .main, in: .common)
     }
@@ -107,7 +125,7 @@ struct ContentStoryView: View {
 
 #Preview {
     NavigationStack {
-        ContentStoryView(stories: ModelData().stories.first!.story)
+        ContentStoryView(stories: ModelData.shared.stories.first!.story, isPresented: .constant(true), isViewed: .constant(false))
             .environmentObject(NavigationModel())
     }
 }

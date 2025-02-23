@@ -7,7 +7,7 @@ struct ConfigProgressBar {
     
     init(
         storiesCount: Int,
-        secondsPerStory: TimeInterval = 5,
+        secondsPerStory: TimeInterval = 10,
         timerTickInternal: TimeInterval = 0.25
     ) {
         self.timerTickInternal = timerTickInternal

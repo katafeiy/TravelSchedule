@@ -1,54 +1,74 @@
 import SwiftUI
 
-final class ModelData {
+final class ModelData: ObservableObject {
+    
+    static let shared = ModelData()
     
     @Published var stories: [Story] = [
-        Story(small: .preview1, story: [ContentStory(big: .big11,
-                                                     title: """
-                                                     Пожелания дорогому Яндекс.Практикуму
-                                                     от всей душы!!! Это самая лучшая 
-                                                     платформа для обучения!   
-                                                     """,
-                                                     description: """
-                                                     Привет, практикум! Дорогой практикум
-                                                     я очень тебе благодарен что ты меня
-                                                     научил программировать на SwiftUI!
-                                                     """),
-                                        ContentStory(big: .big12,
-                                                     title: """
-                                                     Пожелания дорогому Яндекс.Практикуму
-                                                     от всей душы!!! Это самая лучшая 
-                                                     платформа для обучения!   
-                                                     """,
-                                                     description: """
-                                                     Привет, практикум! Дорогой практикум
-                                                     я очень тебе благодарен что ты меня
-                                                     научил программировать на SwiftUI!
-                                                     """)]),
+        Story(small: .preview1,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big11,
+                                   title: """
+                                          Пожелания дорогому Яндекс.Практикуму
+                                          от всей душы!!! Это самая лучшая 
+                                          платформа для обучения!  
+                                          """,
+                                   description: """
+                                                Привет, практикум! Дорогой практикум
+                                                я очень тебе благодарен что ты меня
+                                                научил программировать на SwiftUI!
+                                                """),
+                      ContentStory(big: .big12,
+                                   title: """
+                                        Пожелания дорогому Яндекс.Практикуму
+                                        от всей душы!!! Это самая лучшая 
+                                        платформа для обучения!   
+                                        """,
+                                   description: """
+                                            Привет, практикум! Дорогой практикум
+                                            я очень тебе благодарен что ты меня
+                                            научил программировать на SwiftUI!
+                                            """)]),
         
-        Story(small: .preview2, story: [ContentStory(big: .big21,
-                                                     title: """
+        Story(small: .preview2,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big21,
+                                   title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
                                                      платформа для обучения!   
                                                      """,
-                                                     description: """
+                                   description: """
                                                      Привет, практикум! Дорогой практикум
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """),
-                                        ContentStory(big: .big22,
-                                                     title: """
+                      ContentStory(big: .big22,
+                                   title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
                                                      платформа для обучения!   
                                                      """,
-                                                     description: """
+                                   description: """
                                                      Привет, практикум! Дорогой практикум
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview3, story: [ContentStory(big: .big31,
+        Story(small: .preview3,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big31,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
@@ -70,7 +90,13 @@ final class ModelData {
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview4, story: [ContentStory(big: .big41,
+        Story(small: .preview4,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big41,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
@@ -92,7 +118,13 @@ final class ModelData {
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview5, story: [ContentStory(big: .big51,
+        Story(small: .preview5,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big51,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
@@ -114,7 +146,13 @@ final class ModelData {
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview6, story: [ContentStory(big: .big61,
+        Story(small: .preview6,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big61,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
@@ -136,7 +174,13 @@ final class ModelData {
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview7, story: [ContentStory(big: .big71,
+        Story(small: .preview7,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big71,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
@@ -158,7 +202,13 @@ final class ModelData {
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview8, story: [ContentStory(big: .big81,
+        Story(small: .preview8,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big81,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 
@@ -180,7 +230,13 @@ final class ModelData {
                                                      я очень тебе благодарен что ты меня
                                                      научил программировать на SwiftUI!
                                                      """)]),
-        Story(small: .preview9, story: [ContentStory(big: .big91,
+        Story(small: .preview9,
+              title: """
+                    Яндекс.Практикум
+                    это лучшая онлайн-школа
+                    """,
+              isViewed: false,
+              story: [ContentStory(big: .big91,
                                                      title: """
                                                      Пожелания дорогому Яндекс.Практикуму
                                                      от всей душы!!! Это самая лучшая 

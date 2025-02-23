@@ -3,12 +3,32 @@ import OpenAPIURLSession
 
 struct TravelScheduleView: View {
     
+    @StateObject private var modelData = ModelData.shared
     @StateObject private var viewModel = TravelScheduleViewModel()
     @EnvironmentObject var navModel: NavigationModel
+    @State private var isStoriesShown: Bool = false
+    
+    private var isStoryViewed: Binding<Bool> {
+        Binding<Bool> (
+            get: {
+                let storyIndex = modelData.stories.firstIndex(where: { selectedStory == $0 })
+                return modelData.stories[storyIndex ?? 0].isViewed
+            },
+            set: {
+                let storyIndex = ModelData.shared.stories.firstIndex(where: { selectedStory == $0 })
+                modelData.stories[storyIndex ?? 0].isViewed = $0
+            }
+        )
+    }
+    
     @State private var fromCity: String = ""
     @State private var toCity: String = ""
     @Binding var isTabBarHidden: Bool
+    
     let rows = [GridItem(.fixed(140))]
+    
+    @State private var selectedItem: [ContentStory] = []
+    @State private var selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: [])
     
     var body: some View {
         
@@ -16,12 +36,14 @@ struct TravelScheduleView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: rows, alignment: .top, spacing: 20) {
-                        ForEach(ModelData().stories) { imageItem in
-                            Button{
-                                navModel.push(.schedule(.contentStory(imageItem.story)))
+                        ForEach(modelData.stories) { imageItem in
+                            Button {
+                                self.selectedStory = imageItem
+                                self.selectedItem = imageItem.story
+                                isStoriesShown = true
                                 isTabBarHidden = true
                             } label: {
-                                PreviewCellView(storyPreview: imageItem.small)
+                                PreviewCellView(titlePreView: imageItem.title, storyPreview: imageItem.small, isViewed: imageItem.isViewed)
                             }
                         }
                     }
@@ -41,6 +63,9 @@ struct TravelScheduleView: View {
             }
             .navigationDestination(for: Screen.Schedule.self) { screen in
                 Route.scheduleFlowDestination(screen, from: $fromCity, toIn: $toCity)
+            }
+            .fullScreenCover(isPresented: $isStoriesShown) {
+                ContentStoryView(stories: selectedItem, isPresented: $isStoriesShown, isViewed: isStoryViewed)
             }
         }
     }
