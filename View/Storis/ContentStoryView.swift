@@ -67,7 +67,7 @@ struct ContentStoryView: View {
                         previousStory()
                         resetTimer()
                     } else if value.translation.height > 50 {
-                        navModel.popRoot(.schedule(.toRoot))
+                        isPresented = false
                     }
                 }
         )
