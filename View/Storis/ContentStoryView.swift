@@ -112,9 +112,10 @@ struct ContentStoryView: View {
         let storiesContentCount = stories[indexStory].story.count
         let currentStoryIndex = Int(progress * CGFloat(storiesContentCount))
         var previousStoryIndex = currentStoryIndex - 1 >= 0 ? currentStoryIndex - 1 : storiesContentCount - 1
-        if currentStoryIndex == 0 {
-            indexStory = indexStory - 1 < storiesCount ? 0 : indexStory - 1
-            previousStoryIndex = 0
+        if indexStory == 0 && currentStoryIndex == 0 {
+            return
+        } else if currentStoryIndex == 0 {
+            indexStory = indexStory - 1 < storiesCount ? indexStory - 1 : 0
         }
         withAnimation {
             progress = CGFloat(previousStoryIndex) / CGFloat(storiesContentCount)
