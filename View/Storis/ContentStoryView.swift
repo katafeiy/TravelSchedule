@@ -5,19 +5,28 @@ struct ContentStoryView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     
-    let contentStories: [ContentStory]
+    let stories: [Story]
+    
     private let configuration: ConfigProgressBar
-    private var currentStory: ContentStory { contentStories[indexStory] }
-    private var indexStory: Int { Int(progress * CGFloat(contentStories.count)) }
+    
+    @State private var indexStory: Int
+    
+//    private var currentStory: Story { stories[indexStory] }
+    
+    private var currentContentStory: ContentStory { stories[indexStory].story[indexCurrentStory] }
+    
+    private var indexCurrentStory: Int { Int(progress * CGFloat(stories[indexStory].story.count)) }
+    
     @State private var progress: CGFloat = 0
     @State private var timer: Timer.TimerPublisher = Timer.publish(every: 5, on: .main, in: .common)
     @State private var cancellable: Cancellable?
     @Binding var isPresented: Bool
     @Binding var isViewed: Bool
     
-    init(stories: [ContentStory], isPresented: Binding<Bool>, isViewed: Binding<Bool>) {
-        self.contentStories = stories
-        self.configuration = ConfigProgressBar(storiesCount: stories.count)
+    init(stories: [Story], indexStory: Int, isPresented: Binding<Bool>, isViewed: Binding<Bool>) {
+        self.stories = stories
+        self.indexStory = indexStory
+        self.configuration = ConfigProgressBar(storiesCount: stories[indexStory].story.count)
         self.timer = Self.createTimer(configuration: configuration)
         self._isPresented = isPresented
         self._isViewed =  isViewed
@@ -27,9 +36,9 @@ struct ContentStoryView: View {
         
         ZStack(alignment: .topTrailing) {
             
-            StorisView(story: currentStory)
+            StorisView(story: currentContentStory)
             
-            ProgressBar(numberOfSections: contentStories.count, progress: progress)
+            ProgressBar(numberOfSections: stories[indexStory].story.count, progress: progress)
                 .padding(.init(top: 28, leading: 16, bottom: 0, trailing: 16))
             
             CloseButton(icon: .close, action: { isPresented = false; isViewed = true })
@@ -84,22 +93,31 @@ struct ContentStoryView: View {
             progress = nextProgress
         }
     }
-    
+
     private func nextStory() {
-        let storiesCount = contentStories.count
-        let currentStoryIndex = Int(progress * CGFloat(storiesCount))
-        let nextStoryIndex = currentStoryIndex + 1 < storiesCount ? currentStoryIndex + 1 : 0
+        let storiesCount = stories.count
+        let storiesContentCount = stories[indexStory].story.count
+        let currentStoryIndex = Int(progress * CGFloat(storiesContentCount))
+        let nextContentStoryIndex = currentStoryIndex + 1 < storiesContentCount ? currentStoryIndex + 1 : 0
+        if currentStoryIndex + 1 == storiesContentCount {
+            indexStory = indexStory + 1 >= storiesCount ? 0 : indexStory + 1
+        }
         withAnimation {
-            progress = CGFloat(nextStoryIndex) / CGFloat(storiesCount)
+            progress = CGFloat(nextContentStoryIndex) / CGFloat(storiesContentCount)
         }
     }
     
     private func previousStory() {
-        let storiesCount = contentStories.count
-        let currentStoryIndex = Int(progress * CGFloat(storiesCount))
-        let previousStoryIndex = currentStoryIndex - 1 >= 0 ? currentStoryIndex - 1 : storiesCount - 1
+        let storiesCount = stories.count
+        let storiesContentCount = stories[indexStory].story.count
+        let currentStoryIndex = Int(progress * CGFloat(storiesContentCount))
+        var previousStoryIndex = currentStoryIndex - 1 >= 0 ? currentStoryIndex - 1 : storiesContentCount - 1
+        if currentStoryIndex == 0 {
+            indexStory = indexStory - 1 < storiesCount ? 0 : indexStory - 1
+            previousStoryIndex = 0
+        }
         withAnimation {
-            progress = CGFloat(previousStoryIndex) / CGFloat(storiesCount)
+            progress = CGFloat(previousStoryIndex) / CGFloat(storiesContentCount)
         }
     }
     
@@ -110,9 +128,12 @@ struct ContentStoryView: View {
     }
     
     private func closeStory() {
-        let storiesCount = contentStories.count
-        let currentStoryIndex = Int(progress * CGFloat(storiesCount))
-        if currentStoryIndex == storiesCount - 1 {
+        let storiesCount = stories.count
+        let storiesContentCount = stories[indexStory].story.count
+        let currentStoryIndex = Int(progress * CGFloat(storiesContentCount))
+        if indexStory + 1 != storiesCount {
+            indexStory = indexStory + 1 >= storiesCount ? 0 : indexStory + 1
+        } else if currentStoryIndex == storiesContentCount - 1 {
             isPresented = false
             isViewed = true
         }
@@ -125,7 +146,10 @@ struct ContentStoryView: View {
 
 #Preview {
     NavigationStack {
-        ContentStoryView(stories: ModelData.shared.stories.first!.story, isPresented: .constant(true), isViewed: .constant(false))
+        ContentStoryView(stories: ModelData.shared.stories,
+                         indexStory: 2,
+                         isPresented: .constant(true),
+                         isViewed: .constant(false))
             .environmentObject(NavigationModel())
     }
 }
