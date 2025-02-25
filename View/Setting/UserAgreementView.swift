@@ -3,35 +3,36 @@ import WebKit
 
 struct UserAgreementView: View {
     
-    @Environment(\.dismiss) private var dismiss
-    @Binding var isTabBarHidden: Bool
+    @EnvironmentObject var navModel: NavigationModel
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        
-        HStack {
-            Button(action: {
-                dismiss()
-                isTabBarHidden = false
-            }) {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.ypBlack)
-                    .font(.system(size: 20, weight: .regular))
+        VStack {
+            HStack {
+                Button(action: {
+                    navModel.pop(.setting(.void))
+                }) {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.ypBlack)
+                        .font(.system(size: 20, weight: .regular))
+                }
+                Spacer()
+                Text("Пользовательское соглашение")
+                    .font(.headline)
+
+                Spacer()
             }
-            Spacer()
-            Text("Пользовательское соглашение")
-                .font(.headline)
-                .padding(.bottom, 5)
-            Spacer()
-        }
-        .navigationBarBackButtonHidden(true)
-        .padding(.horizontal, 10)
-        
-        NavigationView {
-            WebView(url: URL(string: YPUserAgreement.YPUAUrl.stringValue)!)
+            .navigationBarBackButtonHidden(true)
+            .padding(.horizontal, 10)
+            
+            WebView(url: URL(string: YPUserAgreement.YPUAUrl.stringValue)!, colorScheme: colorScheme)
         }
     }
 }
 
 #Preview {
-    UserAgreementView(isTabBarHidden: .constant(true))
+    NavigationStack {
+        UserAgreementView()
+            .environmentObject(NavigationModel())
+    }
 }
