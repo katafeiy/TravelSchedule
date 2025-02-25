@@ -136,6 +136,7 @@ struct ContentStoryView: View {
         let currentStoryIndex = Int(progress * CGFloat(storiesContentCount))
         if indexStory + 1 != storiesCount {
             indexStory = indexStory + 1 >= storiesCount ? 0 : indexStory + 1
+            progress = 0
         } else if currentStoryIndex == storiesContentCount - 1 {
             isPresented = false
             isViewed = true
