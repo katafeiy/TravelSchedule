@@ -305,35 +305,35 @@ final class ModelData: ObservableObject {
         CarrierInfo(logo: Image("RZHD"), name: "ОАО \u{00AB}РЖД\u{00BB}", phoneNumber: "+7 (495) 123-45-67", email: "info@rzhd.ru")
     ]
     
-    static var cities: [City] = [
-        City(name: "Москва", stations: [Station(name: "Белорусский вокзал"),
-                                        Station(name: "Казанский вокзал"),
-                                        Station(name: "Киевский вокзал"),
-                                        Station(name: "Курский вокзал"),
-                                        Station(name: "Павелецкий вокзал"),
-                                        Station(name: "Рижский вокзал"),
-                                        Station(name: "Савеловский вокзал"),
-                                        Station(name: "Ярославский вокзал")]),
-        
-        City(name: "Санкт-Петербург", stations: [Station(name: "Московский вокзал"),
-                                                 Station(name: "Ладожский вокзал"),
-                                                 Station(name: "Витебский вокзал"),
-                                                 Station(name: "Финляндский вокзал"),
-                                                 Station(name: "Балтийский вокзал")]),
-        
-        City(name: "Сочи", stations: [Station(name: "Сочинский вокзал"),
-                                      Station(name: "Адлерский вокзал")]),
-        
-        City(name: "Саратов", stations: [Station(name: "Саратов-Пассажирский")]),
-        
-        City(name: "Красноярск", stations: [Station(name: "Красноярск-Пассажирский")]),
-        
-        City(name: "Омск", stations: [Station(name: "Омск-1"), Station(name: "Омск-2")]),
-        
-        City(name: "Краснодар", stations: [Station(name: "Краснодар-Пассажирский")]),
-        
-        City(name: "Новосибирск", stations: [Station(name: "Новосибирск-Пассажирский")])
-    ]
+//    static var cities: [City] = [
+//        City(name: "Москва", stations: [Station(title: "Белорусский вокзал"),
+//                                        Station(title: "Казанский вокзал"),
+//                                        Station(title: "Киевский вокзал"),
+//                                        Station(title: "Курский вокзал"),
+//                                        Station(title: "Павелецкий вокзал"),
+//                                        Station(title: "Рижский вокзал"),
+//                                        Station(title: "Савеловский вокзал"),
+//                                        Station(title: "Ярославский вокзал")]),
+//        
+//        City(name: "Санкт-Петербург", stations: [Station(title: "Московский вокзал"),
+//                                                 Station(title: "Ладожский вокзал"),
+//                                                 Station(title: "Витебский вокзал"),
+//                                                 Station(title: "Финляндский вокзал"),
+//                                                 Station(title: "Балтийский вокзал")]),
+//        
+//        City(name: "Сочи", stations: [Station(title: "Сочинский вокзал"),
+//                                      Station(title: "Адлерский вокзал")]),
+//        
+//        City(name: "Саратов", stations: [Station(title: "Саратов-Пассажирский")]),
+//        
+//        City(name: "Красноярск", stations: [Station(title: "Красноярск-Пассажирский")]),
+//        
+//        City(name: "Омск", stations: [Station(title: "Омск-1"), Station(title: "Омск-2")]),
+//        
+//        City(name: "Краснодар", stations: [Station(title: "Краснодар-Пассажирский")]),
+//        
+//        City(name: "Новосибирск", stations: [Station(title: "Новосибирск-Пассажирский")])
+//    ]
 }
 
 

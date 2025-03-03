@@ -20,7 +20,7 @@ struct ContentStoryView: View {
             
             StorisView(story: viewModel.currentContentStory)
             
-            ProgressBar(numberOfSections: viewModel.countSectionContentStory , progress: viewModel.progress)
+            ProgressBar(numberOfSections: viewModel.countSectionContentStory, progress: viewModel.progress)
                 .padding(.init(top: 28, leading: 16, bottom: 0, trailing: 16))
             
             CloseButton(icon: .close, action: { viewModel.isPresented = false; viewModel.isViewed = true })

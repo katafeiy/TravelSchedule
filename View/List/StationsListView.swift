@@ -13,7 +13,7 @@ struct StationsListView: View {
     var searchResults: [Station] {
         searchString.isEmpty
         ? stations
-        : stations.filter { $0.name.lowercased().contains(searchString.lowercased())}
+        : stations.filter { $0.title.lowercased().contains(searchString.lowercased())}
     }
     
     var body: some View {
@@ -44,13 +44,13 @@ struct StationsListView: View {
                 if searchResults.isEmpty {
                     ErrorView(errors: .serverError)
                 } else {
-                    List(searchResults) { station in
+                    List(searchResults, id: \.self) { station in
                         Button {
-                            selectedStation = "\(city) (\(station.name))"
+                            selectedStation = "\(city) (\(station.title))"
                             navModel.popRoot(.schedule(.toRoot))
                         } label: {
                             HStack {
-                                Text(station.name)
+                                Text(station.title)
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(.ypBlack)
@@ -68,16 +68,16 @@ struct StationsListView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        StationsListView(city: "", stations: ModelData.cities.first!.stations, selectedStation: .constant(""), isFrom: true)
-            .environmentObject(NavigationModel())
-    }
-}
-
-#Preview {
-    NavigationStack{
-        StationsListView(city: "", stations: [], selectedStation: .constant(""), isFrom: false)
-            .environmentObject(NavigationModel())
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        StationsListView(city: "", stations: ModelData.cities.first!.stations, selectedStation: .constant(""), isFrom: true)
+//            .environmentObject(NavigationModel())
+//    }
+//}
+//
+//#Preview {
+//    NavigationStack{
+//        StationsListView(city: "", stations: [], selectedStation: .constant(""), isFrom: false)
+//            .environmentObject(NavigationModel())
+//    }
+//}

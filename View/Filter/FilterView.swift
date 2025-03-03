@@ -3,7 +3,6 @@ import SwiftUI
 struct FilterView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    @Environment(\.dismiss) private var dismiss
     @State private var selectedTimes: Set<String> = []
     @State private var showTransfers: Bool?
     
@@ -19,7 +18,7 @@ struct FilterView: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Button(action: {
-                        dismiss()
+                        navModel.pop(.schedule(.void))
                     }) {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.ypBlack)
@@ -76,7 +75,7 @@ struct FilterView: View {
             .padding(.horizontal, 16)
             
             Button {
-                dismiss()
+                navModel.pop(.schedule(.void))
             } label: {
                 Text("Применить")
                     .foregroundColor(.uWhite)
@@ -91,6 +90,9 @@ struct FilterView: View {
 }
 
 #Preview {
-    FilterView()
+    NavigationStack {
+        FilterView()
+            .environmentObject(NavigationModel())
+    }
 }
 

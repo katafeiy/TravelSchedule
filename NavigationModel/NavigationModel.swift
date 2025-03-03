@@ -63,11 +63,11 @@ struct Route {
     static func scheduleFlowDestination(_ screen: Screen.Schedule, from: Binding<String>, toIn: Binding<String>) -> some View {
         switch screen {
         case .city(let isFrom):
-            CitysListView(data: ModelData.cities, selectedCity: isFrom ? from : toIn, isFrom: isFrom)
+            CitysListView(selectedCity: isFrom ? from : toIn, isFrom: isFrom)
         case .station(let city, let stations, let isFrom):
             StationsListView(city: city, stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
         case .carrier(let fromCity, let toCity):
-            CarrierList(from: fromCity, to: toCity)
+            CarrierListView(from: fromCity, to: toCity)
         case .carrierInfo:
             CarrierInfoView()
         case .filter:

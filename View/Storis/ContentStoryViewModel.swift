@@ -1,7 +1,8 @@
 import SwiftUI
 import Combine
 
-class ContentStoryViewModel: ObservableObject {
+@MainActor
+final class ContentStoryViewModel: ObservableObject {
     
     @Published var indexStory: Int
     @Published var progress: CGFloat = 0
@@ -104,5 +105,4 @@ class ContentStoryViewModel: ObservableObject {
     private static func createTimer(configuration: ConfigProgressBar) -> Timer.TimerPublisher {
         Timer.publish(every: configuration.timerTickInternal, on: .main, in: .common)
     }
-    
 }

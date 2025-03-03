@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CarrierList: View {
+struct CarrierListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     
@@ -63,7 +63,7 @@ struct CarrierList: View {
 
 #Preview {
     NavigationStack {
-        CarrierList(from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
+        CarrierListView(from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
             .environmentObject(NavigationModel())
     }
 }

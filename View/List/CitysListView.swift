@@ -2,17 +2,18 @@ import SwiftUI
 
 struct CitysListView: View {
     
+    @StateObject private var viewModel = CityListViewModel()
     @EnvironmentObject var navModel: NavigationModel
     @State private var searchString: String = ""
     
-    var data: [City] = []
+    
     @Binding var selectedCity: String
     var isFrom: Bool
     
-    var searchResults: [City] {
+    var searchResults: [Settlement] {
         searchString.isEmpty
-        ? data
-        : data.filter { $0.name.lowercased().contains(searchString.lowercased())}
+        ? viewModel.data
+        : viewModel.data.filter { $0.title.lowercased().contains(searchString.lowercased())}
     }
     
     var body: some View {
@@ -48,10 +49,10 @@ struct CitysListView: View {
             } else {
                 List(searchResults, id: \.self) { city in
                     Button {
-                        navModel.push(.schedule(.station(city.name, city.stations, isFrom)))
+                        navModel.push(.schedule(.station(city.title, city.stations, isFrom)))
                     } label: {
                         HStack {
-                            Text(city.name)
+                            Text(city.title)
                                 .foregroundColor(.ypBlack)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -65,19 +66,28 @@ struct CitysListView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear()  {
+            Task {
+                do {
+                    try await viewModel.getCity()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
 #Preview {
     NavigationStack {
-        CitysListView(data: ModelData.cities, selectedCity: .constant(""), isFrom: true)
+        CitysListView(selectedCity: .constant(""), isFrom: true)
             .environmentObject(NavigationModel())
     }
 }
 
 #Preview {
     NavigationStack {
-        CitysListView(data: [], selectedCity: .constant(""), isFrom: false)
+        CitysListView(selectedCity: .constant(""), isFrom: false)
             .environmentObject(NavigationModel())
     }
 }
