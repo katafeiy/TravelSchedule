@@ -415,7 +415,7 @@ components:
           $ref: '#/components/schemas/To'
         has_transfers:
           type: boolean
-          description: Признак наличия пересадок nпо ходу рейса
+          description: Признак наличия пересадок по ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
         duration:

@@ -4,20 +4,10 @@ struct CitysListView: View {
     
     @StateObject private var viewModel = CityListViewModel()
     @EnvironmentObject var navModel: NavigationModel
-    @State private var searchString: String = ""
-    
-    
-    @Binding var selectedCity: String
+    @Binding var selectedCity: Station
     var isFrom: Bool
     
-    var searchResults: [Settlement] {
-        searchString.isEmpty
-        ? viewModel.data
-        : viewModel.data.filter { $0.title.lowercased().contains(searchString.lowercased())}
-    }
-    
     var body: some View {
-        
         VStack(spacing: 10) {
             HStack {
                 Button(action: {
@@ -35,10 +25,10 @@ struct CitysListView: View {
             }
             .padding(.horizontal, 10)
             
-            SearchBar(searchText: $searchString)
+            SearchBar(searchText: $viewModel.searchString)
             
-            if searchResults.isEmpty {
-                if searchResults.isEmpty && searchString.isEmpty {
+            if viewModel.searchResults.isEmpty {
+                if viewModel.searchResults.isEmpty && viewModel.searchString.isEmpty {
                     ErrorView(errors: .noInternet)
                 } else {
                     Spacer()
@@ -47,9 +37,9 @@ struct CitysListView: View {
                     Spacer()
                 }
             } else {
-                List(searchResults, id: \.self) { city in
+                List(viewModel.searchResults, id: \.self) { city in
                     Button {
-                        navModel.push(.schedule(.station(city.title, city.stations, isFrom)))
+                        navModel.push(.schedule(.station(city, city.stations, isFrom)))
                     } label: {
                         HStack {
                             Text(city.title)
@@ -61,7 +51,7 @@ struct CitysListView: View {
                         .padding(.vertical)
                     }
                 }
-                .animation(.easeInOut, value: searchResults)
+                .animation(.easeInOut, value: viewModel.searchResults)
                 .listStyle(.plain)
             }
         }
@@ -78,18 +68,18 @@ struct CitysListView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        CitysListView(selectedCity: .constant(""), isFrom: true)
-            .environmentObject(NavigationModel())
-    }
-}
-
-#Preview {
-    NavigationStack {
-        CitysListView(selectedCity: .constant(""), isFrom: false)
-            .environmentObject(NavigationModel())
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        CitysListView(selectedCity: .constant(""), isFrom: true)
+//            .environmentObject(NavigationModel())
+//    }
+//}
+//
+//#Preview {
+//    NavigationStack {
+//        CitysListView(selectedCity: .constant(""), isFrom: false)
+//            .environmentObject(NavigationModel())
+//    }
+//}
 
 

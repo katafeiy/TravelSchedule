@@ -292,14 +292,14 @@ final class ModelData: ObservableObject {
                                                      """)]),
     ]
     
-    @Published var carriers: [Carrier] = [
-        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()),
-        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 15, date: Date()),
-        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 18, date: Date()),
-        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 19, date: Date()),
-        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 14, date: Date()),
-        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 17, date: Date())
-    ]
+//    @Published var carriers: [Carrier] = [
+//        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()),
+//        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 15, date: Date()),
+//        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 18, date: Date()),
+//        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 19, date: Date()),
+//        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 14, date: Date()),
+//        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 17, date: Date())
+//    ]
     
     @Published var carriersInfo: [CarrierInfo] = [
         CarrierInfo(logo: Image("RZHD"), name: "ОАО \u{00AB}РЖД\u{00BB}", phoneNumber: "+7 (495) 123-45-67", email: "info@rzhd.ru")

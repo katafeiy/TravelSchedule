@@ -3,17 +3,17 @@ import SwiftUI
 struct StationsListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    @State private var searchString: String = ""
-    
-    var city: String
-    var stations: [Station]
-    @Binding var selectedStation: String
+    @StateObject private var viewModel: StationsListViewModel
+   
+//    var city: Settlement
+    @Binding var selectedStation: Station
     var isFrom: Bool
     
-    var searchResults: [Station] {
-        searchString.isEmpty
-        ? stations
-        : stations.filter { $0.title.lowercased().contains(searchString.lowercased())}
+    init(city: Settlement, stations: [Station], selectedStation: Binding<Station>, isFrom: Bool) {
+//        self.city = city
+        self._selectedStation = selectedStation
+        self.isFrom = isFrom
+        _viewModel = StateObject(wrappedValue: StationsListViewModel(stations: stations))
     }
     
     var body: some View {
@@ -34,19 +34,19 @@ struct StationsListView: View {
             }
             .padding(.horizontal, 10)
             
-            SearchBar(searchText: $searchString)
-            if searchResults.isEmpty, !searchString.isEmpty {
+            SearchBar(searchText: $viewModel.searchString)
+            if viewModel.searchResults.isEmpty, !viewModel.searchString.isEmpty {
                 Spacer()
                 Text("Станция не найдена")
                     .font(.system(size: 24, weight: .bold))
                 Spacer()
             } else {
-                if searchResults.isEmpty {
+                if viewModel.searchResults.isEmpty {
                     ErrorView(errors: .serverError)
                 } else {
-                    List(searchResults, id: \.self) { station in
+                    List(viewModel.searchResults, id: \.self) { station in
                         Button {
-                            selectedStation = "\(city) (\(station.title))"
+                            selectedStation = station // "\(city.title) (\(station.title))"
                             navModel.popRoot(.schedule(.toRoot))
                         } label: {
                             HStack {
@@ -58,7 +58,7 @@ struct StationsListView: View {
                             .padding(.vertical)
                         }
                     }
-                    .animation(.easeInOut, value: searchResults)
+                    .animation(.easeInOut, value: viewModel.searchResults)
                     .listStyle(.plain)
                 }
             }
@@ -70,7 +70,7 @@ struct StationsListView: View {
 
 //#Preview {
 //    NavigationStack {
-//        StationsListView(city: "", stations: ModelData.cities.first!.stations, selectedStation: .constant(""), isFrom: true)
+//        StationsListView(city: "", stations: [] , selectedStation: .constant(""), isFrom: true)
 //            .environmentObject(NavigationModel())
 //    }
 //}

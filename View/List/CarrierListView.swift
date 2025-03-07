@@ -3,13 +3,14 @@ import SwiftUI
 struct CarrierListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
+    @StateObject private var viewModel = CarrierListViewModel()
     
-    let from: String
-    let to: String
+    let fromStation: Station
+    let toStation: Station
     
     var body: some View {
         
-        VStack(spacing: 10){
+        VStack(spacing: 10) {
             HStack {
                 Button(action: {
                     navModel.pop(.schedule(.void))
@@ -22,12 +23,12 @@ struct CarrierListView: View {
             }
             .padding(.vertical, 10)
             
-            Text(from + " -> " + to)
+            Text(fromStation.title + " -> " + toStation.title)
                 .font(.system(size: 24, weight: .bold))
                 .lineLimit(nil)
             
             ZStack(alignment: .bottom) {
-                List(ModelData().carriers) { carrier in
+                List(viewModel.carriers) { carrier in
                     Button  {
                         navModel.push(.schedule(.carrierInfo))
                     } label: {
@@ -58,12 +59,18 @@ struct CarrierListView: View {
         }
         .navigationBarBackButtonHidden(true)
         .padding(.horizontal, 16)
+        .onAppear {
+            Task {
+                try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
+            }
+        }
     }
 }
 
-#Preview {
-    NavigationStack {
-        CarrierListView(from: "Санкт-Петербург(Финляндский вокзал)",to: "Новосибирск(Новосибирск-Пассажирский)")
-            .environmentObject(NavigationModel())
-    }
-}
+//#Preview {
+//
+//    NavigationStack {
+//        CarrierListView(fromStation: "Санкт-Петербург(Финляндский вокзал)",toStation: "Новосибирск(Новосибирск-Пассажирский)")
+//            .environmentObject(NavigationModel())
+//    }
+//}

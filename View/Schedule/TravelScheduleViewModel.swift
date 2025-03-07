@@ -3,13 +3,29 @@ import SwiftUI
 @MainActor
 final class TravelScheduleViewModel: ObservableObject {
     
-    @Published var stories: [Story] = ModelData.shared.stories
-    @Published var selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: [])
-    @Published var selectedItem: Int = 0
-    @Published var isStoriesShown: Bool = false
+    @Published var stories: [Story]
+    @Published var selectedStory: Story
+    @Published var selectedItem: Int
+    @Published var isStoriesShown: Bool
     
-    @Published var fromCity: String = ""
-    @Published var toCity: String = ""
+    @Published var fromStation: Station
+    @Published var toStation: Station
+    
+    init(
+        stories: [Story] = ModelData.shared.stories,
+        selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: []),
+        selectedItem: Int = 0,
+        isStoriesShown: Bool = false,
+        fromStation: Station,
+        toStation: Station
+    ) {
+        self.stories = stories
+        self.selectedStory = selectedStory
+        self.selectedItem = selectedItem
+        self.isStoriesShown = isStoriesShown
+        self.fromStation = fromStation
+        self.toStation = toStation
+    }
     
     var isStoryViewed: Binding<Bool> {
         Binding<Bool> (

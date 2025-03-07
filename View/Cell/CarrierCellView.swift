@@ -3,12 +3,14 @@ import SwiftUI
 struct CarrierCellView: View {
     
     let carrierInfo: Carrier
+    let image: Image = Image(.RZHD)
     
     var body: some View {
         ZStack {
             VStack(spacing: 12)  {
                 HStack {
-                   carrierInfo.carrierLogo
+//                   carrierInfo.carrierLogo
+                    image
                         .resizable()
                         .frame(width: 38, height: 38)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -53,5 +55,5 @@ struct CarrierCellView: View {
 }
 
 #Preview {
-    CarrierCellView(carrierInfo: Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()))
+    CarrierCellView(carrierInfo: Carrier(carrierName: "РЖД", carrierLogo: "rzhd", startTime: "14:20", endTime: "22.45", timeInRoute: 20, date: "16 Марта"))
 }

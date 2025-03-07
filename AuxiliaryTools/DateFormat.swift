@@ -7,10 +7,12 @@ final class DateFormatTime {
         case HHmm = "HH:mm"
     }
     
-    static func formatDate(_ date: Date, format: Format) -> String {
+    static func formatDate(_ date: String?, format: Format) -> String {
+        guard let date = date else { return "Некоректная дата" }
         let formatter = DateFormatter()
         formatter.dateFormat = format.rawValue
         formatter.locale = Locale(identifier: "ru_RU")
-        return formatter.string(from: date)
+        guard let time = formatter.date(from: date) else { return "Некоректная дата" }
+        return formatter.string(from: time)
     }
 }

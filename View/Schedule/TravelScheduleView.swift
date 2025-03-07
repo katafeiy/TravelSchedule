@@ -3,9 +3,27 @@ import OpenAPIURLSession
 
 struct TravelScheduleView: View {
     
-
     @EnvironmentObject var navModel: NavigationModel
-    @StateObject private var viewModel = TravelScheduleViewModel()
+    @StateObject private var viewModel = TravelScheduleViewModel(
+        fromStation: Station(
+            direction: "",
+            codes: StationCodes(yandexCode: "", esrCode: ""),
+            stationType: "",
+            title: "",
+            longitude: 0.0,
+            transportType: "",
+            latitude: 0.0
+        ),
+        toStation: Station(
+            direction: "",
+            codes: StationCodes(yandexCode: "", esrCode: ""),
+            stationType: "",
+            title: "",
+            longitude: 0.0,
+            transportType: "",
+            latitude: 0.0
+        )
+    )
     
     @Binding var isTabBarHidden: Bool
     
@@ -29,9 +47,11 @@ struct TravelScheduleView: View {
                 }
                 .padding(.leading, 16)
                 
-                FromToInView(isTabBarHidden: $isTabBarHidden, fromCity: $viewModel.fromCity, toCity: $viewModel.toCity)
-                    .padding(.top, 20)
-                    .padding(.horizontal, 16)
+                FromToInView(isTabBarHidden: $isTabBarHidden,
+                             fromStation: $viewModel.fromStation,
+                             toStation: $viewModel.toStation)
+                .padding(.top, 20)
+                .padding(.horizontal, 16)
                 
                 Spacer()
             }
@@ -39,7 +59,7 @@ struct TravelScheduleView: View {
                 isTabBarHidden = false
             }
             .navigationDestination(for: Screen.Schedule.self) { screen in
-                Route.scheduleFlowDestination(screen, from: $viewModel.fromCity, toIn: $viewModel.toCity)
+                Route.scheduleFlowDestination(screen, from: $viewModel.fromStation, toIn: $viewModel.toStation)
             }
             .fullScreenCover(isPresented: $viewModel.isStoriesShown, onDismiss: { isTabBarHidden = false }) {
                 ContentStoryView(
