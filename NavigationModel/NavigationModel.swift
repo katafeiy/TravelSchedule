@@ -9,7 +9,7 @@ enum Screen: Hashable {
         case city(Bool)
         case station(Settlement, [Station], Bool)
         case carrier(Station, Station)
-        case carrierInfo
+        case carrierInfo(Carrier)
         case filter
         case toRoot
         case void 
@@ -68,8 +68,8 @@ struct Route {
             StationsListView(city: city, stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
         case .carrier(let fromStation, let toStation):
             CarrierListView(fromStation: fromStation, toStation: toStation)
-        case .carrierInfo:
-            CarrierInfoView()
+        case .carrierInfo(let carrier):
+            CarrierInfoView(carrier: carrier)
         case .filter:
             FilterView()
         case .toRoot, .void:

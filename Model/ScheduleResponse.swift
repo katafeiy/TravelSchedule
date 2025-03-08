@@ -2,32 +2,32 @@ import Foundation
 
 // Главная структура для всего ответа
 struct ScheduleResponse: Codable {
-    let pagination: Pagination
+    let pagination: Pagination?
     let intervalSegments: [IntervalSegment]?
     let segments: [Segment]?
-    let search: Search
+    let search: Search?
 }
 
 // Модель пагинации
 struct Pagination: Codable {
-    let total: Int
-    let limit: Int
-    let offset: Int
+    let total: Int?
+    let limit: Int?
+    let offset: Int?
 }
 
 // Интервальный сегмент
 struct IntervalSegment: Codable {
-    let from: StationResponse
-    let thread: Thread
+    let from: StationResponse?
+    let thread: Thread?
     let departurePlatform: String?
     let stops: String?
     let departureTerminal: String?
-    let to: StationResponse
-    let hasTransfers: Bool
+    let to: StationResponse?
+    let hasTransfers: Bool?
     let ticketsInfo: TicketsInfo?
-    let duration: Int
+    let duration: Int?
     let arrivalTerminal: String?
-    let startDate: String
+    let startDate: String?
     let arrivalPlatform: String?
 
     enum CodingKeys: String, CodingKey {
@@ -44,19 +44,19 @@ struct IntervalSegment: Codable {
 
 // Сегмент маршрута
 struct Segment: Codable {
-    let arrival: String
-    let from: StationResponse
-    let thread: Thread
+    let arrival: String?
+    let from: StationResponse?
+    let thread: Thread?
     let departurePlatform: String?
-    let departure: String
+    let departure: String?
     let stops: String?
     let departureTerminal: String?
-    let to: StationResponse
-    let hasTransfers: Bool
+    let to: StationResponse?
+    let hasTransfers: Bool?
     let ticketsInfo: TicketsInfo?
-    let duration: Int
+    let duration: Int?
     let arrivalTerminal: String?
-    let startDate: String
+    let startDate: String?
     let arrivalPlatform: String?
 
     enum CodingKeys: String, CodingKey {
@@ -73,12 +73,12 @@ struct Segment: Codable {
 
 // Станция
 struct StationResponse: Codable {
-    let code: String
-    let title: String
+    let code: String?
+    let title: String?
     let popularTitle: String?
     let shortTitle: String?
-    let transportType: String
-    let type: String
+    let transportType: String?
+    let type: String?
     let stationType: String?
     let stationTypeName: String?
 
@@ -94,14 +94,14 @@ struct StationResponse: Codable {
 
 // Поток (рейс)
 struct Thread: Codable {
-    let uid: String
-    let title: String
+    let uid: String?
+    let title: String?
     let interval: Interval?
-    let number: String
-    let shortTitle: String
-    let threadMethodLink: String
-    let carrier: CarrierResponse
-    let transportType: String
+    let number: String?
+    let shortTitle: String?
+    let threadMethodLink: String?
+    let carrier: CarrierResponse?
+    let transportType: String?
     let vehicle: String?
     let transportSubtype: TransportSubtype?
     let expressType: String?
@@ -131,13 +131,13 @@ struct Interval: Codable {
 
 // Перевозчик
 struct CarrierResponse: Codable {
-    let code: Int
+    let code: Int?
     let contacts: String?
     let url: String?
     let logoSvg: String?
     let title: String
     let phone: String?
-    let codes: CarrierCodes
+    let codes: CarrierCodes?
     let address: String?
     let logo: String?
     let email: String?
@@ -164,8 +164,8 @@ struct TransportSubtype: Codable {
 
 // Информация о билетах
 struct TicketsInfo: Codable {
-    let etMarker: Bool
-    let places: [TicketPlace]
+    let etMarker: Bool?
+    let places: [TicketPlace]?
 
     enum CodingKeys: String, CodingKey {
         case etMarker = "et_marker"
@@ -175,31 +175,31 @@ struct TicketsInfo: Codable {
 
 // Место в билете
 struct TicketPlace: Codable {
-    let currency: String
-    let price: Price
-    let name: String
+    let currency: String?
+    let price: Price?
+    let name: String?
 }
 
 // Цена
 struct Price: Codable {
-    let cents: Int
-    let whole: Int
+    let cents: Int?
+    let whole: Int?
 }
 
 // Данные поиска
 struct Search: Codable {
-    let date: String
-    let to: SettlementResponse
-    let from: SettlementResponse
+    let date: String?
+    let to: SettlementResponse?
+    let from: SettlementResponse?
 }
 
 // Населённый пункт
 struct SettlementResponse: Codable {
-    let code: String
-    let type: String
+    let code: String?
+    let type: String?
     let popularTitle: String?
     let shortTitle: String?
-    let title: String
+    let title: String?
 
     enum CodingKeys: String, CodingKey {
         case code, type, title

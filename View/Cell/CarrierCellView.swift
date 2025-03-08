@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 
 struct CarrierCellView: View {
     
@@ -9,8 +10,7 @@ struct CarrierCellView: View {
         ZStack {
             VStack(spacing: 12)  {
                 HStack {
-//                   carrierInfo.carrierLogo
-                    image
+                    KFImage(URL(string: carrierInfo.carrierLogo))
                         .resizable()
                         .frame(width: 38, height: 38)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -23,13 +23,13 @@ struct CarrierCellView: View {
                             .foregroundColor(.uRed)
                     }
                     Spacer()
-                    Text(DateFormatTime.formatDate(carrierInfo.date, format: DateFormatTime.Format.dMMMM))
+                    Text(carrierInfo.date)
                         .font(.system(size: 12, weight: .regular))
                         .foregroundColor(.uBlack)
                         .padding(.bottom, 27)
                 }
                 HStack {
-                    Text(DateFormatTime.formatDate(carrierInfo.startTime, format: DateFormatTime.Format.HHmm))
+                    Text(carrierInfo.startTime)
                         .font(.system(size: 17, weight: .regular))
                         .foregroundColor(.uBlack)
                     Rectangle()
@@ -41,19 +41,32 @@ struct CarrierCellView: View {
                     Rectangle()
                         .fill(.uGray)
                         .frame(height: 1)
-                    Text(DateFormatTime.formatDate(carrierInfo.endTime, format: DateFormatTime.Format.HHmm))
+                    Text(carrierInfo.endTime)
                         .font(.system(size: 17, weight: .regular))
                         .foregroundColor(.uBlack)
                 }
             }
         }
         .padding(.horizontal, 16)
-        .frame(width: 343, height: 104)
+        .frame(height: 104)
         .background(Color.uLightGray)
         .clipShape(RoundedRectangle(cornerRadius: 24))
     }
 }
 
 #Preview {
-    CarrierCellView(carrierInfo: Carrier(carrierName: "РЖД", carrierLogo: "rzhd", startTime: "14:20", endTime: "22.45", timeInRoute: 20, date: "16 Марта"))
+    CarrierCellView(
+        carrierInfo: Carrier(
+            isTransfer: true,
+            carrierName: "РЖД",
+            carrierLogo: "rzhd",
+            startTime: "14:20",
+            endTime: "22.45",
+            timeInRoute: 20,
+            date: "16 Марта",
+            email: "info@rzhd.ru",
+            phoneNumber: "8 (812) 912-12-12",
+            logo: "RZHD"
+        )
+    )
 }

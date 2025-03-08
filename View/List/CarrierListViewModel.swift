@@ -1,5 +1,4 @@
 import Foundation
-import Kingfisher
 
 @MainActor
 final class CarrierListViewModel: ObservableObject {
@@ -12,36 +11,19 @@ final class CarrierListViewModel: ObservableObject {
         
         data.segments?.forEach { segment in
             
-            if let thread = segment.thread,
-               let carrier = thread.carrier {
-                
                 let newCarrier = Carrier(
-                    carrierName: carrier.title ?? "",
-                    carrierLogo: carrier.logo ?? "",
-                    startTime: DateFormatTime.formatDate(thread.interval?.begin_time ?? "", format: DateFormatTime.Format.HHmm) ,
-                    endTime: DateFormatTime.formatDate(thread.interval?.end_time ?? "", format: DateFormatTime.Format.HHmm),
-                    timeInRoute: Int((data.interval_segments?.first?.duration ?? 0.0) / 3600) ,
-                    date: DateFormatTime.formatDate(thread.interval?.begin_time ?? "", format: DateFormatTime.Format.dMMMM)
+                    isTransfer: segment.hasTransfers ?? false,
+                    carrierName: segment.thread?.carrier?.title ?? "",
+                    carrierLogo: segment.thread?.carrier?.logo ?? "",
+                    startTime: DateFormatTime.formatTime(segment.departure ?? "", format: DateFormatTime.Format.HHmm),
+                    endTime: DateFormatTime.formatTime(segment.arrival ?? "", format: DateFormatTime.Format.HHmm),
+                    timeInRoute: (segment.duration ?? 0) / 3600,
+                    date: DateFormatTime.formatTime(segment.startDate ?? "", format: DateFormatTime.Format.dMMMM),
+                    email: segment.thread?.carrier?.email ?? "",
+                    phoneNumber: segment.thread?.carrier?.phone ?? "",
+                    logo: segment.thread?.carrier?.logo ?? ""
                 )
                 carriers.append(newCarrier)
-            }
         }
     }
-    
-    //    func avatarURL() -> URL? {
-    //        guard
-    //            let profileImageURL = ProfileImageService.shared.avatarURL,
-    //            let url = URL(string: profileImageURL)
-    //        else { return nil }
-    //        return url
-    //    }
-    //
-    //    private func updateAvatar() {
-    //
-    //        let processor = RoundCornerImageProcessor(cornerRadius: 36, backgroundColor: .clear)
-    //        avatarAccountImage.kf.indicatorType = .activity
-    //        avatarAccountImage.kf.setImage(with: presenter.avatarURL(),
-    //                                       placeholder: UIImage(named: "placeholder.jpeg"),
-    //                                       options: [.processor(processor), .cacheSerializer(FormatIndicatedCacheSerializer.png)])
-    //    }
 }
