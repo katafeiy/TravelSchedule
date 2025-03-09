@@ -4,7 +4,7 @@ struct CitysListView: View {
     
     @StateObject private var viewModel = CityListViewModel()
     @EnvironmentObject var navModel: NavigationModel
-    @Binding var selectedCity: Station
+    @Binding var selectedSettlement: Settlement
     var isFrom: Bool
     
     var body: some View {
@@ -39,7 +39,8 @@ struct CitysListView: View {
             } else {
                 List(viewModel.searchResults, id: \.self) { settlement in
                     Button {
-                        navModel.push(.schedule(.station(settlement, settlement.stations, isFrom)))
+                        selectedSettlement = settlement
+                        navModel.push(.schedule(.station(settlement.stations, isFrom)))
                     } label: {
                         HStack {
                             Text(settlement.title)
@@ -56,22 +57,13 @@ struct CitysListView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear()  {
-            Task {
-                do {
-                    try await viewModel.getCity()
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
     }
 }
 
 #Preview {
     
     NavigationStack {
-        CitysListView(selectedCity: .constant(PreviewMockData.shared.stationsMoscow[0]), isFrom: true)
+        CitysListView(selectedSettlement: .constant(PreviewMockData.shared.settlementMoscow[0]), isFrom: true)
             .environmentObject(NavigationModel())
     }
 }

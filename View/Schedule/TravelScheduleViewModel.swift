@@ -8,14 +8,19 @@ final class TravelScheduleViewModel: ObservableObject {
     @Published var selectedItem: Int
     @Published var isStoriesShown: Bool
     
+    @Published var fromSettlement: Settlement
+    @Published var toSettlement: Settlement
     @Published var fromStation: Station
     @Published var toStation: Station
+    private var isLoaded: Bool = false
     
     init(
         stories: [Story] = StoriesStabData.shared.stories,
         selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: []),
         selectedItem: Int = 0,
         isStoriesShown: Bool = false,
+        fromSettlement: Settlement,
+        toSettlement: Settlement,
         fromStation: Station,
         toStation: Station
     ) {
@@ -23,6 +28,8 @@ final class TravelScheduleViewModel: ObservableObject {
         self.selectedStory = selectedStory
         self.selectedItem = selectedItem
         self.isStoriesShown = isStoriesShown
+        self.fromSettlement = fromSettlement
+        self.toSettlement = toSettlement
         self.fromStation = fromStation
         self.toStation = toStation
     }
@@ -48,8 +55,22 @@ final class TravelScheduleViewModel: ObservableObject {
         }
     }
     
-    
-    
-    
-    
+    func getCity() async throws {
+        
+        guard !isLoaded else { return }
+        isLoaded = true
+        
+        do {
+            let allStations = try await TravelScheduleNetworkModel.shared.allStations()
+            guard let russia = allStations.countries.first(where: { $0.title == "Россия" }) else {
+                print("Error: Country not found")
+                return
+            }
+            CacheDataBase.shared.settlements = russia.regions.flatMap( \.settlements )
+            CacheDataBase.shared.settlements.sort { ($0.title < $1.title) && (!$0.title.isEmpty && !$1.title.isEmpty) }
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            throw error
+        }
+    }
 }

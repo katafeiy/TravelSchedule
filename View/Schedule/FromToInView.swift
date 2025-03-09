@@ -4,6 +4,8 @@ struct FromToInView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @Binding var isTabBarHidden: Bool
+    @Binding var fromSettlement: Settlement
+    @Binding var toSettlement: Settlement
     @Binding var fromStation: Station
     @Binding var toStation: Station
 
@@ -13,13 +15,23 @@ struct FromToInView: View {
             ZStack {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
-                        CitySelectionButton(title: "Откуда", city: fromStation.title, isIndentation: true) {
-                            navModel.push(.schedule(.city(true)))
+                        CitySelectionButton(
+                            title: "Откуда",
+                            settlementName: fromSettlement.title,
+                            stationName: fromStation.title,
+                            isIndentation: true
+                        ) {
+                            navModel.push(.schedule(.settlement(true)))
                             isTabBarHidden = true
                         }
                         Divider()
-                        CitySelectionButton(title: "Куда", city: toStation.title, isIndentation: false) {
-                            navModel.push(.schedule(.city(false)))
+                        CitySelectionButton(
+                            title: "Куда",
+                            settlementName: toSettlement.title,
+                            stationName: toStation.title,
+                            isIndentation: false
+                        ) {
+                            navModel.push(.schedule(.settlement(false)))
                             isTabBarHidden = true
                         }
                     }
@@ -44,18 +56,14 @@ struct FromToInView: View {
 
 #Preview {
     
-    let station = Station(
-        direction: "",
-        codes: StationCodes(yandexCode: "", esrCode: ""),
-        stationType: "",
-        title: "Повелецкий вокзал",
-        longitude: 0.0,
-        transportType: "",
-        latitude: 0.0
-    )
-    
     NavigationStack {
-        FromToInView(isTabBarHidden: .constant(false), fromStation: .constant(station), toStation: .constant(station))
+        FromToInView(
+            isTabBarHidden: .constant(false),
+            fromSettlement: .constant(PreviewMockData.shared.settlementMoscow[0]),
+            toSettlement: .constant(PreviewMockData.shared.settlementSanPetersburg[0]),
+            fromStation: .constant(PreviewMockData.shared.stationsMoscow[7]),
+            toStation: .constant(PreviewMockData.shared.stationsSanPetersburg[0])
+        )
             .environmentObject(NavigationModel())
     }
 }

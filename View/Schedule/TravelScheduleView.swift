@@ -5,24 +5,10 @@ struct TravelScheduleView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @StateObject private var viewModel = TravelScheduleViewModel(
-        fromStation: Station(
-            direction: "",
-            codes: StationCodes(yandexCode: "", esrCode: ""),
-            stationType: "",
-            title: "",
-            longitude: 0.0,
-            transportType: "",
-            latitude: 0.0
-        ),
-        toStation: Station(
-            direction: "",
-            codes: StationCodes(yandexCode: "", esrCode: ""),
-            stationType: "",
-            title: "",
-            longitude: 0.0,
-            transportType: "",
-            latitude: 0.0
-        )
+        fromSettlement: PreviewMockData.shared.settlementMoscowEmpty[0],
+        toSettlement: PreviewMockData.shared.settlementSanPetersburgEmpty[0],
+        fromStation: PreviewMockData.shared.stationsMoscowEmpty[0],
+        toStation: PreviewMockData.shared.stationsSanPetersburgEmpty[0]
     )
     
     @Binding var isTabBarHidden: Bool
@@ -48,6 +34,8 @@ struct TravelScheduleView: View {
                 .padding(.leading, 16)
                 
                 FromToInView(isTabBarHidden: $isTabBarHidden,
+                             fromSettlement: $viewModel.fromSettlement,
+                             toSettlement: $viewModel.toSettlement,
                              fromStation: $viewModel.fromStation,
                              toStation: $viewModel.toStation)
                 .padding(.top, 20)
@@ -59,7 +47,7 @@ struct TravelScheduleView: View {
                 isTabBarHidden = false
             }
             .navigationDestination(for: Screen.Schedule.self) { screen in
-                Route.scheduleFlowDestination(screen, from: $viewModel.fromStation, toIn: $viewModel.toStation)
+                Route.scheduleFlowDestination(screen, fromSettlement: $viewModel.fromSettlement, from: $viewModel.fromStation, toSettlement: $viewModel.toSettlement, toIn: $viewModel.toStation)
             }
             .fullScreenCover(isPresented: $viewModel.isStoriesShown, onDismiss: { isTabBarHidden = false }) {
                 ContentStoryView(
@@ -68,6 +56,15 @@ struct TravelScheduleView: View {
                     isPresented: $viewModel.isStoriesShown,
                     isViewed: viewModel.isStoryViewed
                 )
+            }
+            .onAppear()  {
+                Task {
+                    do {
+                        try await viewModel.getCity()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
             }
         }
     }

@@ -6,8 +6,8 @@ enum Screen: Hashable {
     case setting(Setting)
     
     enum Schedule: Hashable {
-        case city(Bool)
-        case station(Settlement, [Station], Bool)
+        case settlement(Bool)
+        case station([Station], Bool)
         case carrier(Station, Station)
         case carrierInfo(Carrier)
         case filter
@@ -60,12 +60,18 @@ final class NavigationModel: ObservableObject {
 struct Route {
     
     @ViewBuilder
-    static func scheduleFlowDestination(_ screen: Screen.Schedule, from: Binding<Station>, toIn: Binding<Station>) -> some View {
+    static func scheduleFlowDestination(
+        _ screen: Screen.Schedule,
+        fromSettlement: Binding<Settlement>,
+        from: Binding<Station>,
+        toSettlement: Binding<Settlement>,
+        toIn: Binding<Station>
+    ) -> some View {
         switch screen {
-        case .city(let isFrom):
-            CitysListView(selectedCity: isFrom ? from : toIn, isFrom: isFrom)
-        case .station(let settlement, let stations, let isFrom):
-            StationsListView(settlement: settlement, stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
+        case .settlement(let isFrom):
+            CitysListView(selectedSettlement: isFrom ? fromSettlement : toSettlement, isFrom: isFrom)
+        case .station(let stations, let isFrom):
+            StationsListView(stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
         case .carrier(let fromStation, let toStation):
             CarrierListView(fromStation: fromStation, toStation: toStation)
         case .carrierInfo(let carrier):

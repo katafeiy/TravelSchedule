@@ -12,6 +12,9 @@ final class PreviewMockData {
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Савеловский вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Ярославский вокзал", longitude: 0.0, transportType: "", latitude: 0.0)
     ]
+    let stationsMoscowEmpty: [Station] = [
+        Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "", longitude: 0.0, transportType: "", latitude: 0.0),
+        ]
     
     let stationsSanPetersburg: [Station] = [
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Московский вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
@@ -20,9 +23,17 @@ final class PreviewMockData {
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Финляндский вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Балтийский вокзал", longitude: 0.0, transportType: "", latitude: 0.0)
     ]
+    let stationsSanPetersburgEmpty: [Station] = [
+        Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "", longitude: 0.0, transportType: "", latitude: 0.0),
+    ]
     
-    let settlementMoskow: [Settlement] = [Settlement(title: "Москва", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
+    let settlementMoscow: [Settlement] = [Settlement(title: "Москва", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
     let settlementSanPetersburg: [Settlement] = [Settlement(title: "Санкт-Петербург", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
+    
+    let settlementMoscowEmpty: [Settlement] = [Settlement(title: "", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
+    let settlementSanPetersburgEmpty: [Settlement] = [Settlement(title: "", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
+    
+    
     
     let carrier = Carrier(
         isTransfer: false,

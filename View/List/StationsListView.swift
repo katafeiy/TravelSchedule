@@ -8,7 +8,7 @@ struct StationsListView: View {
     @Binding var selectedStation: Station
     var isFrom: Bool
     
-    init(settlement: Settlement, stations: [Station], selectedStation: Binding<Station>, isFrom: Bool) {
+    init(stations: [Station], selectedStation: Binding<Station>, isFrom: Bool) {
         self._selectedStation = selectedStation
         self.isFrom = isFrom
         _viewModel = StateObject(wrappedValue: StationsListViewModel(stations: stations))
@@ -44,7 +44,7 @@ struct StationsListView: View {
                 } else {
                     List(viewModel.searchResults, id: \.self) { station in
                         Button {
-                            selectedStation = station // "\(city.title) (\(station.title))"
+                            selectedStation = station
                             navModel.popRoot(.schedule(.toRoot))
                         } label: {
                             HStack {
@@ -70,7 +70,6 @@ struct StationsListView: View {
 
     NavigationStack {
         StationsListView(
-            settlement: PreviewMockData.shared.settlementMoskow[0],
             stations: PreviewMockData.shared.stationsMoscow ,
             selectedStation: .constant(PreviewMockData.shared.stationsMoscow[0]),
             isFrom: true

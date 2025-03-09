@@ -57,6 +57,7 @@
 		129F439E2D5BEFEE004C74DC /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F439D2D5BEFEE004C74DC /* ErrorModel.swift */; };
 		12A4C2482D7D818A00446889 /* CarrierInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A4C2472D7D818A00446889 /* CarrierInfoViewModel.swift */; };
 		12A4C2652D7D887900446889 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A4C2642D7D887900446889 /* PreviewMockData.swift */; };
+		12A4C2992D7DA38600446889 /* CacheDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A4C2982D7DA38600446889 /* CacheDataBase.swift */; };
 		12C2575F2D75A97100A9EB60 /* AllStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C2575E2D75A97100A9EB60 /* AllStation.swift */; };
 		12C257682D75B19000A9EB60 /* TravelScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C257672D75B19000A9EB60 /* TravelScheduleViewModel.swift */; };
 		12C257842D75F2D100A9EB60 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C257832D75F2D100A9EB60 /* CityListViewModel.swift */; };
@@ -114,6 +115,7 @@
 		129F439D2D5BEFEE004C74DC /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		12A4C2472D7D818A00446889 /* CarrierInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierInfoViewModel.swift; sourceTree = "<group>"; };
 		12A4C2642D7D887900446889 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
+		12A4C2982D7DA38600446889 /* CacheDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheDataBase.swift; sourceTree = "<group>"; };
 		12C2575E2D75A97100A9EB60 /* AllStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStation.swift; sourceTree = "<group>"; };
 		12C257672D75B19000A9EB60 /* TravelScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleViewModel.swift; sourceTree = "<group>"; };
 		12C257832D75F2D100A9EB60 /* CityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				129F439D2D5BEFEE004C74DC /* ErrorModel.swift */,
 				123C77802D52278F00009502 /* StoriesStabData.swift */,
 				12A4C2642D7D887900446889 /* PreviewMockData.swift */,
+				12A4C2982D7DA38600446889 /* CacheDataBase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				125FC6942D6A43D7003832F6 /* ConfigProgressBar.swift in Sources */,
 				129F439E2D5BEFEE004C74DC /* ErrorModel.swift in Sources */,
 				1294FF882D68F018005A116C /* CloseButton.swift in Sources */,
+				12A4C2992D7DA38600446889 /* CacheDataBase.swift in Sources */,
 				12C36D342D478BFD00380192 /* TravelScheduleNetworkService.swift in Sources */,
 				128A868A2D53905E0061F82A /* SplashScreenView.swift in Sources */,
 				12A4C2652D7D887900446889 /* PreviewMockData.swift in Sources */,
