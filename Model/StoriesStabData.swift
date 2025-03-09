@@ -1,8 +1,8 @@
 import SwiftUI
 
-final class ModelData: ObservableObject {
+final class StoriesStabData: ObservableObject {
     
-    static let shared = ModelData()
+    static let shared = StoriesStabData()
     
     @Published var stories: [Story] = [
         Story(small: .preview1,
@@ -291,49 +291,6 @@ final class ModelData: ObservableObject {
                                                      научил программировать на SwiftUI!
                                                      """)]),
     ]
-    
-//    @Published var carriers: [Carrier] = [
-//        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()),
-//        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 15, date: Date()),
-//        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 18, date: Date()),
-//        Carrier(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 19, date: Date()),
-//        Carrier(carrierName: "ФГК", carrierLogo: Image("fgk"), startTime: Date(), endTime: Date(), timeInRoute: 14, date: Date()),
-//        Carrier(carrierName: "Урал логистика", carrierLogo: Image("uralLogistika"), startTime: Date(), endTime: Date(), timeInRoute: 17, date: Date())
-//    ]
-    
-    @Published var carriersInfo: [CarrierInfo] = [
-        CarrierInfo(logo: Image("RZHD"), name: "ОАО \u{00AB}РЖД\u{00BB}", phoneNumber: "+7 (495) 123-45-67", email: "info@rzhd.ru")
-    ]
-    
-//    static var cities: [City] = [
-//        City(name: "Москва", stations: [Station(title: "Белорусский вокзал"),
-//                                        Station(title: "Казанский вокзал"),
-//                                        Station(title: "Киевский вокзал"),
-//                                        Station(title: "Курский вокзал"),
-//                                        Station(title: "Павелецкий вокзал"),
-//                                        Station(title: "Рижский вокзал"),
-//                                        Station(title: "Савеловский вокзал"),
-//                                        Station(title: "Ярославский вокзал")]),
-//        
-//        City(name: "Санкт-Петербург", stations: [Station(title: "Московский вокзал"),
-//                                                 Station(title: "Ладожский вокзал"),
-//                                                 Station(title: "Витебский вокзал"),
-//                                                 Station(title: "Финляндский вокзал"),
-//                                                 Station(title: "Балтийский вокзал")]),
-//        
-//        City(name: "Сочи", stations: [Station(title: "Сочинский вокзал"),
-//                                      Station(title: "Адлерский вокзал")]),
-//        
-//        City(name: "Саратов", stations: [Station(title: "Саратов-Пассажирский")]),
-//        
-//        City(name: "Красноярск", stations: [Station(title: "Красноярск-Пассажирский")]),
-//        
-//        City(name: "Омск", stations: [Station(title: "Омск-1"), Station(title: "Омск-2")]),
-//        
-//        City(name: "Краснодар", stations: [Station(title: "Краснодар-Пассажирский")]),
-//        
-//        City(name: "Новосибирск", stations: [Station(title: "Новосибирск-Пассажирский")])
-//    ]
 }
 
 

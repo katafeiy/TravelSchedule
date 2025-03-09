@@ -37,12 +37,12 @@ struct CitysListView: View {
                     Spacer()
                 }
             } else {
-                List(viewModel.searchResults, id: \.self) { city in
+                List(viewModel.searchResults, id: \.self) { settlement in
                     Button {
-                        navModel.push(.schedule(.station(city, city.stations, isFrom)))
+                        navModel.push(.schedule(.station(settlement, settlement.stations, isFrom)))
                     } label: {
                         HStack {
-                            Text(city.title)
+                            Text(settlement.title)
                                 .foregroundColor(.ypBlack)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -68,18 +68,12 @@ struct CitysListView: View {
     }
 }
 
-//#Preview {
-//    NavigationStack {
-//        CitysListView(selectedCity: .constant(""), isFrom: true)
-//            .environmentObject(NavigationModel())
-//    }
-//}
-//
-//#Preview {
-//    NavigationStack {
-//        CitysListView(selectedCity: .constant(""), isFrom: false)
-//            .environmentObject(NavigationModel())
-//    }
-//}
+#Preview {
+    
+    NavigationStack {
+        CitysListView(selectedCity: .constant(PreviewMockData.shared.stationsMoscow[0]), isFrom: true)
+            .environmentObject(NavigationModel())
+    }
+}
 
 

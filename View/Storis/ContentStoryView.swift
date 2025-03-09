@@ -67,7 +67,7 @@ struct ContentStoryView: View {
 
 #Preview {
     NavigationStack {
-        ContentStoryView(stories: ModelData.shared.stories,
+        ContentStoryView(stories: StoriesStabData.shared.stories,
                          indexStory: 2,
                          isPresented: .constant(true),
                          isViewed: .constant(false))

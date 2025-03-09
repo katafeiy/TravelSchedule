@@ -42,9 +42,20 @@ struct FromToInView: View {
     }
 }
 
-//#Preview {
-//    NavigationStack {
-//        FromToInView(isTabBarHidden: .constant(false), fromStation: .constant(""), toStation: .constant(""))
-//            .environmentObject(NavigationModel())
-//    }
-//}
+#Preview {
+    
+    let station = Station(
+        direction: "",
+        codes: StationCodes(yandexCode: "", esrCode: ""),
+        stationType: "",
+        title: "Повелецкий вокзал",
+        longitude: 0.0,
+        transportType: "",
+        latitude: 0.0
+    )
+    
+    NavigationStack {
+        FromToInView(isTabBarHidden: .constant(false), fromStation: .constant(station), toStation: .constant(station))
+            .environmentObject(NavigationModel())
+    }
+}

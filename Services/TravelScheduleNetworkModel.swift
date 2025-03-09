@@ -32,8 +32,7 @@ final class TravelScheduleNetworkModel {
                                       transportType: segmentsItem.from?.transport_type ?? "",
                                       type: segmentsItem.from?._type ?? "",
                                       stationType: segmentsItem.from?.station_type,
-                                      stationTypeName: segmentsItem.from?.station_type_name
-                                     ),
+                                      stationTypeName: segmentsItem.from?.station_type_name),
                 thread: Thread(uid: segmentsItem.thread?.uid ?? "",
                                title: segmentsItem.thread?.title ?? "",
                                interval: segmentsItem.thread?.interval.map {
@@ -56,7 +55,6 @@ final class TravelScheduleNetworkModel {
                                                         address: segmentsItem.thread?.carrier?.address,
                                                         logo: segmentsItem.thread?.carrier?.logo,
                                                         email: segmentsItem.thread?.carrier?.email),
-                               
                                transportType: segmentsItem.thread?.transport_type ?? "",
                                vehicle: segmentsItem.thread?.vehicle,
                                transportSubtype: segmentsItem.thread?.transport_subtype.map {
@@ -64,8 +62,7 @@ final class TravelScheduleNetworkModel {
                                                     code: $0.code,
                                                     title: $0.title)
                                },
-                               expressType: segmentsItem.thread?.express_type
-                              ),
+                               expressType: segmentsItem.thread?.express_type),
                 departurePlatform: segmentsItem.departure_platform,
                 stops: segmentsItem.stops,
                 departureTerminal: segmentsItem.departure_terminal,
@@ -76,8 +73,7 @@ final class TravelScheduleNetworkModel {
                                     transportType: segmentsItem.to?.transport_type ?? "",
                                     type: segmentsItem.to?._type ?? "",
                                     stationType: segmentsItem.to?.station_type,
-                                    stationTypeName: segmentsItem.to?.station_type_name
-                                   ),
+                                    stationTypeName: segmentsItem.to?.station_type_name),
                 hasTransfers: segmentsItem.has_transfers ?? false,
                 ticketsInfo: TicketsInfo(
                     etMarker: segmentsItem.tickets_info?.et_marker ?? false,
@@ -86,17 +82,14 @@ final class TravelScheduleNetworkModel {
                             currency: $0.currency ?? "",
                             price: Price(
                                 cents: Int($0.price?.first?.cents ?? 0.0),
-                                whole: Int($0.price?.first?.whole ?? 0.0)
-                            ),
-                            name: $0.name ?? ""
-                        )
+                                whole: Int($0.price?.first?.whole ?? 0.0)),
+                            name: $0.name ?? "")
                     } ?? []
                 ),
                 duration: Int(segmentsItem.duration ?? 0.0),
                 arrivalTerminal: segmentsItem.arrival_terminal,
                 startDate: segmentsItem.start_date ?? "",
-                arrivalPlatform: segmentsItem.arrival_platform
-            )
+                arrivalPlatform: segmentsItem.arrival_platform)
         } ?? []
         
         let segments: [Segment] = data.segments?.compactMap { segment in
@@ -136,7 +129,6 @@ final class TravelScheduleNetworkModel {
                                                         address: segment.thread?.carrier?.address,
                                                         logo: segment.thread?.carrier?.logo,
                                                         email: segment.thread?.carrier?.email),
-                               
                                transportType: segment.thread?.transport_type ?? "",
                                vehicle: segment.thread?.vehicle,
                                transportSubtype: segment.thread?.transport_subtype.map {
@@ -166,17 +158,14 @@ final class TravelScheduleNetworkModel {
                             currency: $0.currency ?? "",
                             price: Price(
                                 cents: Int($0.price?.first?.cents ?? 0.0),
-                                whole: Int($0.price?.first?.whole ?? 0.0)
-                            ),
-                            name: $0.name ?? ""
-                        )
+                                whole: Int($0.price?.first?.whole ?? 0.0)),
+                            name: $0.name ?? "")
                     } ?? []
                 ),
                 duration: segment.duration ?? 0,
                 arrivalTerminal: segment.arrival_terminal,
                 startDate: segment.start_date ?? "",
-                arrivalPlatform: segment.arrival_platform
-            )
+                arrivalPlatform: segment.arrival_platform)
         } ?? []
         
         return ScheduleResponse(pagination: Pagination(total: Int(data.pagination?.total ?? 0.0) ,
@@ -198,8 +187,7 @@ final class TravelScheduleNetworkModel {
                                popularTitle: $0.popular_title,
                                shortTitle: $0.short_title,
                                title: $0.title ?? "")
-        } ?? SettlementResponse(code: "", type: "", popularTitle: nil, shortTitle: nil, title: ""))
-        )
+        } ?? SettlementResponse(code: "", type: "", popularTitle: nil, shortTitle: nil, title: "")))
     }
     
     func scheduleByStation() async throws {
@@ -258,8 +246,7 @@ final class TravelScheduleNetworkModel {
                             title: station.title ?? "Название станции не указано",
                             longitude: station.lng ?? 0.0,
                             transportType: station.transport_type ?? "",
-                            latitude: station.lat ?? 0.0
-                        )
+                            latitude: station.lat ?? 0.0)
                     } ?? []
                     
                     return Settlement(title: settlement.title ?? "Название города не указано",
@@ -275,8 +262,7 @@ final class TravelScheduleNetworkModel {
             return Country(
                 title: country.title ?? "",
                 codes: Codes(yandexCode: country.codes?.yandex ?? "", esrCode: country.codes?.esr ?? ""),
-                regions: regions
-            )
+                regions: regions)
         } ?? []
         
         return CountryData(countries: countries)

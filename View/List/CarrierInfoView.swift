@@ -4,7 +4,11 @@ import Kingfisher
 struct CarrierInfoView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    let carrier: Carrier
+    @StateObject private var viewModel: CarrierInfoViewModel
+    
+    init(carrier: Carrier) {
+        _viewModel = StateObject(wrappedValue: CarrierInfoViewModel(carrier: carrier))
+    }
     
     var body: some View {
         
@@ -25,25 +29,25 @@ struct CarrierInfoView: View {
                 Spacer()
             }
             
-            KFImage(URL(string: carrier.logo))
+            KFImage(URL(string: viewModel.carrier.logo))
                 .resizable()
                 .scaledToFit()
                 .frame(height: 104)
                 .padding(.horizontal, 16)
             
-            Text("\u{00AB}\(carrier.carrierName)\u{00BB}")
+            Text("\u{00AB}\(viewModel.carrier.carrierName)\u{00BB}")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.ypBlack)
             VStack(alignment: .leading) {
                 Text("E-mail:")
                     .foregroundColor(.ypBlack)
-                Text(carrier.email)
+                Text(viewModel.carrier.email)
                     .foregroundColor(.uBlue)
             }
             VStack(alignment: .leading) {
                 Text("Телефон:")
                     .foregroundColor(.ypBlack)
-                Text(carrier.phoneNumber)
+                Text(viewModel.carrier.phoneNumber)
                     .foregroundColor(.uBlue)
             }
         }
@@ -55,20 +59,7 @@ struct CarrierInfoView: View {
 
 #Preview {
     NavigationStack {
-        CarrierInfoView(
-            carrier: Carrier(
-                isTransfer: false,
-                carrierName: "ОАО \u{00AB}РЖД\u{00BB}",
-                carrierLogo: "",
-                startTime: "",
-                endTime: "",
-                timeInRoute: 0,
-                date: "",
-                email: "info@rzhd.ru",
-                phoneNumber: "+7 (495) 123-45-67",
-                logo: ""
-            )
-        )
+        CarrierInfoView(carrier: PreviewMockData.shared.carrier)
             .environmentObject(NavigationModel())
     }
 }

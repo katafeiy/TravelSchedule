@@ -12,7 +12,7 @@ final class TravelScheduleViewModel: ObservableObject {
     @Published var toStation: Station
     
     init(
-        stories: [Story] = ModelData.shared.stories,
+        stories: [Story] = StoriesStabData.shared.stories,
         selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: []),
         selectedItem: Int = 0,
         isStoriesShown: Bool = false,

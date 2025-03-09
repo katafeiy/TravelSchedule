@@ -64,8 +64,8 @@ struct Route {
         switch screen {
         case .city(let isFrom):
             CitysListView(selectedCity: isFrom ? from : toIn, isFrom: isFrom)
-        case .station(let city, let stations, let isFrom):
-            StationsListView(city: city, stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
+        case .station(let settlement, let stations, let isFrom):
+            StationsListView(settlement: settlement, stations: stations, selectedStation: isFrom ? from : toIn, isFrom: isFrom)
         case .carrier(let fromStation, let toStation):
             CarrierListView(fromStation: fromStation, toStation: toStation)
         case .carrierInfo(let carrier):

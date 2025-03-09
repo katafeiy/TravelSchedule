@@ -5,12 +5,10 @@ struct StationsListView: View {
     @EnvironmentObject var navModel: NavigationModel
     @StateObject private var viewModel: StationsListViewModel
    
-//    var city: Settlement
     @Binding var selectedStation: Station
     var isFrom: Bool
     
-    init(city: Settlement, stations: [Station], selectedStation: Binding<Station>, isFrom: Bool) {
-//        self.city = city
+    init(settlement: Settlement, stations: [Station], selectedStation: Binding<Station>, isFrom: Bool) {
         self._selectedStation = selectedStation
         self.isFrom = isFrom
         _viewModel = StateObject(wrappedValue: StationsListViewModel(stations: stations))
@@ -68,16 +66,15 @@ struct StationsListView: View {
     }
 }
 
-//#Preview {
-//    NavigationStack {
-//        StationsListView(city: "", stations: [] , selectedStation: .constant(""), isFrom: true)
-//            .environmentObject(NavigationModel())
-//    }
-//}
-//
-//#Preview {
-//    NavigationStack{
-//        StationsListView(city: "", stations: [], selectedStation: .constant(""), isFrom: false)
-//            .environmentObject(NavigationModel())
-//    }
-//}
+#Preview {
+
+    NavigationStack {
+        StationsListView(
+            settlement: PreviewMockData.shared.settlementMoskow[0],
+            stations: PreviewMockData.shared.stationsMoscow ,
+            selectedStation: .constant(PreviewMockData.shared.stationsMoscow[0]),
+            isFrom: true
+        )
+            .environmentObject(NavigationModel())
+    }
+}

@@ -72,29 +72,11 @@ struct CarrierListView: View {
 
 #Preview {
     
-    let station1 = Station(
-        direction: "",
-        codes: StationCodes(yandexCode: "", esrCode: ""),
-        stationType: "",
-        title: "Санкт-Петербург(Финляндский вокзал)",
-        longitude: 0.0,
-        transportType: "",
-        latitude: 0.0
-    )
-
-    let station2 = Station(
-        direction: "",
-        codes: StationCodes(yandexCode: "", esrCode: ""),
-        stationType: "",
-        title: "Новосибирск(Новосибирск-Пассажирский)",
-        longitude: 0.0,
-        transportType: "",
-        latitude: 0.0
-    )
-
-    
     NavigationStack {
-        CarrierListView(fromStation: station1, toStation: station2)
+        CarrierListView(
+            fromStation: PreviewMockData.shared.stationsMoscow[0],
+            toStation: PreviewMockData.shared.stationsSanPetersburg[0]
+        )
             .environmentObject(NavigationModel())
     }
 }
