@@ -4,13 +4,19 @@ import Foundation
 final class CarrierListViewModel: ObservableObject {
     
     @Published var carriers: [Carrier] = []
+    @Published var isLoading: Bool = false
     
     func fetchCarriers(from: String, to: String) async throws {
         
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            
         let data = try await TravelScheduleNetworkModel.shared.scheduleBetweenStation(from: from, to: to)
         
-        data.segments?.forEach { segment in
-            
+            data.segments?.forEach { segment in
+                
                 let newCarrier = Carrier(
                     isTransfer: segment.hasTransfers ?? false,
                     carrierName: segment.thread?.carrier?.title ?? "",
@@ -24,6 +30,9 @@ final class CarrierListViewModel: ObservableObject {
                     logo: segment.thread?.carrier?.logo ?? ""
                 )
                 carriers.append(newCarrier)
+            }
+        } catch {
+            print("Ошибка загрузки: \(error.localizedDescription)") 
         }
     }
 }

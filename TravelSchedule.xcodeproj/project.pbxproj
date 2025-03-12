@@ -55,6 +55,8 @@
 		1294FF382D689DBA005A116C /* StorisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1294FF372D689DBA005A116C /* StorisView.swift */; };
 		1294FF882D68F018005A116C /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1294FF872D68F018005A116C /* CloseButton.swift */; };
 		129F439E2D5BEFEE004C74DC /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F439D2D5BEFEE004C74DC /* ErrorModel.swift */; };
+		12A3D09B2D81B6110042B5B9 /* TrainLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A3D09A2D81B6110042B5B9 /* TrainLoadingView.swift */; };
+		12A3D0A72D81B9A20042B5B9 /* CompassLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A3D0A62D81B9A20042B5B9 /* CompassLoadingView.swift */; };
 		12A4C2482D7D818A00446889 /* CarrierInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A4C2472D7D818A00446889 /* CarrierInfoViewModel.swift */; };
 		12A4C2652D7D887900446889 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A4C2642D7D887900446889 /* PreviewMockData.swift */; };
 		12A4C2992D7DA38600446889 /* CacheDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A4C2982D7DA38600446889 /* CacheDataBase.swift */; };
@@ -113,6 +115,8 @@
 		1294FF372D689DBA005A116C /* StorisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorisView.swift; sourceTree = "<group>"; };
 		1294FF872D68F018005A116C /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		129F439D2D5BEFEE004C74DC /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		12A3D09A2D81B6110042B5B9 /* TrainLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLoadingView.swift; sourceTree = "<group>"; };
+		12A3D0A62D81B9A20042B5B9 /* CompassLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassLoadingView.swift; sourceTree = "<group>"; };
 		12A4C2472D7D818A00446889 /* CarrierInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierInfoViewModel.swift; sourceTree = "<group>"; };
 		12A4C2642D7D887900446889 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
 		12A4C2982D7DA38600446889 /* CacheDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheDataBase.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 				126C6A182D773A0F00C1CD03 /* CarrierListViewModel.swift */,
 				12681F7C2D567AA400A1E687 /* CarrierInfoView.swift */,
 				12A4C2472D7D818A00446889 /* CarrierInfoViewModel.swift */,
+				12A3D0A62D81B9A20042B5B9 /* CompassLoadingView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				128D20442D5CE7C0001FCC2A /* CitySelectionButton.swift */,
 				128D202F2D5CD7B5001FCC2A /* FindButton.swift */,
 				128D20372D5CD9C4001FCC2A /* SwapButton.swift */,
+				12A3D09A2D81B6110042B5B9 /* TrainLoadingView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 			files = (
 				126C6A192D773A0F00C1CD03 /* CarrierListViewModel.swift in Sources */,
 				1287FAF82D58AA3D00A71F2D /* FilterView.swift in Sources */,
+				12A3D09B2D81B6110042B5B9 /* TrainLoadingView.swift in Sources */,
 				128D202A2D5CD6C3001FCC2A /* TabBarButton.swift in Sources */,
 				123C77E82D526CFF00009502 /* TabBarView.swift in Sources */,
 				12681F0B2D56266B00A1E687 /* DateFormat.swift in Sources */,
@@ -445,6 +452,7 @@
 				1287FB3E2D5940FE00A71F2D /* ErrorView.swift in Sources */,
 				128D20302D5CD7B5001FCC2A /* FindButton.swift in Sources */,
 				125FC6942D6A43D7003832F6 /* ConfigProgressBar.swift in Sources */,
+				12A3D0A72D81B9A20042B5B9 /* CompassLoadingView.swift in Sources */,
 				129F439E2D5BEFEE004C74DC /* ErrorModel.swift in Sources */,
 				1294FF882D68F018005A116C /* CloseButton.swift in Sources */,
 				12A4C2992D7DA38600446889 /* CacheDataBase.swift in Sources */,

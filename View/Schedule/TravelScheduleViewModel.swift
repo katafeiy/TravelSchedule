@@ -12,6 +12,7 @@ final class TravelScheduleViewModel: ObservableObject {
     @Published var toSettlement: Settlement
     @Published var fromStation: Station
     @Published var toStation: Station
+    @Published var isLoading: Bool = false
     private var isLoaded: Bool = false
     
     init(
@@ -59,6 +60,8 @@ final class TravelScheduleViewModel: ObservableObject {
         
         guard !isLoaded else { return }
         isLoaded = true
+        isLoading = true
+        defer { isLoading = false }
         
         do {
             let allStations = try await TravelScheduleNetworkModel.shared.allStations()

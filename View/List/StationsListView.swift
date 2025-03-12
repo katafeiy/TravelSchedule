@@ -48,7 +48,7 @@ struct StationsListView: View {
                             navModel.popRoot(.schedule(.toRoot))
                         } label: {
                             HStack {
-                                Text(station.title)
+                                Text(station.title == "" ? "Неизвестная станция" : station.title)
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(.ypBlack)

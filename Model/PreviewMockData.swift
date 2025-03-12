@@ -10,7 +10,8 @@ final class PreviewMockData {
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Павелецкий вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Рижский вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Савеловский вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
-        Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Ярославский вокзал", longitude: 0.0, transportType: "", latitude: 0.0)
+        Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Ярославский вокзал", longitude: 0.0, transportType: "", latitude: 0.0),
+        Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "Ленинградский вокзал", longitude: 0.0, transportType: "", latitude: 0.0)
     ]
     let stationsMoscowEmpty: [Station] = [
         Station(direction: "", codes: StationCodes(yandexCode: "", esrCode: ""), stationType: "", title: "", longitude: 0.0, transportType: "", latitude: 0.0),

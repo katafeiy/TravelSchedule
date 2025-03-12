@@ -43,7 +43,7 @@ struct CitysListView: View {
                         navModel.push(.schedule(.station(settlement.stations, isFrom)))
                     } label: {
                         HStack {
-                            Text(settlement.title)
+                            Text(settlement.title == "" ? "Неизвестный город" : settlement.title)
                                 .foregroundColor(.ypBlack)
                             Spacer()
                             Image(systemName: "chevron.right")

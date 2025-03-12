@@ -1,6 +1,5 @@
 import Foundation
 
-@MainActor
 final class CityListViewModel: ObservableObject {
     
     @Published var settlements: [Settlement] = CacheDataBase.shared.settlements
