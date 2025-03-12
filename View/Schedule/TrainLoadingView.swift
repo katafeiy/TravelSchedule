@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TrainLoadingView: View {
+    
     @State private var offset: CGFloat = UIScreen.main.bounds.width
     
     var body: some View {
@@ -8,7 +9,7 @@ struct TrainLoadingView: View {
             HStack(spacing: 0) {
                 Text("🚂")
                     .font(.system(size: 40))
-                ForEach(0..<3, id: \.self) { _ in
+                ForEach(0..<5, id: \.self) { _ in
                     Text("🚃")
                         .font(.system(size: 40))
                 }
@@ -22,7 +23,7 @@ struct TrainLoadingView: View {
             .onAppear {
                 offset = -UIScreen.main.bounds.width
             }
-            Text("Подгружаем данные...")
+            Text("Загружаем данные...")
                 .font(.system(size: 24, weight: .bold))
                 .padding(.top, 5)
         }

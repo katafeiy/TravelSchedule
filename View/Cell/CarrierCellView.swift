@@ -18,7 +18,7 @@ struct CarrierCellView: View {
                         Text(carrierInfo.carrierName)
                             .font(.system(size: 17, weight: .regular))
                             .foregroundColor(.uBlack)
-                        Text("С пересадкой в Костроме")
+                        Text(carrierInfo.isTransfer ? "Прямого следования" : "С пересадкой")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundColor(.uRed)
                     }
