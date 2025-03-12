@@ -4,8 +4,8 @@ struct TrainLoadingView: View {
     @State private var offset: CGFloat = UIScreen.main.bounds.width
     
     var body: some View {
-        VStack {
-            HStack(spacing: 8) {
+        VStack(spacing: 5) {
+            HStack(spacing: 0) {
                 Text("🚂")
                     .font(.system(size: 40))
                 ForEach(0..<3, id: \.self) { _ in
@@ -23,9 +23,12 @@ struct TrainLoadingView: View {
                 offset = -UIScreen.main.bounds.width
             }
             Text("Подгружаем данные...")
-                .font(.system(size: 18, weight: .semibold))
-                .padding(.top, 16)
+                .font(.system(size: 24, weight: .bold))
+                .padding(.top, 5)
         }
     }
 }
 
+#Preview {
+    TrainLoadingView()
+}
