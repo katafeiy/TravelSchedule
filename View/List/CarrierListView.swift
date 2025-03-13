@@ -3,7 +3,7 @@ import SwiftUI
 struct CarrierListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    @StateObject private var viewModel = CarrierListViewModel()
+    @StateObject var viewModel = CarrierListViewModel()
     
     let fromStation: Station
     let toStation: Station
@@ -32,13 +32,13 @@ struct CarrierListView: View {
             ZStack(alignment: .bottom) {
                 if viewModel.isLoading {
                     CompassLoadingView()
-                } else if viewModel.carriers.isEmpty {
+                } else if viewModel.carrierMock.isEmpty {
                     Text("Вариантов нет")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundStyle(.uBlack)
                         .padding(.bottom, 350)
                 } else {
-                    List(viewModel.carriers) { carrier in
+                    List(viewModel.carrierMock) { carrier in
                         Button  {
                             navModel.push(.schedule(.carrierInfo(carrier)))
                         } label: {
@@ -67,6 +67,7 @@ struct CarrierListView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
                                 .padding(.horizontal, 16)
                         }
+                        .environmentObject(viewModel)
                         .padding(.bottom, 24)
                     }
                 }
@@ -80,6 +81,7 @@ struct CarrierListView: View {
         }
     }
 }
+
 
 #Preview {
     

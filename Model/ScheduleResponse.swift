@@ -1,7 +1,7 @@
 import Foundation
 
 // Главная структура для всего ответа
-struct ScheduleResponse: Codable {
+struct ScheduleResponse: Codable, Sendable {
     let pagination: Pagination?
     let intervalSegments: [IntervalSegment]?
     let segments: [Segment]?
@@ -9,14 +9,14 @@ struct ScheduleResponse: Codable {
 }
 
 // Модель пагинации
-struct Pagination: Codable {
+struct Pagination: Codable, Sendable {
     let total: Int?
     let limit: Int?
     let offset: Int?
 }
 
 // Интервальный сегмент
-struct IntervalSegment: Codable {
+struct IntervalSegment: Codable, Sendable {
     let from: StationResponse?
     let thread: Thread?
     let departurePlatform: String?
@@ -43,7 +43,7 @@ struct IntervalSegment: Codable {
 }
 
 // Сегмент маршрута
-struct Segment: Codable {
+struct Segment: Codable, Sendable {
     let arrival: String?
     let from: StationResponse?
     let thread: Thread?
@@ -72,7 +72,7 @@ struct Segment: Codable {
 }
 
 // Станция
-struct StationResponse: Codable {
+struct StationResponse: Codable, Sendable {
     let code: String?
     let title: String?
     let popularTitle: String?
@@ -93,7 +93,7 @@ struct StationResponse: Codable {
 }
 
 // Поток (рейс)
-struct Thread: Codable {
+struct Thread: Codable, Sendable {
     let uid: String?
     let title: String?
     let interval: Interval?
@@ -117,7 +117,7 @@ struct Thread: Codable {
 }
 
 // Интервал рейса
-struct Interval: Codable {
+struct Interval: Codable, Sendable {
     let density: String?
     let endTime: String?
     let beginTime: String?
@@ -130,7 +130,7 @@ struct Interval: Codable {
 }
 
 // Перевозчик
-struct CarrierResponse: Codable {
+struct CarrierResponse: Codable, Sendable {
     let code: Int?
     let contacts: String?
     let url: String?
@@ -149,21 +149,21 @@ struct CarrierResponse: Codable {
 }
 
 // Коды перевозчика
-struct CarrierCodes: Codable {
+struct CarrierCodes: Codable, Sendable {
     let icao: String?
     let sirena: String?
     let iata: String?
 }
 
 // Подтип транспорта
-struct TransportSubtype: Codable {
+struct TransportSubtype: Codable, Sendable {
     let color: String?
     let code: String?
     let title: String?
 }
 
 // Информация о билетах
-struct TicketsInfo: Codable {
+struct TicketsInfo: Codable, Sendable {
     let etMarker: Bool?
     let places: [TicketPlace]?
 
@@ -174,27 +174,27 @@ struct TicketsInfo: Codable {
 }
 
 // Место в билете
-struct TicketPlace: Codable {
+struct TicketPlace: Codable, Sendable {
     let currency: String?
     let price: Price?
     let name: String?
 }
 
 // Цена
-struct Price: Codable {
+struct Price: Codable, Sendable {
     let cents: Int?
     let whole: Int?
 }
 
 // Данные поиска
-struct Search: Codable {
+struct Search: Codable, Sendable {
     let date: String?
     let to: SettlementResponse?
     let from: SettlementResponse?
 }
 
 // Населённый пункт
-struct SettlementResponse: Codable {
+struct SettlementResponse: Codable, Sendable {
     let code: String?
     let type: String?
     let popularTitle: String?

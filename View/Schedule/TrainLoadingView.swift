@@ -23,8 +23,8 @@ struct TrainLoadingView: View {
             .onAppear {
                 offset = -UIScreen.main.bounds.width
             }
-            Text("Загружаем данные...")
-                .font(.system(size: 24, weight: .bold))
+            Text("Строим города...")
+                .font(.system(size: 24, weight: .semibold))
                 .padding(.top, 5)
         }
     }

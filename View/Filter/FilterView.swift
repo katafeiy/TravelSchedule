@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FilterView: View {
     
+    @EnvironmentObject var viewModel: CarrierListViewModel
     @EnvironmentObject var navModel: NavigationModel
     @State private var selectedTimes: Set<String> = []
     @State private var showTransfers: Bool?
@@ -56,6 +57,7 @@ struct FilterView: View {
                     Image(systemName: showTransfers == true ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
                             showTransfers = true
+                            viewModel.updateTransition(with: true)
                         }
                 }
                 .frame(height: 60)
@@ -66,6 +68,7 @@ struct FilterView: View {
                     Image(systemName: showTransfers == false ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
                             showTransfers = false
+                            viewModel.updateTransition(with: false)
                         }
                 }
                 .frame(height: 60)

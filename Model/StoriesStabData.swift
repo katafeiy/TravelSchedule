@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 final class StoriesStabData: ObservableObject {
     
     static let shared = StoriesStabData()

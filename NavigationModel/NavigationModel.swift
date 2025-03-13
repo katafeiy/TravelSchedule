@@ -22,6 +22,7 @@ enum Screen: Hashable {
     }
 }
 
+@MainActor
 final class NavigationModel: ObservableObject {
     
     @Published var pathSchedule = NavigationPath()
@@ -57,6 +58,7 @@ final class NavigationModel: ObservableObject {
     }
 }
 
+@MainActor
 struct Route {
     
     @ViewBuilder
@@ -78,6 +80,7 @@ struct Route {
             CarrierInfoView(carrier: carrier)
         case .filter:
             FilterView()
+                .environmentObject(CarrierListViewModel())
         case .toRoot, .void:
             EmptyView()
         }

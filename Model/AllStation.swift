@@ -1,28 +1,28 @@
 import Foundation
 
-struct CountryData: Decodable {
+struct CountryData: Decodable, Sendable {
     let countries: [Country]
 }
 
-struct Country: Decodable {
+struct Country: Decodable, Sendable {
     let title: String
     let codes: Codes
     let regions: [Region]
 }
 
-struct Region: Decodable {
+struct Region: Decodable, Sendable {
     let title: String
     let codes: Codes?
     let settlements: [Settlement]
 }
 
-struct Settlement: Decodable, Hashable, Equatable {
+struct Settlement: Decodable, Hashable, Equatable, Sendable {
     let title: String
     let codes: Codes?
     let stations: [Station]
 }
 
-struct Station: Decodable, Hashable, Equatable {
+struct Station: Decodable, Hashable, Equatable, Sendable {
     let direction: String?
     let codes: StationCodes
     let stationType: String
@@ -38,7 +38,7 @@ struct Station: Decodable, Hashable, Equatable {
     }
 }
 
-struct Codes: Decodable, Hashable, Equatable {
+struct Codes: Decodable, Hashable, Equatable, Sendable {
     let yandexCode: String?
     let esrCode: String?
 
@@ -48,7 +48,7 @@ struct Codes: Decodable, Hashable, Equatable {
     }
 }
 
-struct StationCodes: Decodable, Hashable, Equatable {
+struct StationCodes: Decodable, Hashable, Equatable, Sendable {
     let yandexCode: String?
     let esrCode: String?
 

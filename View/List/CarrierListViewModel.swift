@@ -3,8 +3,16 @@ import Foundation
 @MainActor
 final class CarrierListViewModel: ObservableObject {
     
-    @Published var carriers: [Carrier] = []
+    private var carriers: [Carrier] = []
+    private var withTransition: Bool?
+    @Published var visibleCarriers: [Carrier] = []
     @Published var isLoading: Bool = false
+    
+    
+    @Published var carrierMock: [Carrier] = [
+        Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "05:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: ""),
+        Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
+        ]
     
     func fetchCarriers(from: String, to: String) async throws {
         
@@ -31,8 +39,22 @@ final class CarrierListViewModel: ObservableObject {
                 )
                 carriers.append(newCarrier)
             }
+            updateVisibleCarriers()
         } catch {
             print("Ошибка загрузки: \(error.localizedDescription)") 
         }
+    }
+    
+    func updateTransition(with transition: Bool) {
+        withTransition = transition
+        updateVisibleCarriers()
+    }
+    
+    func updateVisibleCarriers() {
+        visibleCarriers = carrierMock.filter {
+            guard let withTransition else { return true }
+            return withTransition ? $0.isTransfer : !$0.isTransfer
+        }
+        
     }
 }

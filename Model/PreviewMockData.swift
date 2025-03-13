@@ -1,3 +1,6 @@
+import Foundation
+
+@MainActor
 final class PreviewMockData {
     
     static let shared = PreviewMockData()
@@ -33,6 +36,13 @@ final class PreviewMockData {
     
     let settlementMoscowEmpty: [Settlement] = [Settlement(title: "", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
     let settlementSanPetersburgEmpty: [Settlement] = [Settlement(title: "", codes: Codes(yandexCode: "", esrCode: ""), stations: [])]
+    
+    @Published var carrierMock: [Carrier] = [
+        Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "5:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: ""),
+        Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
+        ]
+    
+    
     
     
     
