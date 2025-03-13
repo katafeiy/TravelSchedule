@@ -4,8 +4,8 @@ import Foundation
 final class CarrierListViewModel: ObservableObject {
     
     private var carriers: [Carrier] = []
-    private var withTransition: Bool?
-    @Published var visibleCarriers: [Carrier] = []
+    @Published var visibleCarriers: [Carrier] = [Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "05:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")]
+    @Published var withTransition: Bool?
     @Published var isLoading: Bool = false
     
     
@@ -39,15 +39,9 @@ final class CarrierListViewModel: ObservableObject {
                 )
                 carriers.append(newCarrier)
             }
-            updateVisibleCarriers()
         } catch {
             print("Ошибка загрузки: \(error.localizedDescription)") 
         }
-    }
-    
-    func updateTransition(with transition: Bool) {
-        withTransition = transition
-        updateVisibleCarriers()
     }
     
     func updateVisibleCarriers() {
@@ -55,6 +49,13 @@ final class CarrierListViewModel: ObservableObject {
             guard let withTransition else { return true }
             return withTransition ? $0.isTransfer : !$0.isTransfer
         }
-        
     }
+    
+//    func filter(_ transition: Bool) {
+//        if transition == false {
+//            visibleCarriers = carrierMock.filter { $0.isTransfer == false }
+//        } else {
+//            visibleCarriers = carrierMock.filter { $0.isTransfer == true }
+//        }
+//    }
 }

@@ -57,7 +57,8 @@ struct FilterView: View {
                     Image(systemName: showTransfers == true ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
                             showTransfers = true
-                            viewModel.updateTransition(with: true)
+                            viewModel.withTransition = true
+                            viewModel.updateVisibleCarriers()
                         }
                 }
                 .frame(height: 60)
@@ -68,7 +69,8 @@ struct FilterView: View {
                     Image(systemName: showTransfers == false ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
                             showTransfers = false
-                            viewModel.updateTransition(with: false)
+                            viewModel.withTransition = false
+                            viewModel.updateVisibleCarriers()
                         }
                 }
                 .frame(height: 60)

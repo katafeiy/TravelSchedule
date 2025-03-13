@@ -32,13 +32,13 @@ struct CarrierListView: View {
             ZStack(alignment: .bottom) {
                 if viewModel.isLoading {
                     CompassLoadingView()
-                } else if viewModel.carrierMock.isEmpty {
+                } else if viewModel.visibleCarriers.isEmpty {
                     Text("Вариантов нет")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundStyle(.uBlack)
                         .padding(.bottom, 350)
                 } else {
-                    List(viewModel.carrierMock) { carrier in
+                    List(viewModel.visibleCarriers) { carrier in
                         Button  {
                             navModel.push(.schedule(.carrierInfo(carrier)))
                         } label: {
