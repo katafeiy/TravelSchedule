@@ -7,13 +7,13 @@ final class CarrierListViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var visibleCarrier: [Carrier] = []
     
-    var carrierMock2: [Carrier] = [
-        Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "05:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: ""),
-        Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
-        ]
+//    var carrierMock2: [Carrier] = [
+//        Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "05:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: ""),
+//        Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
+//        ]
     
     init() {
-        visibleCarrier = carrierMock2
+        visibleCarrier = carriers
     }
     
     func fetchCarriers(from: String, to: String) async throws {
@@ -40,6 +40,7 @@ final class CarrierListViewModel: ObservableObject {
                     logo: segment.thread?.carrier?.logo ?? ""
                 )
                 carriers.append(newCarrier)
+                visibleCarrier = carriers
             }
         } catch {
             print("Ошибка загрузки: \(error.localizedDescription)") 
@@ -48,21 +49,10 @@ final class CarrierListViewModel: ObservableObject {
     
     func updateVisibleCarriers(withTransfer: Bool) {
         
-        visibleCarrier = carrierMock2.filter { carrier in
+        visibleCarrier = carriers.filter { carrier in
            
             return carrier.isTransfer == withTransfer
         }
         print("Результат фильтрации: \(visibleCarrier)")
     }
-    
-//    private var filteredCarriers: [Carrier] {
-//            viewModel.carrierList.filter { carrier in
-//                let transferCondition = (viewModel.transferFlag ?? true) ? true : (carrier.transfer?.isEmpty ?? true)
-//                let timeCondition = viewModel.timeSelections.isEmpty ||
-//                    viewModel.timeSelections.contains { $0.contains(viewModel.carrierInInterval(carrier: carrier)) }
-//                return transferCondition && timeCondition
-//            }
-//        }
-
-
 }

@@ -68,7 +68,6 @@ struct CarrierListView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
                                 .padding(.horizontal, 16)
                         }
-//                        .environmentObject(viewModel)
                         .padding(.bottom, 24)
                     }
                 }
@@ -81,9 +80,9 @@ struct CarrierListView: View {
             }
             .navigationBarBackButtonHidden(true)
             .onAppear {
-//                Task {
-//                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
-//                }
+                Task {
+                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
+                }
             }
         }
     }
