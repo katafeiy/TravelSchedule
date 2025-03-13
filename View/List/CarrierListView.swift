@@ -32,13 +32,13 @@ struct CarrierListView: View {
             ZStack(alignment: .bottom) {
                 if viewModel.isLoading {
                     CompassLoadingView()
-                } else if viewModel.visibleCarriers.isEmpty {
+                } else if viewModel.filterResult.isEmpty {
                     Text("Вариантов нет")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundStyle(.uBlack)
                         .padding(.bottom, 350)
                 } else {
-                    List(viewModel.visibleCarriers) { carrier in
+                    List(viewModel.filterResult) { carrier in
                         Button  {
                             navModel.push(.schedule(.carrierInfo(carrier)))
                         } label: {
@@ -73,11 +73,11 @@ struct CarrierListView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
-            .onAppear {
-                Task {
-                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
-                }
-            }
+//            .onAppear {
+//                Task {
+//                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
+//                }
+//            }
         }
     }
 }
