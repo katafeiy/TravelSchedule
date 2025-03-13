@@ -2,10 +2,10 @@ import SwiftUI
 
 struct FilterView: View {
     
-    @EnvironmentObject var viewModel: CarrierListViewModel
     @EnvironmentObject var navModel: NavigationModel
     @State private var selectedTimes: Set<String> = []
     @State private var showTransfers: Bool?
+    @Binding var hasTransfers: Bool
     
     let timeOptions = [
         ("Утро", "06:00 - 12:00"),
@@ -57,8 +57,7 @@ struct FilterView: View {
                     Image(systemName: showTransfers == true ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
                             showTransfers = true
-                            viewModel.withTransition = true
-                            viewModel.updateVisibleCarriers()
+                            hasTransfers = true
                         }
                 }
                 .frame(height: 60)
@@ -69,8 +68,8 @@ struct FilterView: View {
                     Image(systemName: showTransfers == false ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
                             showTransfers = false
-                            viewModel.withTransition = false
-                            viewModel.updateVisibleCarriers()
+                            hasTransfers = false
+
                         }
                 }
                 .frame(height: 60)
@@ -96,7 +95,7 @@ struct FilterView: View {
 
 #Preview {
     NavigationStack {
-        FilterView()
+        FilterView(hasTransfers: .constant(false))
             .environmentObject(NavigationModel())
     }
 }

@@ -4,6 +4,7 @@ struct CarrierListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @StateObject var viewModel = CarrierListViewModel()
+    @State var hasTransfer: Bool = false
     
     let fromStation: Station
     let toStation: Station
@@ -32,13 +33,13 @@ struct CarrierListView: View {
             ZStack(alignment: .bottom) {
                 if viewModel.isLoading {
                     CompassLoadingView()
-                } else if viewModel.filterResult.isEmpty {
+                } else if viewModel.visibleCarrier.isEmpty {
                     Text("Вариантов нет")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundStyle(.uBlack)
                         .padding(.bottom, 350)
                 } else {
-                    List(viewModel.filterResult) { carrier in
+                    List(viewModel.visibleCarrier) { carrier in
                         Button  {
                             navModel.push(.schedule(.carrierInfo(carrier)))
                         } label: {
@@ -56,7 +57,7 @@ struct CarrierListView: View {
                     
                     if !viewModel.isLoading {
                         Button{
-                            navModel.push(.schedule(.filter))
+                            navModel.push(.filter(.filter))
                         } label: {
                             Text("Уточнить время")
                                 .frame(maxWidth: .infinity)
@@ -67,24 +68,28 @@ struct CarrierListView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
                                 .padding(.horizontal, 16)
                         }
-                        .environmentObject(viewModel)
+//                        .environmentObject(viewModel)
                         .padding(.bottom, 24)
                     }
                 }
             }
+            .navigationDestination(for: Screen.Filter.self) { _ in
+                Route.scheduleFlowDestination(.filter, hasTransfer: $hasTransfer)
+            }
+            .onChange(of: hasTransfer) { newValue in
+                viewModel.updateVisibleCarriers(withTransfer: newValue)
+            }
             .navigationBarBackButtonHidden(true)
-//            .onAppear {
+            .onAppear {
 //                Task {
 //                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
 //                }
-//            }
+            }
         }
     }
 }
 
-
 #Preview {
-    
     NavigationStack {
         CarrierListView(
             fromStation: PreviewMockData.shared.stationsMoscow[8],

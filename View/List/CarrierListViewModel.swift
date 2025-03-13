@@ -4,30 +4,29 @@ import Foundation
 final class CarrierListViewModel: ObservableObject {
     
     private var carriers: [Carrier] = []
-    @Published var visibleCarriers: [Carrier] = []
-    @Published var withTransition: Bool?
     @Published var isLoading: Bool = false
+    @Published var visibleCarrier: [Carrier] = []
     
-    var filterResult: [Carrier] {
-        visibleCarriers.isEmpty ? carrierMock : visibleCarriers
-    }
-    
-    @Published var carrierMock: [Carrier] = [
+    var carrierMock2: [Carrier] = [
         Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "05:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: ""),
         Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
         ]
+    
+    init() {
+        visibleCarrier = carrierMock2
+    }
     
     func fetchCarriers(from: String, to: String) async throws {
         
         isLoading = true
         defer { isLoading = false }
-        
+    
         do {
             
         let data = try await TravelScheduleNetworkModel.shared.scheduleBetweenStation(from: from, to: to)
         
             data.segments?.forEach { segment in
-                
+
                 let newCarrier = Carrier(
                     isTransfer: segment.hasTransfers ?? false,
                     carrierName: segment.thread?.carrier?.title ?? "",
@@ -47,14 +46,23 @@ final class CarrierListViewModel: ObservableObject {
         }
     }
     
-    func updateVisibleCarriers() {
-        // Мы создаём новый массив, чтобы гарантировать обновление UI
-        let filteredCarriers = carrierMock.filter {
-            guard let withTransition else { return true }
-            return withTransition ? $0.isTransfer : !$0.isTransfer
+    func updateVisibleCarriers(withTransfer: Bool) {
+        
+        visibleCarrier = carrierMock2.filter { carrier in
+           
+            return carrier.isTransfer == withTransfer
         }
-        // Присваиваем новый отфильтрованный массив
-        visibleCarriers = filteredCarriers
-        print(visibleCarriers)
+        print("Результат фильтрации: \(visibleCarrier)")
     }
+    
+//    private var filteredCarriers: [Carrier] {
+//            viewModel.carrierList.filter { carrier in
+//                let transferCondition = (viewModel.transferFlag ?? true) ? true : (carrier.transfer?.isEmpty ?? true)
+//                let timeCondition = viewModel.timeSelections.isEmpty ||
+//                    viewModel.timeSelections.contains { $0.contains(viewModel.carrierInInterval(carrier: carrier)) }
+//                return transferCondition && timeCondition
+//            }
+//        }
+
+
 }
