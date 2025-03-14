@@ -38,9 +38,9 @@ paths:
           type: string
       - name: transfers
         in: query
-        description: Параметр пересадок
+        description: Параметр наличия пересадок по ходу рейса пересадок
         required: false
-        schemas:
+        schema:
           type: boolean
       responses:
         "200":
