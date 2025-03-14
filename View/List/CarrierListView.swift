@@ -82,7 +82,7 @@ struct CarrierListView: View {
             .navigationBarBackButtonHidden(true)
             .onAppear {
                 Task {
-                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "")
+                    try await viewModel.fetchCarriers(from: fromStation.codes.yandexCode ?? "", to: toStation.codes.yandexCode ?? "", transfers: true)
                 }
             }
         }

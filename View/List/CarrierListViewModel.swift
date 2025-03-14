@@ -16,7 +16,7 @@ final class CarrierListViewModel: ObservableObject {
         visibleCarrier = carriers
     }
     
-    func fetchCarriers(from: String, to: String) async throws {
+    func fetchCarriers(from: String, to: String, transfers: Bool) async throws {
         
         if carriers.isEmpty {
             
@@ -26,7 +26,7 @@ final class CarrierListViewModel: ObservableObject {
             
             do {
                 
-                let data = try await TravelScheduleNetworkModel.shared.scheduleBetweenStation(from: from, to: to)
+                let data = try await TravelScheduleNetworkModel.shared.scheduleBetweenStation(from: from, to: to, transfers: transfers)
                 
                 data.segments?.forEach { segment in
                     
@@ -56,9 +56,7 @@ final class CarrierListViewModel: ObservableObject {
     }
     
     func updateVisibleCarriers(withTransfer: Bool) {
-        
         visibleCarrier = carriers.filter { carrier in
-            
             return carrier.isTransfer == withTransfer
         }
         print("Результат фильтрации: \(visibleCarrier)")

@@ -34,10 +34,10 @@ final class TravelScheduleNetworkModel {
     //        )
     //    }
     
-    func scheduleBetweenStation(from: String, to: String) async throws -> ScheduleResponse {
+    func scheduleBetweenStation(from: String, to: String, transfers: Bool) async throws -> ScheduleResponse {
         //        let service = try createService()
         print("Получаем объекты scheduleBetweenStation")
-        let data = try await service.getScheduleRouteBetweenStation(from: from, to: to)
+        let data = try await service.getScheduleRouteBetweenStation(from: from, to: to, transfers: transfers)
         print("Получили обЪекты \(data)\n")
         
         let intervalSegments = data.interval_segments?.compactMap { segmentsItem in
