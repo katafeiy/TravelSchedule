@@ -15,6 +15,7 @@ struct CarrierListView: View {
             HStack {
                 Button(action: {
                     navModel.pop(.schedule(.void))
+                    CacheDataBase.shared.carriers.removeAll()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -53,7 +54,7 @@ struct CarrierListView: View {
                     }
                     .listStyle(.plain)
                     .scrollIndicators(.hidden)
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 80)
                     
                     if !viewModel.isLoading {
                         Button{
@@ -73,7 +74,7 @@ struct CarrierListView: View {
                 }
             }
             .navigationDestination(for: Screen.Filter.self) { _ in
-                Route.scheduleFlowDestination(.filter, hasTransfer: $hasTransfer)
+                Route.filterFlowDestination(.filter, hasTransfer: $hasTransfer)
             }
             .onChange(of: hasTransfer) { newValue in
                 viewModel.updateVisibleCarriers(withTransfer: newValue)

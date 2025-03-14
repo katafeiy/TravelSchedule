@@ -95,15 +95,13 @@ struct Route {
     }
     
     @ViewBuilder
-    static func scheduleFlowDestination(
+    static func filterFlowDestination(
         _ screen: Screen.Filter,
         hasTransfer: Binding<Bool>
     ) -> some View {
         switch screen {
         case .filter:
             FilterView(hasTransfers: hasTransfer)
-//        default:
-//            EmptyView()
         }
     }
 
