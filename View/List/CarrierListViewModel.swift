@@ -33,8 +33,8 @@ final class CarrierListViewModel: ObservableObject {
                         endTime: DateFormatTime.formatTime(segment.arrival ?? "", format: DateFormatTime.Format.HHmm),
                         timeInRoute: (segment.duration ?? 0) / 3600,
                         date: DateFormatTime.formatTime(segment.startDate ?? "", format: DateFormatTime.Format.dMMMM),
-                        email: segment.thread?.carrier?.email ?? "",
-                        phoneNumber: segment.thread?.carrier?.phone ?? "",
+                        email: segment.thread?.carrier?.email ?? "Электронный адрес отсутсвует",
+                        phoneNumber: segment.thread?.carrier?.phone ?? "Номер отсутствует",
                         logo: segment.thread?.carrier?.logo ?? ""
                     )
                     CacheDataBase.shared.carriers.append(newCarrier)

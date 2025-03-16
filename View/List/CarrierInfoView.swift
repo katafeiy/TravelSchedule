@@ -30,6 +30,11 @@ struct CarrierInfoView: View {
             }
             
             KFImage(URL(string: viewModel.carrier.logo))
+                .placeholder {
+                   Text("Логотип перевозчика отсутствует")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .foregroundStyle(.uRed)
+                }
                 .resizable()
                 .scaledToFit()
                 .frame(height: 104)

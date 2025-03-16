@@ -11,6 +11,12 @@ struct CarrierCellView: View {
             VStack(spacing: 12)  {
                 HStack {
                     KFImage(URL(string: carrierInfo.carrierLogo))
+                        .placeholder {
+                            Image(.trainPlaceholder)
+                                .resizable()
+                                .frame(width: 38, height: 38)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
                         .resizable()
                         .frame(width: 38, height: 38)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
