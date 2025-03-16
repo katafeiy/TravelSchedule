@@ -50,13 +50,6 @@ final class CarrierListViewModel: ObservableObject {
         }
     }
     
-//    func filterCarriers(withTransfer: Bool) {
-//        visibleCarrier = carriers.filter { carrier in
-//            return carrier.isTransfer == withTransfer
-//        }
-//        print("Результат фильтрации: \(visibleCarrier)")
-//    }
-    
     func filterCarriers(
         selectedTimes: Set<String>,
         hasTransfers: Bool?,
