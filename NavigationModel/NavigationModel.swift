@@ -98,11 +98,12 @@ struct Route {
     static func filterFlowDestination(
         _ screen: Screen.Filter,
         selectedTimes: Binding<Set<String>>,
-        hasTransfer: Binding<Bool?>
+        hasTransfer: Binding<Bool?>,
+        isActive: Binding<Bool>
     ) -> some View {
         switch screen {
         case .filter:
-            FilterView(selectedTimes: selectedTimes, hasTransfers: hasTransfer)
+            FilterView(selectedTimes: selectedTimes, hasTransfers: hasTransfer, isActive: isActive)
         }
     }
 

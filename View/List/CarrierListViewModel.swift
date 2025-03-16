@@ -24,7 +24,7 @@ final class CarrierListViewModel: ObservableObject {
                 let data = try await TravelScheduleNetworkModel.shared.scheduleBetweenStation(from: from, to: to, transfers: transfers)
                 
                 data.segments?.forEach { segment in
-                    
+                
                     let newCarrier = Carrier(
                         isTransfer: segment.hasTransfers ?? false,
                         carrierName: segment.thread?.carrier?.title ?? "",
@@ -33,8 +33,8 @@ final class CarrierListViewModel: ObservableObject {
                         endTime: DateFormatTime.formatTime(segment.arrival ?? "", format: DateFormatTime.Format.HHmm),
                         timeInRoute: (segment.duration ?? 0) / 3600,
                         date: DateFormatTime.formatTime(segment.startDate ?? "", format: DateFormatTime.Format.dMMMM),
-                        email: segment.thread?.carrier?.email ?? "Электронный адрес отсутсвует",
-                        phoneNumber: segment.thread?.carrier?.phone ?? "Номер отсутствует",
+                        email: (segment.thread?.carrier?.email?.isEmpty == false ? segment.thread?.carrier?.email : "Электронный адрес отсутствует") ?? "Электронный адрес отсутствует",
+                        phoneNumber: (segment.thread?.carrier?.phone?.isEmpty == false ? segment.thread?.carrier?.phone : "Номер отсутствует") ?? "Номер отсутствует",
                         logo: segment.thread?.carrier?.logo ?? ""
                     )
                     CacheDataBase.shared.carriers.append(newCarrier)

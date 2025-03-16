@@ -5,6 +5,7 @@ struct FilterView: View {
     @EnvironmentObject var navModel: NavigationModel
     @Binding var selectedTimes: Set<String>
     @Binding var hasTransfers: Bool?
+    @Binding var isActive: Bool
     
     static let timeOptions: [String: (start: String, end: String)] = [
         "Утро": ("06:00", "12:00"),
@@ -12,6 +13,10 @@ struct FilterView: View {
         "Вечер": ("18:00", "23:59"),
         "Ночь": ("00:00", "05:59")
     ]
+    
+    var isFilterActive: Bool {
+        !selectedTimes.isEmpty && hasTransfers != nil
+    }
     
     var body: some View {
         VStack(alignment: .center) {
@@ -49,7 +54,7 @@ struct FilterView: View {
                 Text("Показывать варианты с пересадками")
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(nil)
-
+                
                 HStack {
                     Text("Да")
                     Spacer()
@@ -76,6 +81,7 @@ struct FilterView: View {
             
             Button {
                 navModel.pop(.schedule(.void))
+                isActive = isFilterActive
             } label: {
                 Text("Применить")
                     .foregroundColor(.uWhite)
@@ -84,14 +90,14 @@ struct FilterView: View {
                     .background(.uBlue)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
-            .opacity((!selectedTimes.isEmpty && hasTransfers != nil) ? 1 : 0)
+            .opacity(isFilterActive ? 1 : 0)
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        FilterView(selectedTimes: .constant([]), hasTransfers: .constant(false))
+        FilterView(selectedTimes: .constant([]), hasTransfers: .constant(false), isActive: .constant(false))
             .environmentObject(NavigationModel())
     }
 }

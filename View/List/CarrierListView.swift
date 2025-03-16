@@ -4,6 +4,7 @@ struct CarrierListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @StateObject var viewModel = CarrierListViewModel()
+    @State var isActive: Bool = false
     @State var selectedTimes: Set<String> = []
     @State var hasTransfer: Bool?
     
@@ -17,6 +18,7 @@ struct CarrierListView: View {
                 Button(action: {
                     navModel.pop(.schedule(.void))
                     CacheDataBase.shared.carriers.removeAll()
+                    isActive = false
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.ypBlack)
@@ -61,21 +63,26 @@ struct CarrierListView: View {
                         Button{
                             navModel.push(.filter(.filter))
                         } label: {
-                            Text("Уточнить время")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .foregroundColor(.uWhite)
-                                .font(.system(size: 17, weight: .bold))
-                                .background(.uBlue)
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                                .padding(.horizontal, 16)
+                            HStack {
+                                Text("Уточнить время")
+                                Circle()
+                                    .fill(isActive ? .uRed : .uBlue)
+                                    .frame(width: 8, height: 8)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .foregroundColor(.uWhite)
+                        .font(.system(size: 17, weight: .bold))
+                        .background(.uBlue)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .padding(.horizontal, 16)
                         .padding(.bottom, 24)
                     }
                 }
             }
             .navigationDestination(for: Screen.Filter.self) { _ in
-                Route.filterFlowDestination(.filter, selectedTimes: $selectedTimes, hasTransfer: $hasTransfer)
+                Route.filterFlowDestination(.filter, selectedTimes: $selectedTimes, hasTransfer: $hasTransfer, isActive: $isActive)
             }
             .onChange(of: hasTransfer) { _ in applyFilters()}
             .onChange(of: selectedTimes) { _ in applyFilters()}
