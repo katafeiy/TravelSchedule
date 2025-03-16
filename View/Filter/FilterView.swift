@@ -3,7 +3,6 @@ import SwiftUI
 struct FilterView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    @State private var showTransfers: Bool?
     @Binding var selectedTimes: Set<String>
     @Binding var hasTransfers: Bool?
     
@@ -50,13 +49,12 @@ struct FilterView: View {
                 Text("Показывать варианты с пересадками")
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(nil)
-                
+
                 HStack {
                     Text("Да")
                     Spacer()
-                    Image(systemName: showTransfers == true ? "largecircle.fill.circle" : "circle")
+                    Image(systemName: hasTransfers == true ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
-                            showTransfers = true
                             hasTransfers = true
                         }
                 }
@@ -65,11 +63,9 @@ struct FilterView: View {
                 HStack {
                     Text("Нет")
                     Spacer()
-                    Image(systemName: showTransfers == false ? "largecircle.fill.circle" : "circle")
+                    Image(systemName: hasTransfers == false ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
-                            showTransfers = false
                             hasTransfers = false
-
                         }
                 }
                 .frame(height: 60)
@@ -80,7 +76,6 @@ struct FilterView: View {
             
             Button {
                 navModel.pop(.schedule(.void))
-                
             } label: {
                 Text("Применить")
                     .foregroundColor(.uWhite)

@@ -7,11 +7,6 @@ final class CarrierListViewModel: ObservableObject {
     @Published var visibleCarrier: [Carrier] = []
     @Published var isLoading: Bool = false
     
-//        var carrierMock: [Carrier] = [
-//            Carrier(isTransfer: true, carrierName: "RZHD", carrierLogo: "", startTime: "21:30", endTime: "05:20", timeInRoute: 55, date: "16 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: ""),
-//            Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
-//            ]
-    
     init() {
         visibleCarrier = carriers
     }
@@ -55,12 +50,12 @@ final class CarrierListViewModel: ObservableObject {
         }
     }
     
-    func filterCarriers(withTransfer: Bool) {
-        visibleCarrier = carriers.filter { carrier in
-            return carrier.isTransfer == withTransfer
-        }
-        print("Результат фильтрации: \(visibleCarrier)")
-    }
+//    func filterCarriers(withTransfer: Bool) {
+//        visibleCarrier = carriers.filter { carrier in
+//            return carrier.isTransfer == withTransfer
+//        }
+//        print("Результат фильтрации: \(visibleCarrier)")
+//    }
     
     func filterCarriers(
         selectedTimes: Set<String>,
@@ -78,25 +73,17 @@ final class CarrierListViewModel: ObservableObject {
         dateFormatter.dateFormat = "HH:mm"
 
         visibleCarrier = carriers.filter { carrier in
-            guard let startTime = dateFormatter.date(from: carrier.startTime),
-                  let endTime = dateFormatter.date(from: carrier.endTime) else {
-                return false
-            }
-
-            if let showTransfers = hasTransfers, showTransfers != carrier.isTransfer {
-                return false
-            }
-           
+            
+            guard let startTime = dateFormatter.date(from: carrier.startTime) else { return false }
+            guard let hasTransfers, hasTransfers == carrier.isTransfer else { return false }
+            
             return selectedRanges.contains { range in
                 if let rangeStart = dateFormatter.date(from: range.start),
                    let rangeEnd = dateFormatter.date(from: range.end) {
                     return startTime >= rangeStart && startTime <= rangeEnd
-//                    return (startTime >= rangeStart && startTime <= rangeEnd) ||
-//                           (endTime >= rangeStart && endTime <= rangeEnd)
                 }
                 return false
             }
         }
     }
-    
 }

@@ -35,7 +35,7 @@ struct CarrierCellView: View {
                     Rectangle()
                         .fill(.uGray)
                         .frame(height: 1)
-                    Text("\(carrierInfo.timeInRoute) часов")
+                    Text(pluralization(carrierInfo.timeInRoute))
                         .font(.system(size: 12, weight: .regular))
                         .foregroundColor(.uBlack)
                     Rectangle()
@@ -51,6 +51,18 @@ struct CarrierCellView: View {
         .frame(height: 104)
         .background(Color.uLightGray)
         .clipShape(RoundedRectangle(cornerRadius: 24))
+    }
+    
+    private func pluralization(_ hours: Int) -> String {
+        return switch hours % 100 {
+        case 11...19: "\(hours) часов"
+        default:
+            switch hours % 10 {
+            case 1: "\(hours) час"
+            case 2...4: "\(hours) часа"
+            default: "\(hours) часов"
+            }
+        }
     }
 }
 

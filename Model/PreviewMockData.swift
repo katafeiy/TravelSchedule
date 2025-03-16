@@ -42,10 +42,6 @@ final class PreviewMockData {
         Carrier(isTransfer: false, carrierName: "RZHD", carrierLogo: "", startTime: "14:30", endTime: "21:20", timeInRoute: 55, date: "18 Марта", email: "cbdjsbcjbn@gmail.com", phoneNumber: "4545-4545-4545", logo: "")
         ]
     
-    
-    
-    
-    
     let carrier = Carrier(
         isTransfer: false,
         carrierName: "ОАО \u{00AB}РЖД\u{00BB}",

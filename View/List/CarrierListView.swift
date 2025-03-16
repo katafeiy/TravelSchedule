@@ -87,7 +87,6 @@ struct CarrierListView: View {
             }
         }
     }
-    
     private func applyFilters() {
         viewModel.filterCarriers(
             selectedTimes: selectedTimes,
