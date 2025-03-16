@@ -4,7 +4,8 @@ struct CarrierListView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @StateObject var viewModel = CarrierListViewModel()
-    @State var hasTransfer: Bool = false
+    @State var selectedTimes: Set<String> = []
+    @State var hasTransfer: Bool?
     
     let fromStation: Station
     let toStation: Station
@@ -74,11 +75,10 @@ struct CarrierListView: View {
                 }
             }
             .navigationDestination(for: Screen.Filter.self) { _ in
-                Route.filterFlowDestination(.filter, hasTransfer: $hasTransfer)
+                Route.filterFlowDestination(.filter, selectedTimes: $selectedTimes, hasTransfer: $hasTransfer)
             }
-            .onChange(of: hasTransfer) { newValue in
-                viewModel.updateVisibleCarriers(withTransfer: newValue)
-            }
+            .onChange(of: hasTransfer) { _ in applyFilters()}
+            .onChange(of: selectedTimes) { _ in applyFilters()}
             .navigationBarBackButtonHidden(true)
             .onAppear {
                 Task {
@@ -86,6 +86,15 @@ struct CarrierListView: View {
                 }
             }
         }
+    }
+    
+    private func applyFilters() {
+        viewModel.filterCarriers(
+            selectedTimes: selectedTimes,
+            hasTransfers: hasTransfer,
+            timeOptions: FilterView.timeOptions
+        )
+        
     }
 }
 

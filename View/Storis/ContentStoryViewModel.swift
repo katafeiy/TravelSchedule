@@ -90,7 +90,13 @@ final class ContentStoryViewModel: ObservableObject {
     func startTimer() {
         print("Start timer")
         timer = Self.createTimer(configuration: configuration)
-        cancellable = timer.connect()
+        cancellable = timer
+            .autoconnect()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                guard let self else { return }
+                self.timerTick()
+            })
     }
     
     func stopTimer() {
