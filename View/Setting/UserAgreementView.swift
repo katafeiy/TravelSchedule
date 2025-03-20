@@ -25,7 +25,7 @@ struct UserAgreementView: View {
             .navigationBarBackButtonHidden(true)
             .padding(.horizontal, 10)
             
-            WebView(url: URL(string: Constant.YPUAUrl.stringValue)!, colorScheme: colorScheme)
+            WebView(url: URL(string: YPUserAgreement.YPUAUrl.stringValue)!, colorScheme: colorScheme)
         }
     }
 }

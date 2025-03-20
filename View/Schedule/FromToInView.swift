@@ -4,10 +4,8 @@ struct FromToInView: View {
     
     @EnvironmentObject var navModel: NavigationModel
     @Binding var isTabBarHidden: Bool
-    @Binding var fromSettlement: Settlement
-    @Binding var toSettlement: Settlement
-    @Binding var fromStation: Station
-    @Binding var toStation: Station
+    @Binding var fromCity: String
+    @Binding var toCity: String
 
     var body: some View {
         
@@ -15,30 +13,20 @@ struct FromToInView: View {
             ZStack {
                 HStack(spacing: 16) {
                     VStack (alignment: .leading, spacing: 15) {
-                        CitySelectionButton(
-                            title: "Откуда",
-                            settlementName: fromSettlement.title,
-                            stationName: fromStation.title,
-                            isIndentation: true
-                        ) {
-                            navModel.push(.schedule(.settlement(true)))
+                        CitySelectionButton(title: "Откуда", city: fromCity, isIndentation: true) {
+                            navModel.push(.schedule(.city(true)))
                             isTabBarHidden = true
                         }
                         Divider()
-                        CitySelectionButton(
-                            title: "Куда",
-                            settlementName: toSettlement.title,
-                            stationName: toStation.title,
-                            isIndentation: false
-                        ) {
-                            navModel.push(.schedule(.settlement(false)))
+                        CitySelectionButton(title: "Куда", city: toCity, isIndentation: false) {
+                            navModel.push(.schedule(.city(false)))
                             isTabBarHidden = true
                         }
                     }
                     .background(.uWhite)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     SwapButton{
-                        swap(&fromStation, &toStation)
+                        swap(&fromCity, &toCity)
                     }
                 }
             }
@@ -46,8 +34,8 @@ struct FromToInView: View {
             .background(.uBlue)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             
-            FindButton(isEnabled: !fromStation.title.isEmpty && !toStation.title.isEmpty) {
-                navModel.push(.schedule(.carrier(fromStation, toStation)))
+            FindButton(isEnabled: !fromCity.isEmpty && !toCity.isEmpty) {
+                navModel.push(.schedule(.carrier(fromCity, toCity)))
                 isTabBarHidden = true
             }
         }
@@ -55,15 +43,8 @@ struct FromToInView: View {
 }
 
 #Preview {
-    
     NavigationStack {
-        FromToInView(
-            isTabBarHidden: .constant(false),
-            fromSettlement: .constant(PreviewMockData.shared.settlementMoscow[0]),
-            toSettlement: .constant(PreviewMockData.shared.settlementSanPetersburg[0]),
-            fromStation: .constant(PreviewMockData.shared.stationsMoscow[7]),
-            toStation: .constant(PreviewMockData.shared.stationsSanPetersburg[0])
-        )
+        FromToInView(isTabBarHidden: .constant(false), fromCity: .constant(""), toCity: .constant(""))
             .environmentObject(NavigationModel())
     }
 }

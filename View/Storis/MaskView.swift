@@ -15,7 +15,7 @@ struct MaskView: View {
 }
 
 #Preview {
-    Color.blue
+    Color.red
         .ignoresSafeArea(edges: .all)
         .overlay(
             MaskView(countOfSections: 2)

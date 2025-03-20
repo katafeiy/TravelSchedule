@@ -3,7 +3,7 @@ import OpenAPIRuntime
 import OpenAPIURLSession
 
 protocol TravelNetworkServiceProtocol {
-    func getScheduleRouteBetweenStation(from: String, to: String, transfers: Bool) async throws -> TypeAliases.ScheduleRouteBetweenStation
+    func getScheduleRouteBetweenStation(from: String, to: String) async throws -> TypeAliases.ScheduleRouteBetweenStation
     func getScheduleRouteByStation(station: String) async throws -> TypeAliases.ScheduleRouteByStation
     func getStationsByThread(uid: String) async throws -> TypeAliases.StationsByThread
     func getNearestStations(lat: Double, lng: Double, distance: Int) async throws -> TypeAliases.NearestStations
@@ -25,13 +25,12 @@ final class TravelNetworkService: TravelNetworkServiceProtocol {
     
     // MARK: Расписание рейсов между станциями
     
-    func getScheduleRouteBetweenStation(from: String, to: String, transfers: Bool) async throws -> TypeAliases.ScheduleRouteBetweenStation {
+    func getScheduleRouteBetweenStation(from: String, to: String) async throws -> TypeAliases.ScheduleRouteBetweenStation {
         
         let response = try await client.getScheduleRouteBetweenStation(query: .init(
             apikey: apikey,
             from: from,
-            to: to,
-            transfers: transfers
+            to: to
         ))
         return try response.ok.body.json
     }
