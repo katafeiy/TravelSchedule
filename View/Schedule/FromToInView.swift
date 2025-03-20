@@ -67,3 +67,22 @@ struct FromToInView: View {
             .environmentObject(NavigationModel())
     }
 }
+
+//VStack(alignment: .leading, spacing: 15) {
+//      citySelectionButton(title: "Откуда", isFrom: true)
+//       Divider()
+//       citySelectionButton(title: "Куда", isFrom: false)
+// }
+//                
+//    @ViewBuilder
+//    private func citySelectionButton(title: String, isFrom: Bool) -> some View {
+//        CitySelectionButton(
+//            title: title,
+//            settlementName: isFrom ? fromSettlement.title : toSettlement.title,
+//            stationName: isFrom ? fromStation.title : toStation.title,
+//            isIndentation: isFrom
+//        ) {
+//            navModel.push(.schedule(.settlement(isFrom)))
+//            isTabBarHidden = true
+//        }
+//    }

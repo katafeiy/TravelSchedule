@@ -2,7 +2,6 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    
     @StateObject var navModel = NavigationModel()
     @StateObject private var viewModel = TabBarViewModel()
     

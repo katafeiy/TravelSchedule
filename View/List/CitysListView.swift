@@ -42,7 +42,7 @@ struct CitysListView: View {
                         selectedSettlement = settlement
                         navModel.push(.schedule(.station(settlement.stations, isFrom)))
                     } label: {
-                        HStack {
+                        HStack(spacing: 0) {
                             Text(settlement.title == "" ? "Неизвестный город" : settlement.title)
                                 .foregroundColor(.ypBlack)
                             Spacer()

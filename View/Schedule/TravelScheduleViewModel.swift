@@ -59,8 +59,10 @@ final class TravelScheduleViewModel: ObservableObject {
     func getCity() async throws {
         
         guard !isLoaded else { return }
+        
         isLoaded = true
         isLoading = true
+        
         defer { isLoading = false }
         
         do {

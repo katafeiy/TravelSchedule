@@ -1,6 +1,6 @@
 import Foundation
 
-class CarrierInfoViewModel: ObservableObject {
+final class CarrierInfoViewModel: ObservableObject {
     @Published var carrier: Carrier
 
     init(carrier: Carrier) {
