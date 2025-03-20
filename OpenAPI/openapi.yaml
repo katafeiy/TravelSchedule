@@ -36,6 +36,12 @@ paths:
         required: true
         schema:
           type: string
+      - name: transfers
+        in: query
+        description: Параметр наличия пересадок по ходу рейса пересадок
+        required: false
+        schema:
+          type: boolean
       responses:
         "200":
           description: Успешное выполнение запроса
@@ -368,7 +374,7 @@ components:
           $ref: '#/components/schemas/To'
         has_transfers:
           type: boolean
-          description: Признак наличия пересадок nпо ходу рейса
+          description: Признак наличия пересадок по ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
         duration:
@@ -415,7 +421,7 @@ components:
           $ref: '#/components/schemas/To'
         has_transfers:
           type: boolean
-          description: Признак наличия пересадок nпо ходу рейса
+          description: Признак наличия пересадок по ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
         duration:

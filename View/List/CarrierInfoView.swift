@@ -1,8 +1,14 @@
 import SwiftUI
+import Kingfisher
 
 struct CarrierInfoView: View {
     
     @EnvironmentObject var navModel: NavigationModel
+    @StateObject private var viewModel: CarrierInfoViewModel
+    
+    init(carrier: Carrier) {
+        _viewModel = StateObject(wrappedValue: CarrierInfoViewModel(carrier: carrier))
+    }
     
     var body: some View {
         
@@ -23,26 +29,34 @@ struct CarrierInfoView: View {
                 Spacer()
             }
             
-            Image("RZHD")
-                .padding()
+            KFImage(URL(string: viewModel.carrier.logo))
+                .placeholder {
+                   Text("Логотип перевозчика отсутствует")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .foregroundStyle(.uRed)
+                }
+                .resizable()
+                .scaledToFit()
+                .frame(height: 104)
+                .padding(.horizontal, 16)
             
-            Text("ОАО \u{00AB}РЖД\u{00BB}")
+            Text("\u{00AB}\(viewModel.carrier.carrierName)\u{00BB}")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.ypBlack)
             VStack(alignment: .leading) {
                 Text("E-mail:")
                     .foregroundColor(.ypBlack)
-                Text("info@rzhd.ru")
+                Text(viewModel.carrier.email)
                     .foregroundColor(.uBlue)
             }
             VStack(alignment: .leading) {
                 Text("Телефон:")
                     .foregroundColor(.ypBlack)
-                Text("+7 (495) 123-45-67")
+                Text(viewModel.carrier.phoneNumber)
                     .foregroundColor(.uBlue)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 16)
         .navigationBarBackButtonHidden(true)
         Spacer()
     }
@@ -50,7 +64,7 @@ struct CarrierInfoView: View {
 
 #Preview {
     NavigationStack {
-        CarrierInfoView()
+        CarrierInfoView(carrier: PreviewMockData.shared.carrier)
             .environmentObject(NavigationModel())
     }
 }

@@ -1,0 +1,79 @@
+import SwiftUI
+
+@MainActor
+final class TravelScheduleViewModel: ObservableObject {
+    
+    @Published var stories: [Story]
+    @Published var selectedStory: Story
+    @Published var selectedItem: Int
+    @Published var isStoriesShown: Bool
+    
+    @Published var fromSettlement: Settlement
+    @Published var toSettlement: Settlement
+    @Published var fromStation: Station
+    @Published var toStation: Station
+    @Published var isLoading: Bool = false
+    private var isLoaded: Bool = false
+    
+    init(
+        stories: [Story] = StoriesStabData.shared.stories,
+        selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: []),
+        selectedItem: Int = 0,
+        isStoriesShown: Bool = false,
+        fromSettlement: Settlement,
+        toSettlement: Settlement,
+        fromStation: Station,
+        toStation: Station
+    ) {
+        self.stories = stories
+        self.selectedStory = selectedStory
+        self.selectedItem = selectedItem
+        self.isStoriesShown = isStoriesShown
+        self.fromSettlement = fromSettlement
+        self.toSettlement = toSettlement
+        self.fromStation = fromStation
+        self.toStation = toStation
+    }
+    
+    var isStoryViewed: Binding<Bool> {
+        Binding<Bool> (
+            get: { [self] in
+                let storyIndex = stories.firstIndex(where: { selectedStory == $0 })
+                return stories[storyIndex ?? 0].isViewed
+            },
+            set: { [self] in
+                let storyIndex = stories.firstIndex(where: { selectedStory == $0 })
+                stories[storyIndex ?? 0].isViewed = $0
+            }
+        )
+    }
+    
+    func selectStory(_ story: Story) {
+        if let index = stories.firstIndex(of: story) {
+            selectedStory = story
+            selectedItem = index
+            isStoriesShown = true
+        }
+    }
+    
+    func getCity() async throws {
+        
+        guard !isLoaded else { return }
+        isLoaded = true
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            let allStations = try await TravelScheduleNetworkModel.shared.allStations()
+            guard let russia = allStations.countries.first(where: { $0.title == "Россия" }) else {
+                print("Error: Country not found")
+                return
+            }
+            CacheDataBase.shared.settlements = russia.regions.flatMap( \.settlements )
+            CacheDataBase.shared.settlements.sort { ($0.title < $1.title) && (!$0.title.isEmpty && !$1.title.isEmpty) }
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            throw error
+        }
+    }
+}

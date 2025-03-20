@@ -3,23 +3,27 @@ import SwiftUI
 struct FilterView: View {
     
     @EnvironmentObject var navModel: NavigationModel
-    @Environment(\.dismiss) private var dismiss
-    @State private var selectedTimes: Set<String> = []
-    @State private var showTransfers: Bool?
+    @Binding var selectedTimes: Set<String>
+    @Binding var hasTransfers: Bool?
+    @Binding var isActive: Bool
     
-    let timeOptions = [
-        ("Утро", "06:00 - 12:00"),
-        ("День", "12:00 - 18:00"),
-        ("Вечер", "18:00 - 00:00"),
-        ("Ночь", "00:00 - 06:00")
+    static let timeOptions: [String: (start: String, end: String)] = [
+        "Утро": ("06:00", "12:00"),
+        "День": ("12:00", "18:00"),
+        "Вечер": ("18:00", "23:59"),
+        "Ночь": ("00:00", "05:59")
     ]
+    
+    var isFilterActive: Bool {
+        !selectedTimes.isEmpty && hasTransfers != nil
+    }
     
     var body: some View {
         VStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Button(action: {
-                        dismiss()
+                        navModel.pop(.schedule(.void))
                     }) {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.ypBlack)
@@ -32,17 +36,17 @@ struct FilterView: View {
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(nil)
                 
-                ForEach(timeOptions, id: \.0) { option in
+                ForEach(Self.timeOptions.sorted(by: { $0.key > $1.key }), id: \.key) { option in
                     HStack {
-                        Text("\(option.0) \(option.1)")
+                        Text("\(option.key) \(option.value.start) - \(option.value.end)")
                             .frame(height: 60)
                         Spacer()
-                        Image(systemName: selectedTimes.contains(option.0) ? "checkmark.square.fill" : "square")
+                        Image(systemName: selectedTimes.contains(option.key) ? "checkmark.square.fill" : "square")
                             .onTapGesture {
-                                if selectedTimes.contains(option.0) {
-                                    selectedTimes.remove(option.0)
+                                if selectedTimes.contains(option.key) {
+                                    selectedTimes.remove(option.key)
                                 } else {
-                                    selectedTimes.insert(option.0)
+                                    selectedTimes.insert(option.key)
                                 }
                             }
                     }
@@ -54,9 +58,9 @@ struct FilterView: View {
                 HStack {
                     Text("Да")
                     Spacer()
-                    Image(systemName: showTransfers == true ? "largecircle.fill.circle" : "circle")
+                    Image(systemName: hasTransfers == true ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
-                            showTransfers = true
+                            hasTransfers = true
                         }
                 }
                 .frame(height: 60)
@@ -64,9 +68,9 @@ struct FilterView: View {
                 HStack {
                     Text("Нет")
                     Spacer()
-                    Image(systemName: showTransfers == false ? "largecircle.fill.circle" : "circle")
+                    Image(systemName: hasTransfers == false ? "largecircle.fill.circle" : "circle")
                         .onTapGesture {
-                            showTransfers = false
+                            hasTransfers = false
                         }
                 }
                 .frame(height: 60)
@@ -76,7 +80,8 @@ struct FilterView: View {
             .padding(.horizontal, 16)
             
             Button {
-                dismiss()
+                navModel.pop(.schedule(.void))
+                isActive = isFilterActive
             } label: {
                 Text("Применить")
                     .foregroundColor(.uWhite)
@@ -85,12 +90,15 @@ struct FilterView: View {
                     .background(.uBlue)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
-            .opacity(!selectedTimes.isEmpty ? 1 : 0)
+            .opacity(isFilterActive ? 1 : 0)
         }
     }
 }
 
 #Preview {
-    FilterView()
+    NavigationStack {
+        FilterView(selectedTimes: .constant([]), hasTransfers: .constant(false), isActive: .constant(false))
+            .environmentObject(NavigationModel())
+    }
 }
 

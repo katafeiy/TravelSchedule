@@ -55,7 +55,7 @@ struct WebView: UIViewRepresentable {
             DispatchQueue.main.async {
                 webView.evaluateJavaScript(script, completionHandler: nil)
             }
-            
+            sleep(3)
             webView.isHidden = false
         }
     }

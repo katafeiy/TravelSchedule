@@ -2,31 +2,29 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    @AppStorage(Constant.isDarkMode.stringValue) var isDarkMode: Bool = false
+    
     @StateObject var navModel = NavigationModel()
-    @State private var selectedTabIndex = 0
-    @State private var isTabBarHidden = false
-    @Namespace private var animation
+    @StateObject private var viewModel = TabBarViewModel()
     
     var body: some View {
         
         ZStack {
-            if selectedTabIndex == 0 {
-                TravelScheduleView(isTabBarHidden: $isTabBarHidden)
+            if viewModel.selectedTabIndex == 0 {
+                TravelScheduleView(isTabBarHidden: $viewModel.isTabBarHidden)
                     .transition(.move(edge: .leading))
             } else {
-                SettingView(isTabBarHidden: $isTabBarHidden)
+                SettingView(isTabBarHidden: $viewModel.isTabBarHidden)
                     .transition(.move(edge: .trailing))
             }
             VStack {
                 Spacer()
                 tabBar
-                    .offset(y: isTabBarHidden ? 100 : 0)
-                    .animation(.easeInOut(duration: 0.5), value: isTabBarHidden)
+                    .offset(y: viewModel.isTabBarHidden ? 100 : 0)
+                    .animation(.easeInOut(duration: 0.5), value: viewModel.isTabBarHidden)
             }
         }
         .edgesIgnoringSafeArea(.bottom)
-        .preferredColorScheme(isDarkMode ? .dark : .light)
+        .preferredColorScheme(viewModel.isDarkMode ? .dark : .light)
         .environmentObject(navModel)
     }
     
@@ -39,20 +37,20 @@ struct TabBarView: View {
             HStack {
                 TabBarButton(
                     icon: .schedule,
-                    isSelected: selectedTabIndex == 0
+                    isSelected: viewModel.selectedTabIndex == 0
                 ) {
                     withAnimation(.easeInOut) {
-                        selectedTabIndex = 0
-                        isTabBarHidden = false
+                        viewModel.selectedTabIndex = 0
+                        viewModel.isTabBarHidden = false
                     }
                 }
                 TabBarButton(
                     icon: .settings,
-                    isSelected: selectedTabIndex == 1
+                    isSelected: viewModel.selectedTabIndex == 1
                 ) {
                     withAnimation(.easeInOut) {
-                        selectedTabIndex = 1
-                        isTabBarHidden = false
+                        viewModel.selectedTabIndex = 1
+                        viewModel.isTabBarHidden = false
                     }
                 }
             }

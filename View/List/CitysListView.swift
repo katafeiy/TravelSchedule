@@ -2,21 +2,12 @@ import SwiftUI
 
 struct CitysListView: View {
     
+    @StateObject private var viewModel = CityListViewModel()
     @EnvironmentObject var navModel: NavigationModel
-    @State private var searchString: String = ""
-    
-    var data: [City] = []
-    @Binding var selectedCity: String
+    @Binding var selectedSettlement: Settlement
     var isFrom: Bool
     
-    var searchResults: [City] {
-        searchString.isEmpty
-        ? data
-        : data.filter { $0.name.lowercased().contains(searchString.lowercased())}
-    }
-    
     var body: some View {
-        
         VStack(spacing: 10) {
             HStack {
                 Button(action: {
@@ -34,10 +25,10 @@ struct CitysListView: View {
             }
             .padding(.horizontal, 10)
             
-            SearchBar(searchText: $searchString)
+            SearchBar(searchText: $viewModel.searchString)
             
-            if searchResults.isEmpty {
-                if searchResults.isEmpty && searchString.isEmpty {
+            if viewModel.searchResults.isEmpty {
+                if viewModel.searchResults.isEmpty && viewModel.searchString.isEmpty {
                     ErrorView(errors: .noInternet)
                 } else {
                     Spacer()
@@ -46,12 +37,13 @@ struct CitysListView: View {
                     Spacer()
                 }
             } else {
-                List(searchResults, id: \.self) { city in
+                List(viewModel.searchResults, id: \.self) { settlement in
                     Button {
-                        navModel.push(.schedule(.station(city.name, city.stations, isFrom)))
+                        selectedSettlement = settlement
+                        navModel.push(.schedule(.station(settlement.stations, isFrom)))
                     } label: {
                         HStack {
-                            Text(city.name)
+                            Text(settlement.title == "" ? "Неизвестный город" : settlement.title)
                                 .foregroundColor(.ypBlack)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -60,7 +52,7 @@ struct CitysListView: View {
                         .padding(.vertical)
                     }
                 }
-                .animation(.easeInOut, value: searchResults)
+                .animation(.easeInOut, value: viewModel.searchResults)
                 .listStyle(.plain)
             }
         }
@@ -69,15 +61,9 @@ struct CitysListView: View {
 }
 
 #Preview {
+    
     NavigationStack {
-        CitysListView(data: ModelData.cities, selectedCity: .constant(""), isFrom: true)
-            .environmentObject(NavigationModel())
-    }
-}
-
-#Preview {
-    NavigationStack {
-        CitysListView(data: [], selectedCity: .constant(""), isFrom: false)
+        CitysListView(selectedSettlement: .constant(PreviewMockData.shared.settlementMoscow[0]), isFrom: true)
             .environmentObject(NavigationModel())
     }
 }
